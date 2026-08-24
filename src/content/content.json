@@ -1,0 +1,408 @@
+{
+  "_README": "SINGLE SOURCE OF TRUTH. All site copy and content lives here. Components read from this file — you should never need to edit a component to change words. Menu items, prices, and service terms are transcribed verbatim from JTCC's own current menu PDFs (smaller font.pdf, TACO WEB MENU.jpg, PLATED&FAMILY STYLE PRICING.pdf, WEBITE XTRA INFO.png). Nothing here is invented.",
+
+  "business": {
+    "name": "Joshua Tree Catering Co.",
+    "shortName": "JTCC",
+    "city": "Landers",
+    "state": "CA",
+    "region": "High Desert, Southern California",
+    "email": "Info@joshuatreecateringco.com",
+    "phone": "(951) 807-6579",
+    "phoneHref": "tel:+19518076579",
+    "instagram": "joshuatreecateringco",
+    "instagramUrl": "https://www.instagram.com/joshuatreecateringco/",
+    "googleUrl": "https://www.google.com/maps/place/Joshua+Tree+Catering+Co./@34.1693721,-117.7846935,915739m/data=!4m6!3m5!1s0x2b423a5e1bb492db:0xb5243f112ffcb270!8m2!3d34.1693721!4d-117.7846934!16s%2Fg%2F11kp_yw35y"
+  },
+
+  "seo": {
+    "title": "Joshua Tree Catering Co. | Hand-Crafted Catering in the High Desert",
+    "description": "Woman-owned boutique catering in Landers, CA. Drop-off catering, taco and enchilada bars, family style and plated service. Serving Joshua Tree and the high desert.",
+    "ogDescription": "Hand-crafted catering in the high desert. Menus built around your table, not a template.",
+    "locale": "en_US"
+  },
+
+  "nav": [
+    { "label": "Menus", "href": "#menus" },
+    { "label": "Parties", "href": "#parties" },
+    { "label": "Media", "href": "#media" },
+    { "label": "Reviews", "href": "#testimonials" }
+  ],
+
+  "hero": {
+    "overline": "Landers, California",
+    "headline": "Food worth sitting down for.",
+    "subhead": "Hand-crafted catering in the high desert. Woman-owned, cooked to order, never tied to one cuisine.",
+    "cta": { "label": "Tell us about your event", "href": "#contact" },
+    "image": {
+      "key": "hero",
+      "remote": "",
+      "alt": "A long table set for dinner in the desert at dusk, candles and glasses down the length of it",
+      "width": 1067,
+      "height": 1600
+    }
+  },
+
+  "intro": {
+    "heading": "We cook by hand.",
+    "body": [
+      "Joshua Tree Catering Co. is a small, woman-owned catering company based in Landers, California.",
+      "Tacos one weekend, braised oxtail the next — we've never seen the point of locking ourselves into one cuisine when the better question is what suits your event and the people coming to it.",
+      "Most of what we do is private: weddings, birthdays, family gatherings, retreats. Long tables, good plates, nobody rushing off. That's the version of a meal we're after."
+    ]
+  },
+
+  "menus": {
+    "heading": "Menus",
+    "intro": "A sampling of the drop-off menu — small serves 5, large serves 10, packaged in aluminum and ready to heat. The full menu runs a good deal longer, and everything on it changes with the season. Ask and we'll send it.",
+    "servingNote": "small serves 5  |  large serves 10",
+    "sections": [
+      {
+        "name": "Breakfast",
+        "items": [
+          {
+            "id": "breakfast-burritos",
+            "name": "Breakfast Burritos",
+            "description": "Scrambled eggs, potatoes, cheese, pico de gallo, and house-made salsa.",
+            "price": { "small": 80, "large": 160 },
+            "note": "Choice of bacon, chorizo, or soyrizo. GF wrap +2.50 per person.",
+            "dietary": [],
+            "image": null
+          },
+          {
+            "id": "lox-bagels",
+            "name": "Lox + Bagels",
+            "description": "Whipped dill cream cheese, Persian cucumber, red onion, caper relish, tomato.",
+            "price": { "small": 140, "large": 280 },
+            "note": "Choice of plain, sesame, or everything bagels.",
+            "dietary": [],
+            "image": null
+          },
+          {
+            "id": "desert-potatoes",
+            "name": "Desert Potatoes",
+            "description": "Roasted potato, garlic, sautéed onion and bell pepper, parmesan over the top.",
+            "price": { "small": 60, "large": 120 },
+            "note": "",
+            "dietary": ["v", "gf"],
+            "image": null
+          }
+        ]
+      },
+      {
+        "name": "Snack Platters",
+        "items": [
+          {
+            "id": "charcuterie",
+            "name": "Charcuterie",
+            "description": "Artisanal meats and cheeses, dried fruit, nuts and olives, house-made jam, baguette and crackers.",
+            "price": { "small": 150, "large": 300 },
+            "note": "Vegetarian and gluten-free friendly.",
+            "dietary": [],
+            "image": null
+          },
+          {
+            "id": "mezze",
+            "name": "Mezze",
+            "description": "Roasted garlic baba ghanoush, curried hummus, jalapeño dolmas, pickled turnip, pita and fresh veggies.",
+            "price": { "small": 90, "large": 170 },
+            "note": "Vegetarian; gluten-free friendly.",
+            "dietary": [],
+            "image": null
+          },
+          {
+            "id": "deviled-eggs",
+            "name": "Deviled Eggs",
+            "description": "A dozen eggs, 24 pieces. Classic with mustard aioli and crispy prosciutto, brunch with smoked salmon and fried capers, cacio e pepe, or spinach and artichoke.",
+            "price": { "small": 45, "large": 55 },
+            "note": "Dozen (24 pieces) or a mixed dozen — pick two.",
+            "dietary": ["gf"],
+            "image": null
+          }
+        ]
+      },
+      {
+        "name": "Salads",
+        "items": [
+          {
+            "id": "cesar",
+            "name": "¡Cesar!",
+            "description": "Romaine, cilantro-caesar dressing, pickled red onion, cotija, crispy jalapeños.",
+            "price": { "small": 85, "large": 170 },
+            "note": "Vegetarian and gluten-free friendly. Add chicken +20 | 40.",
+            "dietary": [],
+            "image": null
+          },
+          {
+            "id": "spring-orzo",
+            "name": "Spring Orzo",
+            "description": "Cherry tomato, cucumber, roasted red peppers, red onion and fennel, rosemary citrus vinaigrette.",
+            "price": { "small": 80, "large": 160 },
+            "note": "Add chicken +20 | 40.",
+            "dietary": [],
+            "image": null
+          },
+          {
+            "id": "arugula",
+            "name": "Arugula",
+            "description": "Herbed goat cheese, roasted pistachio, shallot, smoked paprika-honey vinaigrette.",
+            "price": { "small": 80, "large": 160 },
+            "note": "",
+            "dietary": ["v", "gf"],
+            "image": null
+          }
+        ]
+      },
+      {
+        "name": "Sandwiches & Wraps",
+        "items": [
+          {
+            "id": "birdy-and-the-beast",
+            "name": "Birdy and the Beast",
+            "description": "Turkey, roast beef, gouda, pickles, onion, mustard aioli on a french roll.",
+            "price": { "small": 100, "large": 200 },
+            "note": "Served on platters, cut in half.",
+            "dietary": [],
+            "image": null
+          },
+          {
+            "id": "cubano-wrap",
+            "name": "Cubano Wrap",
+            "description": "Smoked ham, bacon, provolone, pickles, sweet-spicy mustard.",
+            "price": { "small": 100, "large": 200 },
+            "note": "GF spinach wrap +2.50 per wrap.",
+            "dietary": [],
+            "image": null
+          },
+          {
+            "id": "chickpea-salad-wrap",
+            "name": "Chickpea Salad Wrap",
+            "description": "Onion and celery, tomato, turmeric, arugula.",
+            "price": { "small": 90, "large": 180 },
+            "note": "GF spinach wrap +2.50 per wrap.",
+            "dietary": ["v"],
+            "image": null
+          }
+        ]
+      },
+      {
+        "name": "Entrées",
+        "items": [
+          {
+            "id": "braised-oxtail",
+            "name": "Braised Oxtail",
+            "description": "Red wine, tomato, spices, garlic.",
+            "price": { "small": 190, "large": 380 },
+            "note": "Add creamy parmesan polenta +50 | 100.",
+            "dietary": ["gf"],
+            "image": null
+          },
+          {
+            "id": "enchiladas-verde-o-roja",
+            "name": "Enchiladas Verde o Roja",
+            "description": "Chicken, mozzarella, Monterey jack and queso fresco, under creamy tomatillo or ancho red sauce.",
+            "price": { "small": 120, "large": 240 },
+            "note": "Add Mexican rice and charro beans +90 | 180.",
+            "dietary": ["gf"],
+            "image": null
+          },
+          {
+            "id": "citrus-grilled-salmon",
+            "name": "Citrus Grilled Salmon",
+            "description": "Dill and caper, herbed beurre blanc.",
+            "price": { "small": 150, "large": 300 },
+            "note": "Add honey-glazed carrots +60 | 120.",
+            "dietary": ["gf"],
+            "image": null
+          },
+          {
+            "id": "cottage-pie",
+            "name": "Cottage Pie",
+            "description": "Farmer's market vegetables, lentil, peas and potato, baked under herbed mashed potatoes.",
+            "price": { "small": 125, "large": 250 },
+            "note": "Add mixed green salad +70 | 140.",
+            "dietary": ["v", "gf"],
+            "image": null
+          }
+        ]
+      },
+      {
+        "name": "Sweets",
+        "items": [
+          {
+            "id": "lemon-fig-bars",
+            "name": "Lemon Fig Bars",
+            "description": "Shortbread crust.",
+            "price": { "small": 45, "large": 90 },
+            "note": "12 piece | 24 piece.",
+            "dietary": [],
+            "image": null
+          },
+          {
+            "id": "canoli",
+            "name": "Canoli",
+            "description": "Sweet cream and tart berry sauce.",
+            "price": { "small": 45, "large": 90 },
+            "note": "12 piece | 24 piece.",
+            "dietary": [],
+            "image": null
+          }
+        ]
+      }
+    ],
+    "dietaryKey": {
+      "v": "vegetarian",
+      "vg": "vegan",
+      "gf": "gluten-free"
+    },
+    "footnote": "Menu selections are subject to change. Prices hold until a contract is written.",
+    "purveyors": {
+      "heading": "Some of our local purveyors",
+      "intro": "We source as much as we can from local, small businesses. Because of that, we ask for two weeks or more for the full menu.",
+      "list": ["Canyon Creek Mushrooms", "Luna Sourdough", "Joshua Tree Farmer's Market"]
+    }
+  },
+
+  "parties": {
+    "heading": "Parties",
+    "intro": "Weddings, birthdays, retreats, and dinners that run long. Four ways to do it, from a drop-off you host yourself to a plated dinner with a chef in your kitchen.",
+    "services": [
+      {
+        "id": "drop-off",
+        "name": "Drop-Off Catering",
+        "description": "We cook it, we bring it, you host. Everything arrives in aluminum, ready to heat, with pre-wrapped utensils and napkins.",
+        "price": "$300 minimum",
+        "terms": [
+          "20% service charge on all drop-off orders",
+          "Delivery starts at $50, based on location and time",
+          "Serving utensils, compostable plates, utensils and napkins available on request"
+        ]
+      },
+      {
+        "id": "taco-bar",
+        "name": "Taco Bar",
+        "description": "Choice of three proteins — chicken tinga, carne asada, carnitas, mama's ground beef, achiote squash, potato and carrot-rizo. Corn tortillas, Mexican rice, chipotle-spiced charro beans, onion, cilantro, lime, and house-made salsas.",
+        "price": "250 | 500",
+        "terms": [
+          "Gluten-free, and easily adapted to vegetarian or vegan",
+          "Add an additional protein +10"
+        ]
+      },
+      {
+        "id": "enchilada-bar",
+        "name": "Enchilada Bar",
+        "description": "Hand-rolled chicken enchiladas with mozzarella, pepper jack and queso fresco, under ancho red or creamy tomatillo. Mexican rice, chipotle-spiced charro beans, crema, queso fresco, jalapeño, onion, cilantro.",
+        "price": "225 | 400",
+        "terms": ["Make it a party with both bars — 350 | 700"]
+      },
+      {
+        "id": "family-style",
+        "name": "Family Style",
+        "description": "Every dish on platters down the middle of the table for guests to pass and share. A chef, server, and serving dishware come with it. Two to three weeks out we sit down and build a three-course menu around you.",
+        "price": "From $100 per person, plus food cost",
+        "terms": [
+          "6 person minimum",
+          "6–10 people: $150 per person · 11–20: $125 · 21–30: $100",
+          "Subject to 18% service fee"
+        ]
+      },
+      {
+        "id": "plated",
+        "name": "Plated Service",
+        "description": "A little more formality, for the moments that call for it — anniversaries, proposals, small weddings. Chef and server included, three courses built with you beforehand.",
+        "price": "From $175 per person, plus food cost",
+        "terms": [
+          "4 person minimum",
+          "4–10 people: $200 per person · 11–20: $175",
+          "Subject to 18% service fee",
+          "50% deposit reserves the date and time"
+        ]
+      }
+    ],
+    "ordering": {
+      "heading": "All the extra info",
+      "notes": [
+        "Full payment is due when the order is placed. Once payment is processed, menu selections are final.",
+        "You can add to an order with at least 3 days' notice.",
+        "Delivery times may be adjusted up until noon the day before your event.",
+        "We source from local, small businesses — please give us 2+ weeks for full menu availability.",
+        "All pricing is subject to change until a contract is provided."
+      ]
+    }
+  },
+
+  "media": {
+    "heading": "Media",
+    "intro": "Real food from real events. Everything here came off our own tables.",
+    "_NOTE": "Local files in src/assets/images, named to match `key`. Astro optimizes them into responsive WebP/AVIF at build. The old Wix CDN URLs are dead — the domain is disconnected — so nothing here points remote any more.",
+    "gallery": [
+      {
+        "key": "plated-dinner",
+        "remote": "",
+        "alt": "A plated short rib over grains, on a candlelit wooden table",
+        "width": 1600,
+        "height": 1067
+      },
+      {
+        "key": "tacos",
+        "remote": "",
+        "alt": "Tacos with pickled jalapeño and cotija, from overhead",
+        "width": 585,
+        "height": 718
+      },
+      {
+        "key": "ceviche",
+        "remote": "",
+        "alt": "Shrimp ceviche with lime in a shallow bowl",
+        "width": 585,
+        "height": 487
+      },
+      {
+        "key": "braised-plate",
+        "remote": "",
+        "alt": "A braised lamb shank plated with sauce and herbs",
+        "width": 1067,
+        "height": 1600
+      },
+      {
+        "key": "table-setting",
+        "remote": "",
+        "alt": "A place setting with candles and dried desert flowers",
+        "width": 1067,
+        "height": 1600
+      },
+      {
+        "key": "long-table",
+        "remote": "",
+        "alt": "Guests around a long table, plates and glasses everywhere, seen from above",
+        "width": 2284,
+        "height": 1523
+      }
+    ]
+  },
+
+  "testimonials": {
+    "heading": "Reviews",
+    "intro": "From our Google reviews.",
+    "_AWAITING_REAL_CONTENT": "Only real, attributed Google reviews go here. The section does not render while `quotes` is empty. Google Maps truncates review text in the page source — paste the full text of the reviews you want to use and they go straight in.",
+    "rating": {
+      "score": 4.6,
+      "count": 32,
+      "source": "Google",
+      "url": "https://www.google.com/maps/place/Joshua+Tree+Catering+Co./@34.1693721,-117.7846935,915739m/data=!4m6!3m5!1s0x2b423a5e1bb492db:0xb5243f112ffcb270!8m2!3d34.1693721!4d-117.7846934!16s%2Fg%2F11kp_yw35y"
+    },
+    "quotes": []
+  },
+
+  "contact": {
+    "heading": "Tell us about your event.",
+    "body": "Send us the date, roughly how many people, and what you're picturing. We'll come back with a menu draft.",
+    "cta": { "label": "Info@joshuatreecateringco.com", "href": "mailto:Info@joshuatreecateringco.com" },
+    "note": "Dates go early in spring. Reach out when you know your weekend."
+  },
+
+  "footer": {
+    "tagline": "Connecting with people over a hand-crafted meal.",
+    "location": "Landers, CA · Serving the high desert and Southern California"
+  }
+}

@@ -1,0 +1,54 @@
+---
+/**
+ * Renders a photo, preferring a locally-downloaded asset (which Astro
+ * optimizes) and falling back to the Wix CDN URL so the site works
+ * before `npm run assets` has been run.
+ */
+import { Image } from 'astro:assets';
+
+interface Props {
+  image: { key: string; remote: string; alt: string; width: number; height: number } | null;
+  class?: string;
+  loading?: 'lazy' | 'eager';
+  sizes?: string;
+}
+
+const { image, class: className = '', loading = 'lazy', sizes } = Astro.props;
+
+// Local assets, if the download script has been run.
+const local = import.meta.glob<{ default: ImageMetadata }>(
+  '../assets/images/*.{jpg,jpeg,png,webp,avif}',
+  { eager: true }
+);
+
+function findLocal(key: string) {
+  const hit = Object.entries(local).find(([path]) =>
+    path.split('/').pop()?.replace(/\.[^.]+$/, '') === key
+  );
+  return hit?.[1].default;
+}
+
+const localSrc = image ? findLocal(image.key) : undefined;
+---
+{image && (localSrc || image.remote) && (
+  localSrc ? (
+    <Image
+      src={localSrc}
+      alt={image.alt}
+      class={className}
+      loading={loading}
+      sizes={sizes}
+      widths={[480, 800, 1200]}
+    />
+  ) : (
+    <img
+      src={image.remote}
+      alt={image.alt}
+      width={image.width}
+      height={image.height}
+      class={className}
+      loading={loading}
+      decoding="async"
+    />
+  )
+)}

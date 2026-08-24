@@ -1,0 +1,47 @@
+---
+import content from '~/content/content.json';
+
+interface Props { title?: string; description?: string; }
+const { title = content.seo.title, description = content.seo.description } = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const { business, seo } = content;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FoodEstablishment',
+  additionalType: 'https://schema.org/CateringBusiness',
+  name: business.name,
+  description: seo.description,
+  email: business.email,
+  telephone: business.phone,
+  url: canonical.href,
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: business.city,
+    addressRegion: business.state,
+    addressCountry: 'US',
+  },
+  areaServed: business.region,
+  servesCuisine: 'Seasonal, globally influenced',
+  sameAs: [business.instagramUrl, business.googleUrl],
+};
+---
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical.href} />
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content={business.name} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={seo.ogDescription} />
+<meta property="og:url" content={canonical.href} />
+<meta property="og:locale" content={seo.locale} />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={seo.ogDescription} />
+
+<meta name="theme-color" content="#FCEBCD" />
+
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />

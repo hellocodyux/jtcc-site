@@ -1,0 +1,14 @@
+---
+import content from '~/content/content.json';
+const { intro } = content;
+---
+<section class="mx-auto max-w-6xl px-6 py-24 md:py-36">
+  <div class="grid gap-10 md:grid-cols-12">
+    <h2 class="reveal text-4xl md:col-span-5 md:text-5xl">
+      {intro.heading}
+    </h2>
+    <div class="reveal space-y-5 text-lg leading-relaxed md:col-span-6 md:col-start-7">
+      {intro.body.map((p) => <p>{p}</p>)}
+    </div>
+  </div>
+</section>

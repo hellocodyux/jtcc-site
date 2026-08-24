@@ -1,0 +1,196 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------
+   JTCC design tokens
+   Palette extracted from real brand assets. See the jtcc-brand
+   skill (references/visual-identity.md) for provenance.
+   --------------------------------------------------------------- */
+@theme {
+  /* Brand reds */
+  --color-ember: #c43b1c;
+  --color-signal: #cb1e19;
+  --color-adobe: #a93f22;
+  --color-brick: #9b2017;
+  --color-rust: #c46446;
+
+  /* Warm neutrals */
+  --color-cream: #fcebcd;
+  --color-bone: #fbf8d9;
+  --color-clay: #db8e6f;
+  --color-sand: #ecbd9b;
+
+  /* Neutrals */
+  --color-ink: #252525;
+  --color-slate: #8c8c8c;
+  --color-offwhite: #fafafa;
+
+  /* Type */
+  --font-display: "Fraunces Variable", "Fraunces", Georgia, serif;
+  --font-body: "Karla Variable", "Karla", system-ui, sans-serif;
+
+  /* Rhythm */
+  --radius-DEFAULT: 2px;
+}
+
+/* ---------------------------------------------------------------
+   Base
+   --------------------------------------------------------------- */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    background-color: var(--color-cream);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  body {
+    font-family: var(--font-body);
+    color: var(--color-ink);
+    background-color: var(--color-cream);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-variation-settings: "SOFT" 0, "WONK" 1, "opsz" 40;
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+  }
+
+  /* Anchor targets clear the sticky nav */
+  section[id] {
+    scroll-margin-top: 5rem;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-ember);
+    outline-offset: 3px;
+  }
+
+  ::selection {
+    background-color: var(--color-ember);
+    color: var(--color-bone);
+  }
+}
+
+/* ---------------------------------------------------------------
+   Signature: the long table
+   Menu items sit alternately either side of a hairline running the
+   length of the section, like place settings facing each other.
+   --------------------------------------------------------------- */
+@layer components {
+  .longtable {
+    position: relative;
+  }
+
+  /* The table itself */
+  .longtable::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 1rem;
+    width: 1px;
+    background: linear-gradient(
+      to bottom,
+      transparent,
+      var(--color-clay) 8%,
+      var(--color-clay) 92%,
+      transparent
+    );
+  }
+
+  .longtable-row {
+    position: relative;
+    padding-left: 3rem;
+    padding-block: 2rem;
+  }
+
+  /* Place setting marker */
+  .longtable-row::before {
+    content: "";
+    position: absolute;
+    left: calc(1rem - 3px);
+    top: 3rem;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background-color: var(--color-ember);
+  }
+
+  @media (min-width: 900px) {
+    .longtable::before {
+      left: 50%;
+    }
+
+    .longtable-row {
+      width: 50%;
+      padding-left: 0;
+      padding-right: 3.5rem;
+      text-align: right;
+    }
+
+    .longtable-row::before {
+      left: auto;
+      right: -4px;
+      top: 3.25rem;
+    }
+
+    /* Opposite side of the table */
+    .longtable-row:nth-child(even) {
+      margin-left: 50%;
+      padding-right: 0;
+      padding-left: 3.5rem;
+      text-align: left;
+    }
+
+    .longtable-row:nth-child(even)::before {
+      right: auto;
+      left: -4px;
+    }
+
+    /* Stagger so settings don't sit directly opposite each other */
+    .longtable-row:nth-child(even) {
+      margin-top: -3rem;
+    }
+  }
+
+  /* Prices align in a column */
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* ---------------------------------------------------------------
+   Scroll reveal
+   --------------------------------------------------------------- */
+@layer utilities {
+  .reveal {
+    opacity: 0;
+    transform: translateY(12px);
+    transition:
+      opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .reveal.is-in {
+    opacity: 1;
+    transform: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+}

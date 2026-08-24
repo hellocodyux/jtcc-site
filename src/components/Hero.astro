@@ -1,0 +1,41 @@
+---
+import content from '~/content/content.json';
+import Figure from './Figure.astro';
+const { hero } = content;
+---
+<section id="top" class="relative min-h-[92vh] overflow-hidden">
+  <Figure
+    image={hero.image}
+    loading="eager"
+    class="absolute inset-0 h-full w-full object-cover"
+    sizes="100vw"
+  />
+
+  <!-- Scrim so the type holds against any photo -->
+  <div
+    class="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/40 to-ink/30"
+    aria-hidden="true"
+  ></div>
+
+  <div class="relative mx-auto flex min-h-[92vh] max-w-6xl flex-col justify-end px-6 pb-20 pt-32">
+    <p class="mb-5 text-xs uppercase tracking-[0.28em] text-sand">
+      {hero.overline}
+    </p>
+
+    <h1 class="max-w-3xl text-[clamp(2.75rem,8vw,5.5rem)] text-bone">
+      {hero.headline}
+    </h1>
+
+    <p class="mt-6 max-w-md text-lg leading-relaxed text-cream/90">
+      {hero.subhead}
+    </p>
+
+    <a
+      href={hero.cta.href}
+      class="mt-10 inline-flex w-fit items-center gap-3 border-b border-sand pb-1 text-sm uppercase tracking-[0.16em] text-bone transition-opacity hover:opacity-70"
+    >
+      {hero.cta.label}
+      <span aria-hidden="true">&rarr;</span>
+    </a>
+  </div>
+</section>

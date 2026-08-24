@@ -1,0 +1,75 @@
+---
+import content from '~/content/content.json';
+const { business } = content;
+
+// The reviews section only renders once there are real quotes in
+// content.json — so its nav link only appears then too, rather than
+// pointing at an anchor that isn't on the page.
+const hidden = new Set<string>();
+if (content.testimonials.quotes.length === 0) hidden.add('#testimonials');
+
+const nav = content.nav.filter((item) => !hidden.has(item.href));
+---
+<header
+  id="site-nav"
+  class="fixed inset-x-0 top-0 z-40 transition-colors duration-300"
+  data-nav
+>
+  <nav
+    class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4"
+    aria-label="Primary"
+  >
+    <a
+      href="#top"
+      class="font-display text-lg tracking-tight transition-opacity hover:opacity-70"
+      data-nav-mark
+    >
+      Joshua Tree Catering Co.
+    </a>
+
+    <ul class="hidden items-center gap-8 md:flex">
+      {nav.map((item) => (
+        <li>
+          <a
+            href={item.href}
+            class="text-sm tracking-wide transition-opacity hover:opacity-60"
+            data-nav-link
+          >
+            {item.label}
+          </a>
+        </li>
+      ))}
+      <li>
+        <a
+          href="#contact"
+          class="border-b border-current pb-0.5 text-sm tracking-wide text-ember transition-opacity hover:opacity-60"
+        >
+          Get in touch
+        </a>
+      </li>
+    </ul>
+
+    <a
+      href="#contact"
+      class="border-b border-current pb-0.5 text-sm text-ember md:hidden"
+    >
+      Get in touch
+    </a>
+  </nav>
+</header>
+
+<script>
+  // Nav sits transparent over the hero, then picks up a background.
+  const nav = document.querySelector('[data-nav]');
+  const onScroll = () => {
+    if (!nav) return;
+    const past = window.scrollY > window.innerHeight * 0.7;
+    nav.classList.toggle('bg-cream/95', past);
+    nav.classList.toggle('backdrop-blur-sm', past);
+    nav.classList.toggle('text-ink', past);
+    nav.classList.toggle('text-bone', !past);
+    nav.classList.toggle('shadow-[0_1px_0_rgba(219,142,111,0.4)]', past);
+  };
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+</script>
