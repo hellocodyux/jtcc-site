@@ -30,7 +30,7 @@ function findLocal(key: string) {
 
 const localSrc = image ? findLocal(image.key) : undefined;
 ---
-{image && (localSrc || image.remote) && (
+{image && (
   localSrc ? (
     <Image
       src={localSrc}

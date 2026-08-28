@@ -14,7 +14,6 @@ const jsonLd = {
   name: business.name,
   description: seo.description,
   email: business.email,
-  telephone: business.phone,
   url: canonical.href,
   address: {
     '@type': 'PostalAddress',
@@ -24,7 +23,7 @@ const jsonLd = {
   },
   areaServed: business.region,
   servesCuisine: 'Seasonal, globally influenced',
-  sameAs: [business.instagramUrl, business.googleUrl],
+  sameAs: [business.instagramUrl],
 };
 ---
 <title>{title}</title>

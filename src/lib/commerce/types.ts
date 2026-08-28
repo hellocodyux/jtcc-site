@@ -8,22 +8,12 @@
 
 export type DietaryMark = 'v' | 'vg' | 'gf';
 
-/** JTCC sells drop-off items by tray, not per head. */
-export type PortionSize = 'small' | 'large';
-
-/** Whole dollars per tray. Small serves 5, large serves 10. */
-export interface TrayPrice {
-  small: number;
-  large: number;
-}
-
 export interface MenuItem {
   id: string;
   name: string;
   description: string;
-  price: TrayPrice;
-  /** Modifiers, add-ons, and dietary caveats, as written on the printed menu. */
-  note: string;
+  /** Price per person, in whole dollars. */
+  price: number;
   dietary: DietaryMark[];
   image: ImageRef | null;
 }

@@ -1,14 +1,6 @@
 ---
 import content from '~/content/content.json';
-const { business } = content;
-
-// The reviews section only renders once there are real quotes in
-// content.json — so its nav link only appears then too, rather than
-// pointing at an anchor that isn't on the page.
-const hidden = new Set<string>();
-if (content.testimonials.quotes.length === 0) hidden.add('#testimonials');
-
-const nav = content.nav.filter((item) => !hidden.has(item.href));
+const { nav, business } = content;
 ---
 <header
   id="site-nav"

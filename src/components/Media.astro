@@ -2,30 +2,49 @@
 import content from '~/content/content.json';
 import SectionHead from './SectionHead.astro';
 import Figure from './Figure.astro';
-const { media } = content;
+const { media, business } = content;
+const [lead, ...rest] = media.gallery;
 ---
 <section id="media" class="border-t border-clay/30 bg-bone">
   <div class="mx-auto max-w-6xl px-6 py-24 md:py-36">
     <SectionHead heading={media.heading} intro={media.intro} />
 
-    <!-- Deliberately uneven so it reads as a spread, not a product grid -->
-    <div class="grid grid-cols-2 gap-3 md:grid-cols-6 md:gap-4">
-      {media.gallery.map((img, i) => {
-        const span = [
-          'md:col-span-4', 'md:col-span-2', 'md:col-span-2',
-          'md:col-span-2', 'md:col-span-2', 'md:col-span-6',
-        ][i % 6];
-        const ratio = i % 6 === 5 ? 'aspect-[21/9]' : 'aspect-[4/5] md:aspect-[4/3]';
-        return (
-          <figure class={`reveal ${span} overflow-hidden`}>
-            <Figure
-              image={img}
-              class={`${ratio} w-full object-cover transition-transform duration-700 hover:scale-[1.03]`}
-              sizes="(min-width: 900px) 50vw, 100vw"
-            />
-          </figure>
-        );
-      })}
+    <!-- Lead image carries poster type, the way a magazine opener would -->
+    <figure class="warm soft-edge reveal relative mb-4 overflow-hidden">
+      <Figure
+        image={lead}
+        class="aspect-[16/10] w-full object-cover"
+        sizes="100vw"
+      />
+      <figcaption
+        class="poster absolute bottom-6 left-6 right-6 z-10 text-[clamp(1.75rem,5vw,3.5rem)]"
+      >
+        {lead.caption}
+      </figcaption>
+    </figure>
+
+    <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+      {rest.map((img) => (
+        <figure class="warm reveal overflow-hidden">
+          <Figure
+            image={img}
+            class="aspect-[4/5] w-full object-cover"
+            sizes="(min-width: 640px) 33vw, 100vw"
+          />
+          <figcaption class="relative z-10 mt-3 text-sm text-ink/65">
+            {img.caption}
+          </figcaption>
+        </figure>
+      ))}
     </div>
+
+    <a
+      href={business.instagramUrl}
+      rel="noopener"
+      class="reveal mt-12 inline-flex items-center gap-3 border-b border-ember pb-1 text-sm uppercase tracking-[0.16em] text-ember transition-opacity hover:opacity-60"
+    >
+      {media.instagramCta}
+      <span aria-hidden="true">&rarr;</span>
+    </a>
   </div>
 </section>

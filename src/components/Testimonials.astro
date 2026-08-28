@@ -1,48 +1,24 @@
 ---
-/**
- * Reviews.
- *
- * Real, attributed reviews only. If `quotes` is empty the whole
- * section is omitted rather than rendering an empty shell — better a
- * shorter page than a placeholder one.
- */
 import content from '~/content/content.json';
 import SectionHead from './SectionHead.astro';
-
 const { testimonials } = content;
-const { rating } = testimonials;
-const hasQuotes = testimonials.quotes.length > 0;
 ---
-{hasQuotes && (
-  <section id="testimonials" class="border-t border-clay/30">
-    <div class="mx-auto max-w-6xl px-6 py-24 md:py-36">
-      <SectionHead heading={testimonials.heading} intro={testimonials.intro} />
+<section id="testimonials" class="border-t border-clay/30">
+  <div class="mx-auto max-w-6xl px-6 py-24 md:py-36">
+    <SectionHead heading={testimonials.heading} intro={testimonials.intro} />
 
-      {rating && (
-        <a
-          href={rating.url}
-          rel="noopener"
-          class="reveal -mt-10 mb-16 inline-flex items-baseline gap-3 text-sm text-ink/60 transition-opacity hover:opacity-70"
-        >
-          <span class="tabular font-display text-2xl text-ink">{rating.score}</span>
-          <span aria-hidden="true" class="text-ember">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-          <span>{rating.count} reviews on {rating.source}</span>
-        </a>
-      )}
-
-      <div class="grid gap-12 md:grid-cols-3">
-        {testimonials.quotes.map((t) => (
-          <figure class="reveal">
-            <blockquote class="font-display text-2xl leading-snug">
-              &ldquo;{t.quote}&rdquo;
-            </blockquote>
-            <figcaption class="mt-5 text-sm text-ink/60">
-              <span class="block">{t.attribution}</span>
-              <span class="block text-slate">{t.context}</span>
-            </figcaption>
-          </figure>
-        ))}
-      </div>
+    <div class="grid gap-12 md:grid-cols-3">
+      {testimonials.quotes.map((t) => (
+        <figure class="reveal">
+          <blockquote class="font-display text-2xl leading-snug">
+            &ldquo;{t.quote}&rdquo;
+          </blockquote>
+          <figcaption class="mt-5 text-sm text-ink/60">
+            <span class="block">{t.attribution}</span>
+            <span class="block text-slate">{t.context}</span>
+          </figcaption>
+        </figure>
+      ))}
     </div>
-  </section>
-)}
+  </div>
+</section>

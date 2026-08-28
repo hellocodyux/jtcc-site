@@ -16,17 +16,6 @@ const year = new Date().getFullYear();
         {contact.cta.label}
       </a>
 
-      {business.phone && (
-        <p class="mt-4">
-          <a
-            href={business.phoneHref}
-            class="border-b border-bone/40 pb-0.5 text-lg transition-opacity hover:opacity-70"
-          >
-            {business.phone}
-          </a>
-        </p>
-      )}
-
       <p class="mt-8 text-sm text-bone/70">{contact.note}</p>
     </div>
   </div>

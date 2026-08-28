@@ -3,7 +3,7 @@ import content from '~/content/content.json';
 import Figure from './Figure.astro';
 const { hero } = content;
 ---
-<section id="top" class="relative min-h-[92vh] overflow-hidden">
+<section id="top" class="warm relative min-h-[94vh] overflow-hidden">
   <Figure
     image={hero.image}
     loading="eager"
@@ -11,22 +11,21 @@ const { hero } = content;
     sizes="100vw"
   />
 
-  <!-- Scrim so the type holds against any photo -->
   <div
-    class="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/40 to-ink/30"
+    class="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/35 to-ink/25"
     aria-hidden="true"
   ></div>
 
-  <div class="relative mx-auto flex min-h-[92vh] max-w-6xl flex-col justify-end px-6 pb-20 pt-32">
-    <p class="mb-5 text-xs uppercase tracking-[0.28em] text-sand">
+  <div class="relative z-10 mx-auto flex min-h-[94vh] max-w-6xl flex-col justify-end px-6 pb-20 pt-32">
+    <p class="mb-6 text-xs uppercase tracking-[0.32em] text-sand">
       {hero.overline}
     </p>
 
-    <h1 class="max-w-3xl text-[clamp(2.75rem,8vw,5.5rem)] text-bone">
+    <h1 class="poster max-w-4xl text-[clamp(3rem,11vw,8rem)]">
       {hero.headline}
     </h1>
 
-    <p class="mt-6 max-w-md text-lg leading-relaxed text-cream/90">
+    <p class="mt-7 max-w-lg text-lg leading-relaxed text-cream/90">
       {hero.subhead}
     </p>
 
