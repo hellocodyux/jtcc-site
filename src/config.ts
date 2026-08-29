@@ -9,14 +9,20 @@ export const features = {
   checkout: false,
 
   /**
-   * The Menus section. Currently hidden — the site leads with private
-   * chef work and lets the Instagram feed carry the food story.
+   * Sample menus from past events. Price-free by design — quotes are
+   * written per event.
    *
-   * The menu data is still in content.json and the commerce layer
-   * still reads it, so flipping this to true brings the whole section
-   * back exactly as it was.
+   * Off until the placeholders in content.json are replaced with real
+   * past-event menus. Then flip this to true.
    */
-  menus: false,
+  sampleMenus: false,
+
+  /**
+   * The curated Media gallery. Off — the live Instagram feed covers
+   * photography now. Content stays in content.json, so flipping this
+   * to true brings the section back.
+   */
+  media: false,
 } as const;
 
 export const site = {

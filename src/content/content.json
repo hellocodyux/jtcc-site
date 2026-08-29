@@ -23,8 +23,8 @@
       "href": "#services"
     },
     {
-      "label": "Media",
-      "href": "#media"
+      "label": "Lately",
+      "href": "#instagram"
     },
     {
       "label": "Testimonials",
@@ -48,21 +48,21 @@
     }
   },
   "intro": {
-    "heading": "Everybody eats.",
+    "heading": "Rooted in community.",
     "body": [
-      "That's the whole idea. Somebody cooks, everybody sits down, and a few hours later nobody wants to leave. The food is the reason people showed up — it isn't the point.",
-      "We're a woman-owned catering company in Joshua Tree. We cook by hand, we're not tied to one cuisine, and we build every menu around whoever's actually coming.",
-      "Weddings, birthdays, family gatherings, retreats. Long tables, good plates, no rush."
+      "Heartfelt gatherings in the desert. That's the work — somebody cooks, everybody sits down, and a few hours later nobody wants to leave.",
+      "We're a woman-owned catering company in Joshua Tree. Local ingredients, cooked by hand, never locked into a single cuisine.",
+      "Connection through food is the whole point. The menu is just how we get there."
     ]
   },
   "services": {
     "heading": "Private chef & catering.",
     "intro": "Dinner for eight in your rental, or a hundred people in a backyard. Same kitchen, same hands, same care either way.",
-    "_PLACEHOLDER": "Confirm these four are accurate and that pricing language is right before launch.",
+    "_PLACEHOLDER": "Confirm these four are accurate before launch.",
     "items": [
       {
         "name": "Private chef dinners",
-        "description": "We cook in your kitchen — your house, your rental, wherever you're staying. Usually eight to twenty people around one table. Courses come out when they're ready and nobody's watching the clock."
+        "description": "We cook in your kitchen — your house, your rental, wherever you're staying. Usually eight to twenty around one table. Courses come out when they're ready and nobody's watching the clock."
       },
       {
         "name": "Event catering",
@@ -73,126 +73,11 @@
         "description": "We cook it, we bring it, you host. Right for gatherings that don't need staff standing around."
       },
       {
-        "name": "Menus built for you",
-        "description": "Nothing off a shelf. Tell us who's coming, what they eat, and how you want the night to feel — we write the menu from there."
-      }
-    ]
-  },
-  "menus": {
-    "heading": "Menus",
-    "intro": "Menus move with the season and with your guest list. Here's a starting point — tell us who's coming and we'll take it from there.",
-    "_PLACEHOLDER": "NOT REAL MENU CONTENT. From a Wix template. Transcribe the real menus from TACO BAR.pdf, PLATED&FAMILY STYLE PRICING.pdf, JTCco PDF DROP OFF.pdf in the Wix export. Replace the sections array, keep the shape.",
-    "sections": [
-      {
-        "name": "To start",
-        "items": [
-          {
-            "id": "ceviche",
-            "name": "Ceviche",
-            "description": "Cured in lime that morning, red onion, plenty of cilantro.",
-            "price": 12,
-            "dietary": [
-              "gf"
-            ],
-            "image": {
-              "key": "ceviche",
-              "remote": "https://static.wixstatic.com/media/990705_4f604e986a0940dc861d071932b3c7b2~mv2.jpg",
-              "alt": "Ceviche served in a shallow bowl",
-              "width": 585,
-              "height": 487
-            }
-          },
-          {
-            "id": "hummus",
-            "name": "Spiced Chickpea Hummus",
-            "description": "Warm spices, house-made pita chips, meant for sharing.",
-            "price": 8,
-            "dietary": [
-              "v"
-            ],
-            "image": null
-          }
-        ]
-      },
-      {
-        "name": "The main event",
-        "items": [
-          {
-            "id": "chicken-verde",
-            "name": "Chicken Verde",
-            "description": "Tomatillo, roasted chiles, cooked low until it falls apart.",
-            "price": 28,
-            "dietary": [
-              "gf"
-            ],
-            "image": {
-              "key": "chicken-verde",
-              "remote": "https://static.wixstatic.com/media/990705_cdbdb0ee404d42e6a607bb6cd68ed312~mv2.jpg",
-              "alt": "Chicken verde plated with sauce",
-              "width": 585,
-              "height": 1022
-            }
-          },
-          {
-            "id": "tacos",
-            "name": "Tacos",
-            "description": "Handmade tortillas, three fillings, everyone builds their own.",
-            "price": 24,
-            "dietary": [],
-            "image": {
-              "key": "tacos",
-              "remote": "https://static.wixstatic.com/media/990705_4ae645cdadeb49d0827754b51af61baf~mv2.jpg",
-              "alt": "Tacos laid out on a board",
-              "width": 585,
-              "height": 718
-            }
-          },
-          {
-            "id": "paella",
-            "name": "Vegetable Paella",
-            "description": "Saffron rice and whatever the season's giving us.",
-            "price": 24,
-            "dietary": [
-              "v",
-              "gf"
-            ],
-            "image": null
-          }
-        ]
-      },
-      {
-        "name": "Stay for dessert",
-        "items": [
-          {
-            "id": "lavender-tart",
-            "name": "Lavender Honey Tart",
-            "description": "Lavender honey, berries on top.",
-            "price": 10,
-            "dietary": [
-              "v"
-            ],
-            "image": null
-          },
-          {
-            "id": "chocolate-mousse",
-            "name": "Chocolate Mousse",
-            "description": "Dark chocolate, avocado instead of cream.",
-            "price": 9,
-            "dietary": [
-              "vg",
-              "gf"
-            ],
-            "image": null
-          }
-        ]
+        "name": "Seasonal dinners",
+        "description": "Holidays and one-off nights, announced on Instagram when they come up. Thanksgiving, long summer suppers, whatever the season calls for."
       }
     ],
-    "dietaryKey": {
-      "v": "vegetarian",
-      "vg": "vegan",
-      "gf": "gluten-free"
-    },
-    "footnote": "Per person, and it moves with headcount and service style. Nothing here is fixed."
+    "pricingNote": "Every menu is written for the event, so every quote is too. Tell us the date, the headcount, and what you're picturing — we'll send a menu and a price built around it. No fixed packages, no per-plate list."
   },
   "media": {
     "heading": "Media",
@@ -236,7 +121,7 @@
   },
   "instagram": {
     "_README": "Live Instagram feed via Behold.so. Paste your feed ID below to switch it on. Free plan caps at 6 posts, and the Instagram account must be Business or Creator. Setup: behold.so -> add source -> connect Instagram -> add feed -> choose JSON -> copy the feed ID from the feed URL.",
-    "feedId": "Ae7WFBZfeUXy0Q939ZZB",
+    "feedId": "",
     "heading": "Lately",
     "intro": "What we have been cooking.",
     "cta": "Follow along",
@@ -276,5 +161,33 @@
   "footer": {
     "tagline": "Come hungry. Stay late.",
     "location": "Joshua Tree, CA · Serving the high desert and Southern California"
+  },
+  "sampleMenus": {
+    "_README": "Price-free by design — these show range, not cost. Add real past-event menus here as `courses` arrays. Displayed only when features.sampleMenus is true in src/config.ts.",
+    "heading": "A few menus we've cooked",
+    "intro": "Every menu is written for the event. These are past nights, shared to show the range — not a list to order from.",
+    "menus": [
+      {
+        "name": "Spanish supper",
+        "context": "Twelve people, one long table, out past the driveway",
+        "courses": [
+          "PLACEHOLDER — add the real courses from this event"
+        ]
+      },
+      {
+        "name": "Taco bar",
+        "context": "Backyard party, build your own",
+        "courses": [
+          "PLACEHOLDER — add the real courses from this event"
+        ]
+      },
+      {
+        "name": "Thanksgiving dinner",
+        "context": "Delivered with reheating instructions, minimum four guests",
+        "courses": [
+          "PLACEHOLDER — add the real courses from this event"
+        ]
+      }
+    ]
   }
 }

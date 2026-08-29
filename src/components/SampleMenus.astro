@@ -1,0 +1,31 @@
+---
+/**
+ * Past-event menus, shown to demonstrate range. Deliberately has no
+ * pricing — quotes are per event.
+ *
+ * Off until real menus replace the placeholders. Flip
+ * features.sampleMenus in src/config.ts.
+ */
+import content from '~/content/content.json';
+import SectionHead from './SectionHead.astro';
+const { sampleMenus } = content;
+---
+<section id="menus" class="border-t border-clay/30 bg-bone">
+  <div class="mx-auto max-w-6xl px-6 py-24 md:py-36">
+    <SectionHead heading={sampleMenus.heading} intro={sampleMenus.intro} />
+
+    <div class="grid gap-x-12 gap-y-14 md:grid-cols-3">
+      {sampleMenus.menus.map((menu) => (
+        <div class="reveal border-t border-clay/40 pt-6">
+          <h3 class="font-display text-2xl md:text-3xl">{menu.name}</h3>
+          <p class="mt-2 text-sm text-slate">{menu.context}</p>
+          <ul class="mt-5 space-y-2.5">
+            {menu.courses.map((course) => (
+              <li class="text-base leading-relaxed text-ink/75">{course}</li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

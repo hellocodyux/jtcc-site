@@ -1,38 +1,32 @@
 /**
- * Catalog: turns menu content into commerce-shaped data.
+ * Catalog — the seam between site content and anything transactional.
  *
- * The site reads menus from content.json for display. This module is
- * the seam between that content and anything transactional — so when
- * Stripe lands, it consumes LineItems from here rather than reaching
- * into presentation code.
+ * The site deliberately publishes no prices: every quote is written
+ * per event. So there is no priced catalog to expose yet.
+ *
+ * When Stripe arrives it will most likely be for fixed-amount things
+ * — a booking deposit, a seasonal dinner with a set price — rather
+ * than a per-plate menu. Define those here as LineItems and the
+ * checkout layer can consume them without touching presentation code.
  */
-import content from '~/content/content.json';
 import { site } from '~/config';
-import type { MenuItem, MenuSection, LineItem } from './types';
-
-export function getSections(): MenuSection[] {
-  return content.menus.sections as MenuSection[];
-}
-
-export function getAllItems(): MenuItem[] {
-  return getSections().flatMap((s) => s.items);
-}
-
-export function findItem(id: string): MenuItem | undefined {
-  return getAllItems().find((i) => i.id === id);
-}
+import type { LineItem } from './types';
 
 /** Dollars -> cents. Stripe works in the smallest currency unit. */
 export function toUnitAmount(dollars: number): number {
   return Math.round(dollars * 100);
 }
 
-/** Convert a menu item into a checkout-ready line item. */
-export function toLineItem(item: MenuItem, quantity = 1): LineItem {
+export function makeLineItem(
+  id: string,
+  name: string,
+  dollars: number,
+  quantity = 1
+): LineItem {
   return {
-    id: item.id,
-    name: item.name,
-    unitAmount: toUnitAmount(item.price),
+    id,
+    name,
+    unitAmount: toUnitAmount(dollars),
     quantity,
     currency: site.currency.toLowerCase(),
   };
