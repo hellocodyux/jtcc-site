@@ -1,12 +1,22 @@
 /**
  * Feature flags and build-time config.
- *
- * `checkout` stays false until Stripe is wired up. Every commerce
- * surface in the UI is gated on it, so flipping this to true is the
- * single switch that turns payments on.
  */
 export const features = {
+  /**
+   * Stripe checkout. Stays false until payments are wired up. Every
+   * commerce surface is gated on this.
+   */
   checkout: false,
+
+  /**
+   * The Menus section. Currently hidden — the site leads with private
+   * chef work and lets the Instagram feed carry the food story.
+   *
+   * The menu data is still in content.json and the commerce layer
+   * still reads it, so flipping this to true brings the whole section
+   * back exactly as it was.
+   */
+  menus: false,
 } as const;
 
 export const site = {

@@ -1,0 +1,121 @@
+---
+/**
+ * Live Instagram feed.
+ *
+ * Pulls from Behold.so, which handles Instagram's API and gives back
+ * plain JSON. Free tier is enough for this. Set `instagram.feedId` in
+ * content.json to switch it on.
+ *
+ * The fetch happens in the browser rather than at build time, so new
+ * posts appear without redeploying the site.
+ *
+ * With no feed ID set, this renders a link to Instagram instead —
+ * nothing breaks, it just stays quiet.
+ */
+import content from '~/content/content.json';
+import SectionHead from './SectionHead.astro';
+
+const { instagram, business } = content;
+const feedId = instagram.feedId?.trim() ?? '';
+const enabled = feedId.length > 0;
+---
+
+<section id="instagram" class="border-t border-clay/30">
+  <div class="mx-auto max-w-6xl px-6 py-24 md:py-36">
+    <SectionHead heading={instagram.heading} intro={instagram.intro} />
+
+    {enabled && (
+      <div
+        id="ig-feed"
+        class="reveal grid grid-cols-2 gap-3 sm:grid-cols-4"
+        data-feed-id={feedId}
+        data-limit={instagram.limit}
+      >
+        {/* Skeletons while the feed loads */}
+        {Array.from({ length: instagram.limit }).map(() => (
+          <div class="aspect-square animate-pulse bg-clay/20"></div>
+        ))}
+      </div>
+    )}
+
+    <a
+      href={business.instagramUrl}
+      rel="noopener"
+      class="reveal mt-10 inline-flex items-center gap-3 border-b border-ember pb-1 text-sm uppercase tracking-[0.16em] text-ember transition-opacity hover:opacity-60"
+    >
+      {instagram.cta} @{business.instagram}
+      <span aria-hidden="true">&rarr;</span>
+    </a>
+  </div>
+</section>
+
+<script>
+  const feed = document.getElementById('ig-feed');
+
+  if (feed instanceof HTMLElement) {
+    const feedId = feed.dataset.feedId;
+    const limit = Number(feed.dataset.limit ?? 8);
+
+    // Behold returns either a bare array or { posts: [...] } depending
+    // on plan and version, so handle both.
+    const readPosts = (data: unknown): any[] => {
+      if (Array.isArray(data)) return data;
+      if (data && typeof data === 'object' && 'posts' in data) {
+        const p = (data as { posts: unknown }).posts;
+        if (Array.isArray(p)) return p;
+      }
+      return [];
+    };
+
+    // Field names vary a little across Behold versions. Try in order.
+    const imageOf = (post: any): string | null =>
+      post?.sizes?.medium?.mediaUrl ??
+      post?.sizes?.small?.mediaUrl ??
+      post?.thumbnailUrl ??
+      post?.mediaUrl ??
+      null;
+
+    const captionOf = (post: any): string =>
+      post?.prunedCaption ?? post?.caption ?? 'Instagram post';
+
+    (async () => {
+      try {
+        const res = await fetch(`https://feeds.behold.so/${feedId}`);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+        const posts = readPosts(await res.json()).slice(0, limit);
+        if (posts.length === 0) throw new Error('no posts returned');
+
+        feed.innerHTML = '';
+
+        for (const post of posts) {
+          const src = imageOf(post);
+          if (!src) continue;
+
+          const a = document.createElement('a');
+          a.href = post.permalink ?? 'https://www.instagram.com/joshuatreecateringco/';
+          a.rel = 'noopener';
+          a.target = '_blank';
+          a.className =
+            'warm group relative block aspect-square overflow-hidden';
+
+          const img = document.createElement('img');
+          img.src = src;
+          img.alt = captionOf(post).slice(0, 120);
+          img.loading = 'lazy';
+          img.decoding = 'async';
+          img.className =
+            'h-full w-full object-cover transition-transform duration-700 group-hover:scale-105';
+
+          a.appendChild(img);
+          feed.appendChild(a);
+        }
+      } catch (err) {
+        // Quietly fall back to the Instagram link below rather than
+        // showing a broken grid.
+        console.warn('Instagram feed unavailable:', err);
+        feed.remove();
+      }
+    })();
+  }
+</script>

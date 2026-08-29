@@ -1,6 +1,5 @@
 {
   "_README": "SINGLE SOURCE OF TRUTH. All site copy and content lives here. Components read from this file — you should never need to edit a component to change words. Anything marked PLACEHOLDER is awaiting real content.",
-
   "business": {
     "name": "Joshua Tree Catering Co.",
     "shortName": "JTCC",
@@ -12,26 +11,34 @@
     "instagram": "joshuatreecateringco",
     "instagramUrl": "https://www.instagram.com/joshuatreecateringco/"
   },
-
   "seo": {
     "title": "Joshua Tree Catering Co. | Catering in Joshua Tree, CA",
     "description": "Woman-owned catering in Joshua Tree, California. We cook for weddings, birthdays, and long dinners in the desert. Menus built around your table.",
     "ogDescription": "Good food. Better company. Woman-owned catering in Joshua Tree, CA.",
     "locale": "en_US"
   },
-
   "nav": [
-    { "label": "Menus", "href": "#menus" },
-    { "label": "Parties", "href": "#parties" },
-    { "label": "Media", "href": "#media" },
-    { "label": "Testimonials", "href": "#testimonials" }
+    {
+      "label": "Services",
+      "href": "#services"
+    },
+    {
+      "label": "Media",
+      "href": "#media"
+    },
+    {
+      "label": "Testimonials",
+      "href": "#testimonials"
+    }
   ],
-
   "hero": {
     "overline": "Joshua Tree, California",
     "headline": "Good food. Better company.",
     "subhead": "We cook so you can be with your people. Woman-owned catering in the high desert — weddings, birthdays, and dinners that run long.",
-    "cta": { "label": "Tell us about your event", "href": "#contact" },
+    "cta": {
+      "label": "Tell us about your event",
+      "href": "#contact"
+    },
     "image": {
       "key": "hero",
       "remote": "https://static.wixstatic.com/media/990705_9dba52811d244c7fbeb5eac442d5e34b~mv2.jpeg",
@@ -40,7 +47,6 @@
       "height": 1714
     }
   },
-
   "intro": {
     "heading": "Everybody eats.",
     "body": [
@@ -49,7 +55,29 @@
       "Weddings, birthdays, family gatherings, retreats. Long tables, good plates, no rush."
     ]
   },
-
+  "services": {
+    "heading": "Private chef & catering.",
+    "intro": "Dinner for eight in your rental, or a hundred people in a backyard. Same kitchen, same hands, same care either way.",
+    "_PLACEHOLDER": "Confirm these four are accurate and that pricing language is right before launch.",
+    "items": [
+      {
+        "name": "Private chef dinners",
+        "description": "We cook in your kitchen — your house, your rental, wherever you're staying. Usually eight to twenty people around one table. Courses come out when they're ready and nobody's watching the clock."
+      },
+      {
+        "name": "Event catering",
+        "description": "The bread and butter. Weddings, birthdays, big backyard nights. We cook on site, serve, and clean up after, so you get to be a guest at your own party."
+      },
+      {
+        "name": "Drop-off",
+        "description": "We cook it, we bring it, you host. Right for gatherings that don't need staff standing around."
+      },
+      {
+        "name": "Menus built for you",
+        "description": "Nothing off a shelf. Tell us who's coming, what they eat, and how you want the night to feel — we write the menu from there."
+      }
+    ]
+  },
   "menus": {
     "heading": "Menus",
     "intro": "Menus move with the season and with your guest list. Here's a starting point — tell us who's coming and we'll take it from there.",
@@ -63,7 +91,9 @@
             "name": "Ceviche",
             "description": "Cured in lime that morning, red onion, plenty of cilantro.",
             "price": 12,
-            "dietary": ["gf"],
+            "dietary": [
+              "gf"
+            ],
             "image": {
               "key": "ceviche",
               "remote": "https://static.wixstatic.com/media/990705_4f604e986a0940dc861d071932b3c7b2~mv2.jpg",
@@ -77,7 +107,9 @@
             "name": "Spiced Chickpea Hummus",
             "description": "Warm spices, house-made pita chips, meant for sharing.",
             "price": 8,
-            "dietary": ["v"],
+            "dietary": [
+              "v"
+            ],
             "image": null
           }
         ]
@@ -90,7 +122,9 @@
             "name": "Chicken Verde",
             "description": "Tomatillo, roasted chiles, cooked low until it falls apart.",
             "price": 28,
-            "dietary": ["gf"],
+            "dietary": [
+              "gf"
+            ],
             "image": {
               "key": "chicken-verde",
               "remote": "https://static.wixstatic.com/media/990705_cdbdb0ee404d42e6a607bb6cd68ed312~mv2.jpg",
@@ -118,7 +152,10 @@
             "name": "Vegetable Paella",
             "description": "Saffron rice and whatever the season's giving us.",
             "price": 24,
-            "dietary": ["v", "gf"],
+            "dietary": [
+              "v",
+              "gf"
+            ],
             "image": null
           }
         ]
@@ -131,7 +168,9 @@
             "name": "Lavender Honey Tart",
             "description": "Lavender honey, berries on top.",
             "price": 10,
-            "dietary": ["v"],
+            "dietary": [
+              "v"
+            ],
             "image": null
           },
           {
@@ -139,40 +178,22 @@
             "name": "Chocolate Mousse",
             "description": "Dark chocolate, avocado instead of cream.",
             "price": 9,
-            "dietary": ["vg", "gf"],
+            "dietary": [
+              "vg",
+              "gf"
+            ],
             "image": null
           }
         ]
       }
     ],
-    "dietaryKey": { "v": "vegetarian", "vg": "vegan", "gf": "gluten-free" },
+    "dietaryKey": {
+      "v": "vegetarian",
+      "vg": "vegan",
+      "gf": "gluten-free"
+    },
     "footnote": "Per person, and it moves with headcount and service style. Nothing here is fixed."
   },
-
-  "parties": {
-    "heading": "Parties",
-    "intro": "Weddings, birthdays, retreats, and the kind of dinner that turns into a late night. Whatever you are hosting, at whatever size makes sense.",
-    "_PLACEHOLDER": "Drafted from the brand copy library. Confirm which services are actually offered before launch.",
-    "services": [
-      {
-        "name": "Full service",
-        "description": "We cook on site, serve, and clean up after. For weddings and anything where you would rather be a guest at your own party."
-      },
-      {
-        "name": "Drop-off",
-        "description": "We cook it, we bring it, you host. Good for backyard parties and nights that do not need staff standing around."
-      },
-      {
-        "name": "Private dinners",
-        "description": "Cooked to order for a small group, in your rental or at home. Usually eight to twenty people around one table."
-      },
-      {
-        "name": "Custom menus",
-        "description": "Every menu starts as a conversation. Who is coming, what they eat, how you want the night to feel. We write it from there."
-      }
-    ]
-  },
-
   "media": {
     "heading": "Media",
     "intro": "A few nights we are proud of. There is more on Instagram.",
@@ -213,7 +234,14 @@
     ],
     "instagramCta": "See more on Instagram"
   },
-
+  "instagram": {
+    "_README": "Live Instagram feed via Behold.so (free tier). Paste your feed ID below to switch it on. Until then the section shows a link to Instagram instead. Setup: behold.so -> connect Instagram -> create feed -> copy the feed ID.",
+    "feedId": "",
+    "heading": "Lately",
+    "intro": "What we have been cooking.",
+    "cta": "Follow along",
+    "limit": 8
+  },
   "testimonials": {
     "heading": "Testimonials",
     "intro": "What people said the next morning.",
@@ -236,14 +264,15 @@
       }
     ]
   },
-
   "contact": {
     "heading": "Let's talk about your table.",
     "body": "Send the date, a rough headcount, and what you are picturing. We will come back with a menu draft.",
-    "cta": { "label": "Info@joshuatreecateringco.com", "href": "mailto:Info@joshuatreecateringco.com" },
+    "cta": {
+      "label": "Info@joshuatreecateringco.com",
+      "href": "mailto:Info@joshuatreecateringco.com"
+    },
     "note": "Spring dates go early. Reach out as soon as you know your weekend."
   },
-
   "footer": {
     "tagline": "Come hungry. Stay late.",
     "location": "Joshua Tree, CA · Serving the high desert and Southern California"

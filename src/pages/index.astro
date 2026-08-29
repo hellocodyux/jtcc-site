@@ -1,11 +1,13 @@
 ---
+import { features } from '~/config';
 import Base from '~/layouts/Base.astro';
 import Nav from '~/components/Nav.astro';
 import Hero from '~/components/Hero.astro';
 import Intro from '~/components/Intro.astro';
 import Menus from '~/components/Menus.astro';
-import Parties from '~/components/Parties.astro';
+import Services from '~/components/Services.astro';
 import Media from '~/components/Media.astro';
+import Instagram from '~/components/Instagram.astro';
 import Testimonials from '~/components/Testimonials.astro';
 import Contact from '~/components/Contact.astro';
 ---
@@ -14,9 +16,10 @@ import Contact from '~/components/Contact.astro';
   <main id="main">
     <Hero />
     <Intro />
-    <Menus />
-    <Parties />
+    <Services />
+    {features.menus && <Menus />}
     <Media />
+    <Instagram />
     <Testimonials />
     <Contact />
   </main>
