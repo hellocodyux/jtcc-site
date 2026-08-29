@@ -68,15 +68,23 @@ const enabled = feedId.length > 0;
     };
 
     // Field names vary a little across Behold versions. Try in order.
+    // Behold's `sizes` images are optimized webp. Prefer those over
+    // mediaUrl, which for VIDEO posts is the video file itself.
     const imageOf = (post: any): string | null =>
       post?.sizes?.medium?.mediaUrl ??
       post?.sizes?.small?.mediaUrl ??
+      post?.sizes?.large?.mediaUrl ??
       post?.thumbnailUrl ??
-      post?.mediaUrl ??
+      (post?.mediaType === 'VIDEO' ? null : post?.mediaUrl) ??
       null;
 
-    const captionOf = (post: any): string =>
-      post?.prunedCaption ?? post?.caption ?? 'Instagram post';
+    // altText is Instagram's own alt text — best for screen readers.
+    // prunedCaption is the caption with hashtags stripped.
+    const altOf = (post: any): string =>
+      post?.altText ||
+      post?.prunedCaption ||
+      post?.caption ||
+      'Instagram post from Joshua Tree Catering Co.';
 
     (async () => {
       try {
@@ -101,7 +109,7 @@ const enabled = feedId.length > 0;
 
           const img = document.createElement('img');
           img.src = src;
-          img.alt = captionOf(post).slice(0, 120);
+          img.alt = altOf(post).slice(0, 140);
           img.loading = 'lazy';
           img.decoding = 'async';
           img.className =
