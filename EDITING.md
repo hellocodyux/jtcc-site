@@ -1,130 +1,107 @@
-# Editing the website from your browser
+# Editing the JTCC website
 
-No Cursor. No terminal. No installing anything. This works from a laptop, an iPad, or a phone.
+Hi Kristi — this is everything you need. No software to install, nothing to download. Works from a laptop, iPad, or phone.
 
-Everything on the site — every headline, price, description — lives in one file. You edit it on GitHub's website, click save, and the site updates itself about a minute later.
+All the words on the site live in one file. You open it in your browser, type over what you want to change, click a green button. The site updates itself about a minute later.
 
 ---
 
-## One-time setup
+## First time only
 
-You need a GitHub account with access to the site.
+You need a free GitHub account, and Cody adds you to the site.
 
-1. Make a free account at [github.com](https://github.com)
-2. Cody adds you to the `jtcc-site` repository (his side: **Settings → Collaborators → Add people**)
-3. Accept the email invite
+1. Make an account at **[github.com](https://github.com)**
+2. Send Cody your username
+3. He adds you — he'll go to the repo, then Settings → Collaborators → Add people
+4. Accept the invite in your email
 
-Done. That's the only setup.
+That's it. Never again.
 
 ---
 
 ## Making a change
 
-### 1. Open the file
+**1. Open the file**
 
 Go to **[github.com/hellocodyux/jtcc-site](https://github.com/hellocodyux/jtcc-site)**
 
-Click through: **`src`** → **`content`** → **`content.json`**
+Click **`src`**, then **`content`**, then **`content.json`**
 
-You'll see the site's text laid out in a long list. Recognizable — headlines, descriptions, prices.
+You'll see the site's words in a long list.
 
-### 2. Click the pencil
+**2. Click the pencil**
 
-Top right of the file, there's a **pencil icon** (✏️). Click it. The text becomes editable.
+Top right of the file. The ✏️ icon. Now you can type.
 
-### 3. Change the words
+**3. Change the words**
 
-Find what you want to change and type over it.
+Everything looks like this:
 
-The file is a list of labels and values, like this:
-
-```json
+```
 "headline": "Good food. Better company.",
 ```
 
-The part on the left (`"headline"`) is the label — **don't touch it**. The part on the right is what shows on the site. Change that.
+The left part (`"headline"`) is a label — leave it alone.
+The right part is what shows on the site — change that.
 
-Use **⌘F** to search. If you want to change a headline you saw on the site, search for a few words of it.
+Use **⌘F** to search for the text you want to find.
 
-**The four rules:**
+**4. Save**
 
-1. Only change text **inside** the quotation marks
-2. Leave every comma, bracket, and brace exactly where it is
+Scroll to the bottom. Write a quick note about what you changed. Click the green **Commit changes** button.
+
+**5. Wait a minute**
+
+Refresh the site. Your change is there.
+
+---
+
+## Four rules
+
+1. Only change text **between quotation marks**
+2. Don't remove commas, brackets, or braces
 3. Don't rename the labels on the left
-4. Apostrophes are fine. A stray `"` inside your text will break it — use `'` instead
-
-### 4. Save
-
-Scroll to the bottom. There's a box that says **Commit changes**.
-
-- In the message box, write what you changed — "Updated wedding pricing," that sort of thing
-- Leave "Commit directly to the main branch" selected
-- Click the green **Commit changes** button
-
-### 5. Wait a minute
-
-The site rebuilds by itself. Refresh after about a minute and your change is there.
-
-To watch it happen: [vercel.com](https://vercel.com) → jtcc-site → **Deployments**. The newest one says Building, then Ready.
+4. Apostrophes are fine — a `"` inside your text will break it, use `'` instead
 
 ---
 
-## If you break something
+## You can't break the site
 
-**You can't take the site down.** If an edit has a mistake in it, the rebuild fails and the site simply keeps showing the last working version. Nothing goes dark. Worst case, a change doesn't appear.
+If an edit has a mistake, the update just doesn't go through and the site keeps showing the current version. Nothing goes down. Nothing gets lost.
 
-**To check:** vercel.com → jtcc-site → Deployments. If the newest says **Error** instead of Ready, the edit had a problem.
-
-**To fix:** go back to `content.json` on GitHub, click **History** (top right), find the version before your change, and copy the correct text back in.
-
-Or just say what you were trying to change and it can be fixed for you.
-
-**The usual culprit** is a missing comma or an extra quotation mark. GitHub highlights JSON, so a broken line often looks visibly wrong — colors go strange partway through.
+If a change doesn't appear after a couple of minutes, that's what happened. Tell Cody, or click **History** at the top of the file to see what changed.
 
 ---
 
-## What you can change from the browser
+## What you can edit here
 
-| Change | Where in the file |
-|---|---|
-| Hero headline and subtitle | `hero` |
-| The "Everybody eats" paragraphs | `intro` |
-| Service names and descriptions | `services` |
-| Photo captions | `media` → `gallery` |
-| Testimonial quotes and names | `testimonials` |
-| Contact heading and email | `contact` |
-| Footer tagline | `footer` |
-| Page title for Google | `seo` |
-| Instagram feed ID | `instagram` → `feedId` |
+- Hero headline and subtitle
+- The "Everybody eats" paragraphs
+- Service names and descriptions
+- Photo captions
+- Testimonials — quotes and names
+- Contact heading and email
+- Footer tagline
+- Google search title and description
 
-**What needs a developer:** layout, colors, fonts, adding or removing whole sections, new photos.
+**Ask Cody for:** new photos, colors, fonts, layout, adding or removing sections.
 
 ---
 
-## Photos
+## Want him to check it first?
 
-Photos aren't in this file — they're image files, and swapping them is a different job. Send new ones to Cody and they'll get added.
+For bigger rewrites, at step 4 choose **"Create a new branch for this commit and start a pull request"** instead of committing directly.
 
-The captions under photos *are* editable here, under `media` → `gallery` → `caption`.
-
----
-
-## A safer way, once you're comfortable
-
-Instead of committing straight to the live site, GitHub can save your edit as a **proposal** that Cody reviews first.
-
-At step 4, choose **"Create a new branch for this commit and start a pull request"** instead of committing directly. Vercel builds a private preview of your version and posts the link. Cody looks, approves, and it goes live.
-
-Worth using for bigger rewrites. Overkill for fixing a typo.
+That saves your version privately and generates a preview link for Cody to look at before it goes live. Good for a full rewrite of a section. Overkill for a typo.
 
 ---
 
-## The short version
+## The whole thing in five steps
 
 1. github.com/hellocodyux/jtcc-site → `src` → `content` → `content.json`
 2. Pencil icon
-3. Change words inside the quotes
+3. Type
 4. Green **Commit changes** button
 5. Wait a minute
 
-That's the whole thing.
+That's all of it.
