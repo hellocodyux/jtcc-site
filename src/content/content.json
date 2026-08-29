@@ -128,26 +128,42 @@
     "limit": 6
   },
   "testimonials": {
-    "heading": "Testimonials",
-    "intro": "What people said the next morning.",
-    "_PLACEHOLDER": "ALL FABRICATED as layout placeholders. Do not launch with these. Replace with real client quotes before cutover.",
+    "heading": "What people said after",
+    "intro": "Real reviews from real nights. More on Google.",
     "quotes": [
       {
-        "quote": "We did not think about food once all night, which was exactly the point.",
-        "attribution": "PLACEHOLDER — client name",
-        "context": "Wedding, Joshua Tree"
+        "quote": "We recently had a most excellent private dining experience and chef Kristi thought over everything to make it special.",
+        "attribution": "Mat J.",
+        "context": "Private dinner, Joshua Tree"
       },
       {
-        "quote": "The paella took three hours and was gone in ten minutes.",
-        "attribution": "PLACEHOLDER — client name",
-        "context": "Birthday dinner, Yucca Valley"
+        "quote": "I contacted a handful of caterers in the area while planning our trip, but really loved their flexibility and offerings. Kristi and Cat made this bachelorette weekend so special with personalized menus and touches.",
+        "attribution": "Meribelle C.",
+        "context": "Bachelorette weekend"
       },
       {
-        "quote": "People are still asking me who catered it.",
-        "attribution": "PLACEHOLDER — client name",
-        "context": "Retreat, Pioneertown"
+        "quote": "The menu options were terrific with a lot of special touches that made it bespoke for the event. Working with them makes me want to throw more parties!",
+        "attribution": "Brooke A.",
+        "context": "Private celebration"
+      },
+      {
+        "quote": "They brought so many creative and personal touch ideas from the start and took care of so many details. We also had some dietary restrictions and they went above and beyond to accommodate.",
+        "attribution": "Jenna L.",
+        "context": "Patio party"
+      },
+      {
+        "quote": "JTCC provided catering for our production in Twentynine Palms. Kristi worked with our budget and the cast and crew were so happy with her delicious menu and beautiful presentation.",
+        "attribution": "Christine R.",
+        "context": "Film production, Twentynine Palms"
+      },
+      {
+        "quote": "They catered our small wedding ceremony and the food was amazing and they were very timely and responsive. It was the perfect buffet-style taco bar for our guests!",
+        "attribution": "Paige D.",
+        "context": "Wedding"
       }
-    ]
+    ],
+    "cta": "Read more on Google",
+    "ctaUrl": "https://www.google.com/search?q=Joshua+Tree+Catering+Co.+Reviews"
   },
   "contact": {
     "heading": "Let's talk about your table.",

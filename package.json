@@ -8,7 +8,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "assets": "node scripts/download-assets.mjs",
-    "publish": "node scripts/publish.mjs"
+    "publish": "node scripts/publish.mjs",
+    "update": "node scripts/update.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.2.1",

@@ -3,22 +3,33 @@ import content from '~/content/content.json';
 import SectionHead from './SectionHead.astro';
 const { testimonials } = content;
 ---
-<section id="testimonials" class="border-t border-clay/30">
+<section id="testimonials" class="border-t border-clay/30 bg-bone">
   <div class="mx-auto max-w-6xl px-6 py-24 md:py-36">
     <SectionHead heading={testimonials.heading} intro={testimonials.intro} />
 
-    <div class="grid gap-12 md:grid-cols-3">
+    <div class="grid gap-x-10 gap-y-12 md:grid-cols-3">
       {testimonials.quotes.map((t) => (
         <figure class="reveal">
-          <blockquote class="font-display text-2xl leading-snug">
+          <blockquote class="font-display text-xl leading-snug md:text-2xl">
             &ldquo;{t.quote}&rdquo;
           </blockquote>
-          <figcaption class="mt-5 text-sm text-ink/60">
-            <span class="block">{t.attribution}</span>
+          <figcaption class="mt-5 text-sm">
+            <span class="block text-ink/70">{t.attribution}</span>
             <span class="block text-slate">{t.context}</span>
           </figcaption>
         </figure>
       ))}
     </div>
+
+    {testimonials.ctaUrl && (
+      <a
+        href={testimonials.ctaUrl}
+        rel="noopener"
+        class="reveal mt-14 inline-flex items-center gap-3 border-b border-ember pb-1 text-sm uppercase tracking-[0.16em] text-ember transition-opacity hover:opacity-60"
+      >
+        {testimonials.cta}
+        <span aria-hidden="true">&rarr;</span>
+      </a>
+    )}
   </div>
 </section>
