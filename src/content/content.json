@@ -236,7 +236,7 @@
   },
   "instagram": {
     "_README": "Live Instagram feed via Behold.so (free tier). Paste your feed ID below to switch it on. Until then the section shows a link to Instagram instead. Setup: behold.so -> connect Instagram -> create feed -> copy the feed ID.",
-    "feedId": "",
+    "feedId": "Ae7WFBZfeUXy0Q939ZZB",
     "heading": "Lately",
     "intro": "What we have been cooking.",
     "cta": "Follow along",
