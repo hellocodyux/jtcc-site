@@ -121,7 +121,7 @@
   },
   "instagram": {
     "_README": "Live Instagram feed via Behold.so. Paste your feed ID below to switch it on. Free plan caps at 6 posts, and the Instagram account must be Business or Creator. Setup: behold.so -> add source -> connect Instagram -> add feed -> choose JSON -> copy the feed ID from the feed URL.",
-    "feedId": "",
+    "feedId": "Ae7WFBZfeUXy0Q939ZZB",
     "heading": "Lately",
     "intro": "What we have been cooking.",
     "cta": "Follow along",
