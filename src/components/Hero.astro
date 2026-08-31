@@ -3,7 +3,7 @@ import content from '~/content/content.json';
 import Figure from './Figure.astro';
 const { hero } = content;
 ---
-<section id="top" class="warm relative min-h-[94vh] overflow-hidden">
+<section id="top" class="warm scrim relative min-h-[94vh] overflow-hidden">
   <Figure
     image={hero.image}
     loading="eager"
@@ -11,27 +11,22 @@ const { hero } = content;
     sizes="100vw"
   />
 
-  <div
-    class="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/35 to-ink/25"
-    aria-hidden="true"
-  ></div>
-
   <div class="relative z-10 mx-auto flex min-h-[94vh] max-w-6xl flex-col justify-end px-6 pb-20 pt-32">
-    <p class="mb-6 text-xs uppercase tracking-[0.32em] text-sand">
+    <p class="mb-6 text-xs uppercase tracking-[0.22em] text-pink-300">
       {hero.overline}
     </p>
 
-    <h1 class="poster max-w-4xl text-[clamp(3rem,11vw,8rem)]">
+    <h1 class="max-w-4xl text-[clamp(2.75rem,9vw,6rem)] text-paper">
       {hero.headline}
     </h1>
 
-    <p class="mt-7 max-w-lg text-lg leading-relaxed text-cream/90">
+    <p class="mt-7 max-w-lg text-lg leading-relaxed text-paper/85">
       {hero.subhead}
     </p>
 
     <a
       href={hero.cta.href}
-      class="mt-10 inline-flex w-fit items-center gap-3 border-b border-sand pb-1 text-sm uppercase tracking-[0.16em] text-bone transition-opacity hover:opacity-70"
+      class="mt-10 inline-flex w-fit items-center gap-3 border-b border-pink-300 pb-1 text-sm uppercase tracking-[0.16em] text-paper transition-opacity hover:opacity-70"
     >
       {hero.cta.label}
       <span aria-hidden="true">&rarr;</span>

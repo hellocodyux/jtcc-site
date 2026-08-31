@@ -25,6 +25,18 @@ export const features = {
   media: false,
 } as const;
 
+/**
+ * Contact form delivery.
+ *
+ * Empty endpoint = the form opens a pre-filled email instead of
+ * posting anywhere. Drop in a Formspree / Basin / Netlify Forms URL
+ * and it starts posting. Nothing else needs to change.
+ */
+export const form = {
+  endpoint: '',
+  fallbackEmail: 'Info@joshuatreecateringco.com',
+} as const;
+
 export const site = {
   url: 'https://www.joshuatreecateringco.com',
   currency: 'USD',

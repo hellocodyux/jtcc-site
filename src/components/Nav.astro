@@ -1,31 +1,45 @@
 ---
 import content from '~/content/content.json';
 const { nav, business } = content;
+
+interface Props {
+  /** Transparent over a hero image, or solid on inner pages. */
+  overHero?: boolean;
+}
+const { overHero = false } = Astro.props;
+const path = Astro.url.pathname;
+const isCurrent = (href: string) =>
+  href.startsWith('/') && !href.includes('#') && path === href;
 ---
 <header
-  id="site-nav"
-  class="fixed inset-x-0 top-0 z-40 transition-colors duration-300"
+  class:list={[
+    'fixed inset-x-0 top-0 z-40 transition-colors duration-300',
+    !overHero && 'bg-paper/95 text-choc shadow-[0_1px_0_rgba(203,193,167,0.6)] backdrop-blur-sm',
+  ]}
   data-nav
+  data-over-hero={overHero ? 'true' : 'false'}
 >
   <nav
-    class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4"
+    class="mx-auto flex max-w-6xl items-center justify-between gap-6 px-6 py-4"
     aria-label="Primary"
   >
     <a
-      href="#top"
-      class="font-display text-lg tracking-tight transition-opacity hover:opacity-70"
-      data-nav-mark
+      href="/"
+      class="font-display text-base tracking-tight transition-opacity hover:opacity-70 md:text-lg"
     >
       Joshua Tree Catering Co.
     </a>
 
-    <ul class="hidden items-center gap-8 md:flex">
+    <ul class="hidden items-center gap-7 md:flex">
       {nav.map((item) => (
         <li>
           <a
             href={item.href}
-            class="text-sm tracking-wide transition-opacity hover:opacity-60"
-            data-nav-link
+            aria-current={isCurrent(item.href) ? 'page' : undefined}
+            class:list={[
+              'text-sm tracking-wide transition-opacity hover:opacity-60',
+              isCurrent(item.href) && 'border-b border-current pb-0.5',
+            ]}
           >
             {item.label}
           </a>
@@ -33,35 +47,33 @@ const { nav, business } = content;
       ))}
       <li>
         <a
-          href="#contact"
-          class="border-b border-current pb-0.5 text-sm tracking-wide text-ember transition-opacity hover:opacity-60"
+          href="/#contact"
+          class="border-b border-current pb-0.5 text-sm tracking-wide text-umber transition-opacity hover:opacity-60"
         >
           Get in touch
         </a>
       </li>
     </ul>
 
-    <a
-      href="#contact"
-      class="border-b border-current pb-0.5 text-sm text-ember md:hidden"
-    >
+    <a href="/#contact" class="border-b border-current pb-0.5 text-sm text-umber md:hidden">
       Get in touch
     </a>
   </nav>
 </header>
 
 <script>
-  // Nav sits transparent over the hero, then picks up a background.
+  // Only the home page has a hero to sit over.
   const nav = document.querySelector('[data-nav]');
-  const onScroll = () => {
-    if (!nav) return;
-    const past = window.scrollY > window.innerHeight * 0.7;
-    nav.classList.toggle('bg-cream/95', past);
-    nav.classList.toggle('backdrop-blur-sm', past);
-    nav.classList.toggle('text-ink', past);
-    nav.classList.toggle('text-bone', !past);
-    nav.classList.toggle('shadow-[0_1px_0_rgba(219,142,111,0.4)]', past);
-  };
-  onScroll();
-  window.addEventListener('scroll', onScroll, { passive: true });
+  if (nav instanceof HTMLElement && nav.dataset.overHero === 'true') {
+    const onScroll = () => {
+      const past = window.scrollY > window.innerHeight * 0.7;
+      nav.classList.toggle('bg-paper/95', past);
+      nav.classList.toggle('backdrop-blur-sm', past);
+      nav.classList.toggle('text-choc', past);
+      nav.classList.toggle('text-paper', !past);
+      nav.classList.toggle('shadow-[0_1px_0_rgba(203,193,167,0.6)]', past);
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+  }
 </script>

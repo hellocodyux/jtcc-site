@@ -1,0 +1,36 @@
+---
+import content from '~/content/content.json';
+import Base from '~/layouts/Base.astro';
+import Nav from '~/components/Nav.astro';
+import PageHeader from '~/components/PageHeader.astro';
+import ContactForm from '~/components/ContactForm.astro';
+import Footer from '~/components/Footer.astro';
+const { about, business } = content;
+---
+<Base
+  title={`About | ${business.name}`}
+  description="A woman-owned catering company in Joshua Tree, California. Hand-crafted food, local ingredients, menus built around your table."
+>
+  <Nav />
+  <main id="main">
+    <PageHeader heading={about.heading} lede={about.lede} />
+
+    <section class="mx-auto max-w-6xl px-6 py-20 md:py-28">
+      <div class="reveal max-w-2xl space-y-6 text-lg leading-relaxed">
+        {about.body.map((p) => <p>{p}</p>)}
+      </div>
+
+      <a
+        href={about.cta.href}
+        class="reveal mt-12 inline-flex items-center gap-3 border-b border-umber pb-1 text-sm uppercase tracking-[0.16em] text-umber transition-opacity hover:opacity-60"
+      >
+        {about.cta.label}
+        <span aria-hidden="true">&rarr;</span>
+      </a>
+    </section>
+
+    <ContactForm />
+  </main>
+  <Footer />
+  </main>
+</Base>

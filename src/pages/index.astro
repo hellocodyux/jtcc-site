@@ -1,26 +1,23 @@
 ---
-import { features } from '~/config';
 import Base from '~/layouts/Base.astro';
 import Nav from '~/components/Nav.astro';
 import Hero from '~/components/Hero.astro';
 import Intro from '~/components/Intro.astro';
-import Services from '~/components/Services.astro';
-import SampleMenus from '~/components/SampleMenus.astro';
-import Media from '~/components/Media.astro';
+import WhatWeOffer from '~/components/WhatWeOffer.astro';
+import ContactForm from '~/components/ContactForm.astro';
 import Instagram from '~/components/Instagram.astro';
 import Testimonials from '~/components/Testimonials.astro';
-import Contact from '~/components/Contact.astro';
+import Footer from '~/components/Footer.astro';
 ---
 <Base>
-  <Nav />
+  <Nav overHero />
   <main id="main">
     <Hero />
     <Intro />
-    <Services />
-    {features.sampleMenus && <SampleMenus />}
-    {features.media && <Media />}
+    <WhatWeOffer />
+    <ContactForm />
     <Instagram />
     <Testimonials />
-    <Contact />
   </main>
+  <Footer />
 </Base>

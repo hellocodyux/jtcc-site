@@ -3,15 +3,15 @@ import content from '~/content/content.json';
 import SectionHead from './SectionHead.astro';
 const { services } = content;
 ---
-<section id="services" class="border-t border-clay/30">
+<section id="services" class="band">
   <div class="mx-auto max-w-6xl px-6 py-24 md:py-36">
     <SectionHead heading={services.heading} intro={services.intro} />
 
     <dl class="grid gap-x-12 gap-y-12 md:grid-cols-2">
       {services.items.map((service) => (
-        <div class="reveal border-t border-clay/40 pt-6">
+        <div class="reveal border-t border-moss-300 pt-6">
           <dt class="font-display text-2xl md:text-3xl">{service.name}</dt>
-          <dd class="mt-3 max-w-sm text-base leading-relaxed text-ink/75">
+          <dd class="mt-3 max-w-sm text-base leading-relaxed text-choc/75">
             {service.description}
           </dd>
         </div>
@@ -19,7 +19,7 @@ const { services } = content;
     </dl>
 
     {services.pricingNote && (
-      <p class="reveal mt-16 max-w-xl border-l-2 border-ember pl-5 text-base leading-relaxed text-ink/75">
+      <p class="reveal mt-16 max-w-xl border-l-2 border-umber pl-5 text-base leading-relaxed text-choc/75">
         {services.pricingNote}
       </p>
     )}

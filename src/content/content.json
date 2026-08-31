@@ -19,16 +19,20 @@
   },
   "nav": [
     {
-      "label": "Services",
-      "href": "#services"
+      "label": "About",
+      "href": "/about"
     },
     {
-      "label": "Lately",
-      "href": "#instagram"
+      "label": "Services",
+      "href": "/services"
+    },
+    {
+      "label": "Media",
+      "href": "/media"
     },
     {
       "label": "Testimonials",
-      "href": "#testimonials"
+      "href": "/#testimonials"
     }
   ],
   "hero": {
@@ -56,32 +60,36 @@
     ]
   },
   "services": {
-    "heading": "Private chef & catering.",
+    "heading": "What we offer",
     "intro": "Dinner for eight in your rental, or a hundred people in a backyard. Same kitchen, same hands, same care either way.",
-    "_PLACEHOLDER": "Confirm these four are accurate before launch.",
+    "_PLACEHOLDER": "Descriptions are drafts — confirm each service is accurate before launch.",
     "items": [
       {
-        "name": "Private chef dinners",
-        "description": "We cook in your kitchen — your house, your rental, wherever you're staying. Usually eight to twenty around one table. Courses come out when they're ready and nobody's watching the clock."
+        "name": "Private Chef",
+        "description": "We cook in your kitchen — your house, your rental, wherever you're staying. Courses come out when they're ready, and you get to sit down for all of them. Usually eight to twenty people around one table."
       },
       {
-        "name": "Event catering",
-        "description": "The bread and butter. Weddings, birthdays, big backyard nights. We cook on site, serve, and clean up after, so you get to be a guest at your own party."
+        "name": "Event Catering",
+        "description": "Weddings, birthdays, anniversaries, the big backyard nights. We cook on site, serve, and clean up after, so you can be a guest at your own party. Menus are built around your guest list, not pulled off a shelf."
       },
       {
-        "name": "Drop-off",
-        "description": "We cook it, we bring it, you host. Right for gatherings that don't need staff standing around."
+        "name": "Production Catering",
+        "description": "Cast and crew meals for shoots working out here. We'll work to your budget and your call sheet, feed everyone properly, and keep it moving. Dietary needs handled without a fuss."
       },
       {
-        "name": "Seasonal dinners",
-        "description": "Holidays and one-off nights, announced on Instagram when they come up. Thanksgiving, long summer suppers, whatever the season calls for."
+        "name": "Meal Prepping",
+        "description": "Cooked, portioned, and delivered with reheating instructions. Right for a house full of people over a long weekend, or a week you'd rather not spend cooking."
+      },
+      {
+        "name": "Retreat Meals",
+        "description": "Multi-day cooking for groups staying out in the desert. Breakfast before everyone scatters, packed lunches for the day, dinner when they come back hungry. We plan the whole arc so nobody's thinking about food."
       }
     ],
     "pricingNote": "Every menu is written for the event, so every quote is too. Tell us the date, the headcount, and what you're picturing — we'll send a menu and a price built around it. No fixed packages, no per-plate list."
   },
   "media": {
     "heading": "Media",
-    "intro": "A few nights we are proud of. There is more on Instagram.",
+    "intro": "Real food from real events. Everything here came off our own tables.",
     "_PLACEHOLDER": "Trimmed to four images on purpose — quality over quantity. Swap for the best NOMAD shoot photos once you pick favorites.",
     "gallery": [
       {
@@ -122,8 +130,8 @@
   "instagram": {
     "_README": "Live Instagram feed via Behold.so. Paste your feed ID below to switch it on. Free plan caps at 6 posts, and the Instagram account must be Business or Creator. Setup: behold.so -> add source -> connect Instagram -> add feed -> choose JSON -> copy the feed ID from the feed URL.",
     "feedId": "Ae7WFBZfeUXy0Q939ZZB",
-    "heading": "Lately",
-    "intro": "What we have been cooking.",
+    "heading": "Follow us on Instagram",
+    "intro": "What we've been cooking.",
     "cta": "Follow along",
     "limit": 6
   },
@@ -165,15 +173,6 @@
     "cta": "Read more on Google",
     "ctaUrl": "https://www.google.com/search?q=Joshua+Tree+Catering+Co.+Reviews"
   },
-  "contact": {
-    "heading": "Let's talk about your table.",
-    "body": "Send the date, a rough headcount, and what you are picturing. We will come back with a menu draft.",
-    "cta": {
-      "label": "Info@joshuatreecateringco.com",
-      "href": "mailto:Info@joshuatreecateringco.com"
-    },
-    "note": "Spring dates go early. Reach out as soon as you know your weekend."
-  },
   "footer": {
     "tagline": "Come hungry. Stay late.",
     "location": "Joshua Tree, CA · Serving the high desert and Southern California"
@@ -205,5 +204,42 @@
         ]
       }
     ]
+  },
+  "whatWeOffer": {
+    "label": "What we offer",
+    "href": "/services",
+    "note": "Every menu is written for the event, so every quote is too. Tell us the date, the headcount, and what you're picturing — we'll send a menu and a price built around it. No fixed packages, no per-plate list."
+  },
+  "about": {
+    "_PLACEHOLDER": "DRAFT — written from the brand skill and the Instagram bio. Kristi should review and correct any details, especially anything about how the business started.",
+    "heading": "About",
+    "lede": "Heartfelt gatherings in the desert. Rooted in community, local ingredients, and connection through food.",
+    "body": [
+      "Joshua Tree Catering Co. is a woman-owned catering company working out of the high desert. Kristi cooks, plans, and runs the events — most nights that means being in someone's rental kitchen, or setting a long table outside while the light goes orange.",
+      "We're not tied to one cuisine. Tacos one weekend, a Spanish supper the next, a plated dinner for eight after that. The question is never what we feel like cooking, it's what suits your event and the people coming to it.",
+      "Everything is made to order and by hand. Local ingredients where we can get them, which out here means knowing your growers and paying attention to the season.",
+      "Most of our work is private — weddings, birthdays, bachelorette weekends, retreats, film productions out in Twentynine Palms. Long tables, good plates, nobody in a hurry to leave. That's the version of a meal we're after."
+    ],
+    "cta": {
+      "label": "Tell us about your event",
+      "href": "/#contact"
+    }
+  },
+  "form": {
+    "heading": "Let's talk about your table.",
+    "intro": "Send the date, a rough headcount, and what you're picturing. We'll come back with a menu draft.",
+    "fields": {
+      "name": "Name",
+      "email": "Email",
+      "phone": "Phone",
+      "eventDate": "Event date(s) & occasion",
+      "guests": "Approximate number of guests",
+      "message": "Tell us about your event"
+    },
+    "submit": "Send",
+    "success": "Thanks for submitting! We'll be in touch shortly.",
+    "error": "Something went wrong. Email us directly at Info@joshuatreecateringco.com.",
+    "note": "Spring dates go early. Reach out as soon as you know your weekend.",
+    "emailLabel": "Or just email us"
   }
 }

@@ -1,0 +1,43 @@
+---
+import content from '~/content/content.json';
+import Base from '~/layouts/Base.astro';
+import Nav from '~/components/Nav.astro';
+import PageHeader from '~/components/PageHeader.astro';
+import Figure from '~/components/Figure.astro';
+import ContactForm from '~/components/ContactForm.astro';
+import Footer from '~/components/Footer.astro';
+const { media, business } = content;
+---
+<Base
+  title={`Media | ${business.name}`}
+  description="Event photography from Joshua Tree Catering Co. Weddings, private dinners, and gatherings across the high desert."
+>
+  <Nav />
+  <main id="main">
+    <PageHeader heading={media.heading} lede={media.intro} />
+
+    <section class="mx-auto max-w-6xl px-6 py-20 md:py-28">
+      <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {media.gallery.map((img, i) => (
+          <figure class="warm reveal overflow-hidden">
+            <Figure
+              image={img}
+              loading={i < 3 ? 'eager' : 'lazy'}
+              class="aspect-[4/5] w-full object-cover transition-transform duration-700 hover:scale-[1.03]"
+              sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+            />
+            {img.caption && (
+              <figcaption class="relative z-10 mt-3 text-sm text-choc/65">
+                {img.caption}
+              </figcaption>
+            )}
+          </figure>
+        ))}
+      </div>
+    </section>
+
+    <ContactForm />
+  </main>
+  <Footer />
+  </main>
+</Base>

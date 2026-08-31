@@ -1,31 +1,50 @@
 ---
 import content from '~/content/content.json';
-import SectionHead from './SectionHead.astro';
 const { testimonials } = content;
 ---
-<section id="testimonials" class="border-t border-clay/30 bg-bone">
-  <div class="mx-auto max-w-6xl px-6 py-24 md:py-36">
-    <SectionHead heading={testimonials.heading} intro={testimonials.intro} />
-
-    <div class="grid gap-x-10 gap-y-12 md:grid-cols-3">
-      {testimonials.quotes.map((t) => (
-        <figure class="reveal">
-          <blockquote class="font-display text-xl leading-snug md:text-2xl">
-            &ldquo;{t.quote}&rdquo;
-          </blockquote>
-          <figcaption class="mt-5 text-sm">
-            <span class="block text-ink/70">{t.attribution}</span>
-            <span class="block text-slate">{t.context}</span>
-          </figcaption>
-        </figure>
-      ))}
+<section id="testimonials" class="band-cool">
+  <div class="mx-auto max-w-6xl px-6 py-24 md:py-32">
+    <div class="reveal mb-10 flex flex-wrap items-end justify-between gap-6">
+      <div class="max-w-xl">
+        <h2 class="text-3xl md:text-4xl">{testimonials.heading}</h2>
+        <p class="mt-3 text-base leading-relaxed text-choc/70">{testimonials.intro}</p>
+      </div>
+      <div class="flex gap-2">
+        <button type="button" class="rail-btn" data-rail-prev="quotes" aria-label="Previous reviews">
+          <span aria-hidden="true">&larr;</span>
+        </button>
+        <button type="button" class="rail-btn" data-rail-next="quotes" aria-label="Next reviews">
+          <span aria-hidden="true">&rarr;</span>
+        </button>
+      </div>
     </div>
+
+    <ul
+      class="rail reveal list-none"
+      data-rail="quotes"
+      aria-label="Client reviews"
+    >
+      {testimonials.quotes.map((t) => (
+        <li class="w-[17rem] md:w-[19rem]">
+          <figure class="flex h-full flex-col border-t border-moss-300 pt-5">
+            <blockquote class="font-display text-base leading-snug md:text-lg">
+              &ldquo;{t.quote}&rdquo;
+            </blockquote>
+            <figcaption class="mt-4 text-xs">
+              <span class="block text-choc/70">{t.attribution}</span>
+              <span class="block text-moss-700">{t.context}</span>
+            </figcaption>
+          </figure>
+        </li>
+      ))}
+    </ul>
 
     {testimonials.ctaUrl && (
       <a
         href={testimonials.ctaUrl}
-        rel="noopener"
-        class="reveal mt-14 inline-flex items-center gap-3 border-b border-ember pb-1 text-sm uppercase tracking-[0.16em] text-ember transition-opacity hover:opacity-60"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="reveal mt-10 inline-flex items-center gap-3 border-b border-umber pb-1 text-sm uppercase tracking-[0.16em] text-umber transition-opacity hover:opacity-60"
       >
         {testimonials.cta}
         <span aria-hidden="true">&rarr;</span>

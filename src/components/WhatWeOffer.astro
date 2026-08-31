@@ -1,0 +1,22 @@
+---
+import content from '~/content/content.json';
+const { whatWeOffer } = content;
+---
+<section id="services" class="band-deep">
+  <div class="mx-auto max-w-6xl px-6 py-24 md:py-32">
+    <a
+      href={whatWeOffer.href}
+      class="reveal group inline-flex items-baseline gap-4 transition-opacity hover:opacity-70"
+    >
+      <h2 class="text-[clamp(2.25rem,6vw,4rem)]">{whatWeOffer.label}</h2>
+      <span
+        class="text-2xl text-umber transition-transform group-hover:translate-x-1 md:text-3xl"
+        aria-hidden="true"
+      >&rarr;</span>
+    </a>
+
+    <p class="reveal mt-8 max-w-xl border-l-2 border-umber pl-5 text-base leading-relaxed text-choc/75">
+      {whatWeOffer.note}
+    </p>
+  </div>
+</section>

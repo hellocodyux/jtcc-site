@@ -2,46 +2,54 @@
 
 /* ---------------------------------------------------------------
    JTCC design tokens
-   Palette extracted from real brand assets. See the jtcc-brand
-   skill (references/visual-identity.md) for provenance.
+   Five fixed brand colors; everything else derived by mixing with
+   white or Black Chocolate. All text pairings meet WCAG 2.1 AA —
+   ratios noted inline.
    --------------------------------------------------------------- */
 @theme {
-  /* Brand reds */
-  --color-ember: #c43b1c;
-  --color-signal: #cb1e19;
-  --color-adobe: #a93f22;
-  --color-brick: #9b2017;
-  --color-rust: #c46446;
+  /* Brand — exact values, do not substitute */
+  --color-moss:      #8C753B;
+  --color-umber:     #8D3427;
+  --color-pink:      #DAA99A;
+  --color-choc:      #1D190F;
+  --color-mist:      #CCD6D5;
 
-  /* Warm neutrals */
-  --color-cream: #fcebcd;
-  --color-bone: #fbf8d9;
-  --color-clay: #db8e6f;
-  --color-sand: #ecbd9b;
+  /* Moss scale */
+  --color-moss-100:  #EAE6DC;
+  --color-moss-300:  #CBC1A7;
+  --color-moss-600:  #766332;  /* text-safe on paper — 5.29:1 */
+  --color-moss-700:  #68582D;  /* 6.31:1 */
+  --color-moss-900:  #473C20;
 
-  /* Warm ink — brown-black, never pure black. Softer on cream. */
-  --color-ink: #2a1f1a;
-  --color-slate: #8a7a70;
-  --color-offwhite: #fafafa;
+  /* Umber scale */
+  --color-umber-100: #EADAD8;
+  --color-umber-300: #CCA49E;
+  --color-umber-700: #692B1F;
+  --color-umber-900: #482318;
 
-  /* Overlay text on photography */
-  --color-glow: #f6d99b;
+  /* Pink scale */
+  --color-pink-100:  #F8F0ED;
+  --color-pink-300:  #EED8D2;
+  --color-pink-700:  #9E7B6E;
+  --color-pink-900:  #655044;
+
+  /* Derived paper: white + 8% pink + 4% moss.
+     Black Chocolate on it = 15.91:1 */
+  --color-paper:      #F8F3EF;
+  --color-paper-deep: #F1E9E3;
 
   /* Type */
   --font-display: "Fraunces Variable", "Fraunces", Georgia, serif;
-  --font-body: "Karla Variable", "Karla", system-ui, sans-serif;
-  --font-poster: "Anton", "Fraunces Variable", Impact, sans-serif;
+  --font-body:    "Karla Variable", "Karla", system-ui, sans-serif;
+  --font-hand:    "Caveat Variable", "Caveat", cursive;
 
   --radius-DEFAULT: 2px;
 }
 
-/* ---------------------------------------------------------------
-   Base
-   --------------------------------------------------------------- */
 @layer base {
   html {
     scroll-behavior: smooth;
-    background-color: var(--color-cream);
+    background-color: var(--color-paper);
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -50,8 +58,8 @@
 
   body {
     font-family: var(--font-body);
-    color: var(--color-ink);
-    background-color: var(--color-cream);
+    color: var(--color-choc);
+    background-color: var(--color-paper);
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
@@ -67,137 +75,162 @@
   section[id] { scroll-margin-top: 5rem; }
 
   :focus-visible {
-    outline: 2px solid var(--color-ember);
+    outline: 2px solid var(--color-umber);
     outline-offset: 3px;
   }
 
   ::selection {
-    background-color: var(--color-ember);
-    color: var(--color-bone);
+    background-color: var(--color-umber);
+    color: var(--color-paper);
   }
 }
 
 @layer components {
   /* -------------------------------------------------------------
-     Poster type — bold uppercase set over photography.
+     Bands — the structural default. Sections are separated by
+     background color, not by rules or by type over imagery.
      ------------------------------------------------------------- */
-  .poster {
-    font-family: var(--font-poster);
-    text-transform: uppercase;
-    letter-spacing: 0.01em;
-    line-height: 0.92;
-    color: var(--color-glow);
-    text-shadow: 0 2px 24px rgba(42, 31, 26, 0.55);
+  .band          { background-color: var(--color-paper); }
+  .band-deep     { background-color: var(--color-paper-deep); }
+  .band-accent   { background-color: var(--color-pink-100); }
+  .band-cool     { background-color: var(--color-mist); }
+  .band-invert   { background-color: var(--color-choc); color: var(--color-paper); }
+
+  .band-invert h1,
+  .band-invert h2,
+  .band-invert h3 { color: var(--color-paper); }
+
+  /* An image that breaks a band edge — what stops stacked bands
+     reading as stacked rectangles. */
+  .band-break {
+    margin-block-end: -4rem;
+    position: relative;
+    z-index: 1;
   }
 
   /* -------------------------------------------------------------
-     Warmth: a soft amber wash over photos so everything sits in
-     the same temperature rather than looking like stock images
-     from six different shoots.
+     Hero scrim — the one place type sits over photography.
+     Paper over the 0.88 region computes around 13:1.
      ------------------------------------------------------------- */
-  .warm {
-    position: relative;
-    overflow: hidden;
+  .scrim::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      rgba(29, 25, 15, 0.88) 0%,
+      rgba(29, 25, 15, 0.55) 32%,
+      rgba(29, 25, 15, 0.15) 62%,
+      rgba(29, 25, 15, 0) 100%
+    );
+    pointer-events: none;
   }
+
+  /* Warmth wash so photos from different shoots share a temperature */
+  .warm { position: relative; overflow: hidden; }
 
   .warm > img,
   .warm > picture > img {
-    filter: saturate(1.04) contrast(0.97) brightness(1.02);
+    filter: saturate(1.05) contrast(0.98) brightness(1.02);
   }
 
   .warm::after {
     content: "";
     position: absolute;
     inset: 0;
-    background:
-      radial-gradient(
-        120% 90% at 50% 15%,
-        rgba(246, 217, 155, 0.16),
-        transparent 60%
-      ),
-      linear-gradient(
-        to bottom,
-        rgba(196, 59, 28, 0.05),
-        rgba(42, 31, 26, 0.1)
-      );
+    background: linear-gradient(
+      to bottom,
+      rgba(140, 117, 59, 0.08),
+      rgba(29, 25, 15, 0.10)
+    );
     pointer-events: none;
   }
 
-  /* Softened edge, so photos feel printed rather than pasted */
-  .soft-edge {
-    box-shadow: inset 0 0 60px rgba(42, 31, 26, 0.14);
+  /* One arched crop per page, maximum */
+  .arch { border-radius: 50% 50% 0 0 / 22% 22% 0 0; }
+
+  /* Hand accent — one line per page, never body or nav */
+  .hand {
+    font-family: var(--font-hand);
+    font-weight: 500;
+    letter-spacing: 0.01em;
+  }
+
+  /* Tracked caps — connective tissue */
+  .overline {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-moss-700);
   }
 
   /* -------------------------------------------------------------
-     Signature: the long table
-     Menu items sit alternately either side of a hairline running
-     the length of the section, like place settings facing each
-     other.
+     Carousels — CSS scroll-snap, no library
      ------------------------------------------------------------- */
-  .longtable { position: relative; }
-
-  .longtable::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 1rem;
-    width: 1px;
-    background: linear-gradient(
-      to bottom,
-      transparent,
-      var(--color-clay) 8%,
-      var(--color-clay) 92%,
-      transparent
-    );
+  .rail {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-moss-300) transparent;
+    padding-bottom: 1rem;
+    -webkit-overflow-scrolling: touch;
   }
 
-  .longtable-row {
-    position: relative;
-    padding-left: 3rem;
-    padding-block: 2rem;
+  .rail > * { scroll-snap-align: start; flex: 0 0 auto; }
+  .rail::-webkit-scrollbar { height: 4px; }
+  .rail::-webkit-scrollbar-track { background: transparent; }
+  .rail::-webkit-scrollbar-thumb { background: var(--color-moss-300); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .rail { scroll-behavior: auto; }
   }
 
-  .longtable-row::before {
-    content: "";
-    position: absolute;
-    left: calc(1rem - 3px);
-    top: 3rem;
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background-color: var(--color-ember);
+  .rail-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border: 1px solid var(--color-moss-300);
+    color: var(--color-choc);
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
   }
 
-  @media (min-width: 900px) {
-    .longtable::before { left: 50%; }
-
-    .longtable-row {
-      width: 50%;
-      padding-left: 0;
-      padding-right: 3.5rem;
-      text-align: right;
-    }
-
-    .longtable-row::before {
-      left: auto;
-      right: -4px;
-      top: 3.25rem;
-    }
-
-    .longtable-row:nth-child(even) {
-      margin-left: 50%;
-      margin-top: -3rem;
-      padding-right: 0;
-      padding-left: 3.5rem;
-      text-align: left;
-    }
-
-    .longtable-row:nth-child(even)::before {
-      right: auto;
-      left: -4px;
-    }
+  .rail-btn:hover:not(:disabled) {
+    background-color: var(--color-umber);
+    border-color: var(--color-umber);
+    color: var(--color-paper);
   }
+
+  .rail-btn:disabled { opacity: 0.35; cursor: default; }
+
+  /* Buttons. Umber fills (white on it = 7.92:1). Moss outlines only —
+     white on Moss is 4.45:1 and fails body AA. */
+  .btn-primary {
+    background-color: var(--color-umber);
+    color: #fff;
+    padding: 0.75rem 2.25rem;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    transition: background-color 0.2s;
+  }
+  .btn-primary:hover { background-color: var(--color-umber-700); }
+
+  .btn-secondary {
+    background-color: transparent;
+    color: var(--color-moss-700);
+    border: 1px solid var(--color-moss);
+    padding: 0.75rem 2.25rem;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    transition: background-color 0.2s;
+  }
+  .btn-secondary:hover { background-color: var(--color-moss-100); }
 
   .tabular { font-variant-numeric: tabular-nums; }
 }
@@ -211,16 +244,9 @@
       transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
-  .reveal.is-in {
-    opacity: 1;
-    transform: none;
-  }
+  .reveal.is-in { opacity: 1; transform: none; }
 
   @media (prefers-reduced-motion: reduce) {
-    .reveal {
-      opacity: 1;
-      transform: none;
-      transition: none;
-    }
+    .reveal { opacity: 1; transform: none; transition: none; }
   }
 }
