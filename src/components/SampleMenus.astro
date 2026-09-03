@@ -16,12 +16,12 @@ const { sampleMenus } = content;
 
     <div class="grid gap-x-12 gap-y-14 md:grid-cols-3">
       {sampleMenus.menus.map((menu) => (
-        <div class="reveal border-t border-moss-300 pt-6">
+        <div class="reveal border-t border-sand pt-6">
           <h3 class="font-display text-2xl md:text-3xl">{menu.name}</h3>
-          <p class="mt-2 text-sm text-moss-700">{menu.context}</p>
+          <p class="mt-2 text-sm text-muted">{menu.context}</p>
           <ul class="mt-5 space-y-2.5">
             {menu.courses.map((course) => (
-              <li class="text-base leading-relaxed text-choc/75">{course}</li>
+              <li class="text-base leading-relaxed text-coffee/75">{course}</li>
             ))}
           </ul>
         </div>

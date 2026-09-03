@@ -4,26 +4,28 @@
  * Set instagram.feedId in content.json to switch it on.
  */
 import content from '~/content/content.json';
+import Ornament from './Ornament.astro';
 const { instagram, business } = content;
 const feedId = instagram.feedId?.trim() ?? '';
 const enabled = feedId.length > 0;
 ---
-<section id="instagram" class="band">
+<section id="instagram" class="band-cool">
   <div class="mx-auto max-w-6xl px-6 py-24 md:py-32">
     <div class="reveal mb-10 flex flex-wrap items-end justify-between gap-6">
       <div>
+        <Ornament motif="sparkle" class="mb-4 h-7 w-7 text-rosewood/60" />
         <h2 class="text-3xl md:text-4xl">
           Follow us on{' '}
           <a
             href={business.instagramUrl}
             target="_blank"
             rel="noopener noreferrer"
-            class="text-umber underline decoration-1 underline-offset-4 transition-opacity hover:opacity-70"
+            class="text-rosewood underline decoration-1 underline-offset-4 transition-opacity hover:opacity-70"
           >
             Instagram
           </a>
         </h2>
-        <p class="mt-3 text-base text-choc/70">{instagram.intro}</p>
+        <p class="mt-3 text-base text-coffee/70">{instagram.intro}</p>
       </div>
 
       {enabled && (
@@ -48,7 +50,7 @@ const enabled = feedId.length > 0;
         aria-label="Recent Instagram photos"
       >
         {Array.from({ length: instagram.limit }).map(() => (
-          <li class="h-40 w-40 animate-pulse bg-moss-100 md:h-44 md:w-44"></li>
+          <li class="h-40 w-40 animate-pulse bg-chiffon-deep md:h-44 md:w-44"></li>
         ))}
       </ul>
     )}
@@ -99,7 +101,7 @@ const enabled = feedId.length > 0;
           a.href = post.permalink ?? 'https://www.instagram.com/joshuatreecateringco/';
           a.target = '_blank';
           a.rel = 'noopener noreferrer';
-          a.className = 'warm group relative block h-40 w-40 overflow-hidden md:h-44 md:w-44';
+          a.className = 'warm rounded-photo group relative block h-40 w-40 overflow-hidden md:h-44 md:w-44';
 
           const img = document.createElement('img');
           img.src = src;

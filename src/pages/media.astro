@@ -19,7 +19,7 @@ const { media, business } = content;
     <section class="mx-auto max-w-6xl px-6 py-20 md:py-28">
       <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {media.gallery.map((img, i) => (
-          <figure class="warm reveal overflow-hidden">
+          <figure class="warm rounded-photo reveal overflow-hidden">
             <Figure
               image={img}
               loading={i < 3 ? 'eager' : 'lazy'}
@@ -27,7 +27,7 @@ const { media, business } = content;
               sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
             />
             {img.caption && (
-              <figcaption class="relative z-10 mt-3 text-sm text-choc/65">
+              <figcaption class="relative z-10 mt-3 text-sm text-coffee/65">
                 {img.caption}
               </figcaption>
             )}

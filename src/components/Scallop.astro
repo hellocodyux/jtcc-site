@@ -1,0 +1,15 @@
+---
+/**
+ * A repeating scalloped edge — a folk-craft border, tiled to any width.
+ */
+import Ornament from './Ornament.astro';
+interface Props { class?: string; }
+const { class: className = '' } = Astro.props;
+---
+<div class={`overflow-hidden text-rosewood/35 ${className}`} aria-hidden="true">
+  <div class="flex w-max">
+    {Array.from({ length: 24 }).map(() => (
+      <Ornament motif="scallop" class="h-4 w-[7.5rem] shrink-0" weight={1.4} />
+    ))}
+  </div>
+</div>

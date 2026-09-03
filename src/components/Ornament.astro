@@ -1,0 +1,142 @@
+---
+/**
+ * Ornament — small hand-drawn folk motifs.
+ *
+ * All original line drawings, built from slightly irregular paths so
+ * they read as drawn rather than generated. They use currentColor, so
+ * colour comes from whatever they sit inside.
+ *
+ * Decorative only — always aria-hidden, never carrying meaning.
+ *
+ * Motifs: sun · sprig · bloom · wave · sparkle · scallop · vessel
+ */
+interface Props {
+  motif?: 'sun' | 'sprig' | 'bloom' | 'wave' | 'sparkle' | 'scallop' | 'vessel';
+  class?: string;
+  /** Stroke weight. Lower reads more delicate. */
+  weight?: number;
+}
+const { motif = 'sun', class: className = '', weight = 1.6 } = Astro.props;
+
+// Rays at uneven lengths — evenly spaced ones look machine-made.
+const rayLengths = [9, 7.5, 8.5, 7, 9.5, 7.5, 8, 7, 9, 8, 7.5, 8.5];
+---
+
+{motif === 'sun' && (
+  <svg viewBox="0 0 64 64" fill="none" class={className} aria-hidden="true">
+    <circle cx="32" cy="32" r="10.5" stroke="currentColor" stroke-width={weight} />
+    <path
+      d="M27.5 30.5c1.4-1.1 3-1 4.4.2 1.3 1.1 2.9 1.2 4.4.1"
+      stroke="currentColor"
+      stroke-width={weight * 0.85}
+      stroke-linecap="round"
+    />
+    {rayLengths.map((len, i) => {
+      const a = (i * 30 * Math.PI) / 180;
+      const r0 = 14.5;
+      const r1 = r0 + len;
+      return (
+        <line
+          x1={32 + Math.cos(a) * r0}
+          y1={32 + Math.sin(a) * r0}
+          x2={32 + Math.cos(a) * r1}
+          y2={32 + Math.sin(a) * r1}
+          stroke="currentColor"
+          stroke-width={weight}
+          stroke-linecap="round"
+        />
+      );
+    })}
+  </svg>
+)}
+
+{motif === 'sprig' && (
+  <svg viewBox="0 0 40 64" fill="none" class={className} aria-hidden="true">
+    <path
+      d="M20 60C20 46 19 34 20.5 22c.4-3.4 1-6.4 1.8-9"
+      stroke="currentColor"
+      stroke-width={weight}
+      stroke-linecap="round"
+    />
+    {[
+      'M20 46c-4.4-.6-7.6-3-8.6-7 4.2-.5 7.4 1.9 8.6 7Z',
+      'M20.5 38c4.4-.8 7.4-3.4 8.2-7.5-4.2-.3-7.2 2.3-8.2 7.5Z',
+      'M20.5 30c-4.2-.8-7-3.2-7.8-7 4-.4 6.8 2 7.8 7Z',
+      'M21 22.5c4-1 6.6-3.6 7.2-7.4-3.8-.2-6.4 2.4-7.2 7.4Z',
+    ].map((d) => (
+      <path d={d} stroke="currentColor" stroke-width={weight * 0.9} stroke-linejoin="round" />
+    ))}
+  </svg>
+)}
+
+{motif === 'bloom' && (
+  <svg viewBox="0 0 64 64" fill="none" class={className} aria-hidden="true">
+    {[0, 72, 144, 216, 288].map((deg, i) => (
+      <path
+        d={`M32 32 C ${26 - i * 0.4} 20, ${38 + i * 0.4} 20, 32 32`}
+        stroke="currentColor"
+        stroke-width={weight}
+        stroke-linejoin="round"
+        transform={`rotate(${deg} 32 32)`}
+      />
+    ))}
+    <circle cx="32" cy="32" r="3.4" stroke="currentColor" stroke-width={weight} />
+  </svg>
+)}
+
+{motif === 'wave' && (
+  <svg viewBox="0 0 120 24" fill="none" class={className} aria-hidden="true">
+    <path
+      d="M2 14c8-9 16-9 24 0s16 9 24 0 16-9 24 0 16 9 24 0"
+      stroke="currentColor"
+      stroke-width={weight}
+      stroke-linecap="round"
+    />
+  </svg>
+)}
+
+{motif === 'sparkle' && (
+  <svg viewBox="0 0 32 32" fill="none" class={className} aria-hidden="true">
+    <path
+      d="M16 2c1.2 8.4 5.4 12.6 13.8 14-8.4 1.4-12.6 5.6-13.8 14-1.2-8.4-5.4-12.6-13.8-14C10.6 14.6 14.8 10.4 16 2Z"
+      stroke="currentColor"
+      stroke-width={weight}
+      stroke-linejoin="round"
+    />
+  </svg>
+)}
+
+{motif === 'scallop' && (
+  <svg viewBox="0 0 120 16" fill="none" class={className} aria-hidden="true">
+    <path
+      d="M2 13c0-6 4.4-10 9.8-10S21.6 7 21.6 13c0-6 4.4-10 9.8-10S41.2 7 41.2 13c0-6 4.4-10 9.8-10s9.8 4 9.8 10c0-6 4.4-10 9.8-10s9.8 4 9.8 10c0-6 4.4-10 9.8-10s9.8 4 9.8 10c0-6 4.4-10 9.8-10s9.8 4 9.8 10"
+      stroke="currentColor"
+      stroke-width={weight}
+      stroke-linecap="round"
+    />
+  </svg>
+)}
+
+{motif === 'vessel' && (
+  <svg viewBox="0 0 48 64" fill="none" class={className} aria-hidden="true">
+    <path
+      d="M16 14h16M18 14c-6 5-9 11-9 19 0 10 6.6 17 15 17s15-7 15-17c0-8-3-14-9-19"
+      stroke="currentColor"
+      stroke-width={weight}
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <path
+      d="M13 36c4-2.2 7-2.2 11 0s7 2.2 11 0"
+      stroke="currentColor"
+      stroke-width={weight * 0.85}
+      stroke-linecap="round"
+    />
+    <path
+      d="M20 8.5c1.6-1.4 3.2-2 4.5-2s2.6.6 4 2"
+      stroke="currentColor"
+      stroke-width={weight * 0.85}
+      stroke-linecap="round"
+    />
+  </svg>
+)}

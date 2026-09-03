@@ -1,0 +1,104 @@
+---
+/**
+ * A small group of photos placed as if laid on a table — varied
+ * sizes, slight offsets, a degree or two of rotation.
+ *
+ * Deliberately not full-bleed. The point is that it feels arranged by
+ * hand rather than dropped into a grid.
+ *
+ * Rotation and offset come from the content file so the arrangement
+ * can be tuned without touching markup. On mobile everything
+ * straightens and stacks — tilted photos in a single column just look
+ * like a mistake.
+ */
+import Figure from './Figure.astro';
+
+interface ClusterImage {
+  key: string;
+  remote?: string;
+  alt: string;
+  width: number;
+  height: number;
+  /** Fraction of the container width, 0–1. */
+  scale?: number;
+  /** Degrees of tilt, positive is clockwise. */
+  rotate?: number;
+  /** Vertical nudge in rem; negative lifts the photo. */
+  offsetY?: number;
+  caption?: string;
+}
+
+interface Props {
+  images: ClusterImage[];
+  note?: string;
+  align?: 'left' | 'right' | 'center';
+}
+const { images, note, align = 'center' } = Astro.props;
+---
+<section class="px-6 py-16 md:py-24">
+  <div
+    class:list={[
+      'mx-auto flex max-w-5xl flex-wrap items-end justify-center gap-6 md:gap-10',
+      align === 'left' && 'md:justify-start',
+      align === 'right' && 'md:justify-end',
+    ]}
+  >
+    {images.map((img) => (
+      <figure
+        class="reveal photo-tile group"
+        style={`
+          --tile-scale: ${img.scale ?? 0.3};
+          --tile-rotate: ${img.rotate ?? 0}deg;
+          --tile-offset: ${img.offsetY ?? 0}rem;
+        `}
+      >
+        <div class="warm rounded-photo overflow-hidden shadow-[0_10px_30px_rgba(45,18,13,0.14)]">
+          <Figure
+            image={img}
+            class="w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+            sizes="(min-width: 768px) 40vw, 90vw"
+          />
+        </div>
+        {img.caption && (
+          <figcaption class="hand mt-2 text-center text-lg text-muted">
+            {img.caption}
+          </figcaption>
+        )}
+      </figure>
+    ))}
+  </div>
+
+  {note && (
+    <p class="reveal mx-auto mt-10 max-w-md text-center text-base leading-relaxed text-muted">
+      {note}
+    </p>
+  )}
+</section>
+
+<style>
+  .photo-tile {
+    width: 78%;
+    max-width: 22rem;
+  }
+
+  /* Tilt and offset only once there's room for them to read as
+     deliberate rather than broken. */
+  @media (min-width: 768px) {
+    .photo-tile {
+      width: calc(var(--tile-scale) * 100%);
+      max-width: none;
+      transform: translateY(var(--tile-offset));
+      transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .photo-tile:hover {
+      transform: translateY(calc(var(--tile-offset) - 0.4rem));
+      z-index: 2;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .photo-tile,
+    .photo-tile:hover { transition: none; }
+  }
+</style>

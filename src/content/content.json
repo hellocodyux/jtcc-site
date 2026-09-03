@@ -45,11 +45,19 @@
     },
     "image": {
       "key": "hero",
-      "remote": "https://static.wixstatic.com/media/990705_9dba52811d244c7fbeb5eac442d5e34b~mv2.jpeg",
-      "alt": "A long table set for dinner, plates and glasses down the length of it",
-      "width": 1170,
-      "height": 1714
-    }
+      "remote": "",
+      "alt": "Braised short rib plated with carrots and herbs at a candlelit table",
+      "width": 2000,
+      "height": 1125
+    },
+    "logo": {
+      "_README": "The script wordmark over the hero photo. Put a transparent PNG at src/assets/images/logo-wordmark.png. Its shape is used as a mask and filled with `color` below, so the PNG's own colour doesn't matter. Use any palette token: chiffon, rosewood, coffee, sky.",
+      "key": "logo-wordmark",
+      "alt": "Joshua Tree Catering Co.",
+      "maxWidth": "min(78vw, 720px)",
+      "color": "chiffon"
+    },
+    "showLogo": true
   },
   "intro": {
     "heading": "Rooted in community.",
@@ -57,7 +65,14 @@
       "Heartfelt gatherings in the desert. That's the work — somebody cooks, everybody sits down, and a few hours later nobody wants to leave.",
       "We're a woman-owned catering company in Joshua Tree. Local ingredients, cooked by hand, never locked into a single cuisine.",
       "Connection through food is the whole point. The menu is just how we get there."
-    ]
+    ],
+    "image": {
+      "key": "cluster-tables-dusk",
+      "remote": "",
+      "alt": "Two long tables set with candles among the boulders at dusk",
+      "width": 828,
+      "height": 1035
+    }
   },
   "services": {
     "heading": "What we offer",
@@ -211,14 +226,13 @@
     "note": "Every menu is written for the event, so every quote is too. Tell us the date, the headcount, and what you're picturing — we'll send a menu and a price built around it. No fixed packages, no per-plate list."
   },
   "about": {
-    "_PLACEHOLDER": "DRAFT — written from the brand skill and the Instagram bio. Kristi should review and correct any details, especially anything about how the business started.",
     "heading": "About",
-    "lede": "Heartfelt gatherings in the desert. Rooted in community, local ingredients, and connection through food.",
+    "lede": "Joshua Tree Catering Co. is a woman-owned company in Joshua Tree, California. Local ingredients, cooked by hand, never locked into a single cuisine.",
     "body": [
-      "Joshua Tree Catering Co. is a woman-owned catering company working out of the high desert. Kristi cooks, plans, and runs the events — most nights that means being in someone's rental kitchen, or setting a long table outside while the light goes orange.",
-      "We're not tied to one cuisine. Tacos one weekend, a Spanish supper the next, a plated dinner for eight after that. The question is never what we feel like cooking, it's what suits your event and the people coming to it.",
-      "Everything is made to order and by hand. Local ingredients where we can get them, which out here means knowing your growers and paying attention to the season.",
-      "Most of our work is private — weddings, birthdays, bachelorette weekends, retreats, film productions out in Twentynine Palms. Long tables, good plates, nobody in a hurry to leave. That's the version of a meal we're after."
+      "Connection through food is the whole point. The menu is just how we get there.",
+      "A focus on community means fresh, local ingredients and working with local growers and makers wherever we can. We keep waste down and choose sustainable practices across the business.",
+      "Chef Kristi was born and raised in Southern California and comes from a line of cooks. Her love of food and community started in her grandmother's bakery, where she learned technique alongside her grandma and saw first-hand how a small food business holds a neighborhood together. At home it was the same. Every gathering was built around the kitchen, and that's still how she cooks — for the room, not the plate.",
+      "We believe food is a universal language, and being part of this community's table is an honor. Somebody cooks, everybody sits down, and a few hours later nobody wants to leave."
     ],
     "cta": {
       "label": "Tell us about your event",
@@ -241,5 +255,77 @@
     "error": "Something went wrong. Email us directly at Info@joshuatreecateringco.com.",
     "note": "Spring dates go early. Reach out as soon as you know your weekend.",
     "emailLabel": "Or just email us"
+  },
+  "marquee": {
+    "text": "Come hungry · Stay late"
+  },
+  "photoClusters": {
+    "_README": "Small groups of photos placed like objects on a table. `scale` is a fraction of container width, `rotate` is degrees of tilt, `offsetY` nudges vertically in rem. Tilt is desktop-only. Images live in src/assets/images named to match `key`.",
+    "clusters": [
+      {
+        "id": "after-services",
+        "align": "center",
+        "note": "",
+        "images": [
+          {
+            "key": "cluster-hummus",
+            "remote": "",
+            "alt": "Turmeric hummus with shaved carrot, olives and tomato",
+            "width": 828,
+            "height": 1035,
+            "scale": 0.3,
+            "rotate": 0,
+            "offsetY": 0.0
+          },
+          {
+            "key": "cluster-crostini-spread",
+            "remote": "",
+            "alt": "Crostini platter with a basket of torn bread",
+            "width": 1400,
+            "height": 1050,
+            "scale": 0.34,
+            "rotate": 0,
+            "offsetY": 1.2
+          },
+          {
+            "key": "cluster-sweet-potato",
+            "remote": "",
+            "alt": "Roasted sweet potato with tahini, chili crisp and lime",
+            "width": 828,
+            "height": 1035,
+            "scale": 0.28,
+            "rotate": 0,
+            "offsetY": -0.8
+          }
+        ]
+      },
+      {
+        "id": "before-contact",
+        "align": "center",
+        "note": "Dinner in the park, last November.",
+        "images": [
+          {
+            "key": "cluster-table-tree",
+            "remote": "",
+            "alt": "A single candlelit table under a tree at dusk",
+            "width": 828,
+            "height": 1035,
+            "scale": 0.32,
+            "rotate": 0,
+            "offsetY": 0.0
+          },
+          {
+            "key": "cluster-crostini-close",
+            "remote": "",
+            "alt": "Whipped ricotta crostini with dates and pistachios",
+            "width": 611,
+            "height": 764,
+            "scale": 0.3,
+            "rotate": 0,
+            "offsetY": 1.0
+          }
+        ]
+      }
+    ]
   }
 }

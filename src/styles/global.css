@@ -2,41 +2,22 @@
 
 /* ---------------------------------------------------------------
    JTCC design tokens
-   Five fixed brand colors; everything else derived by mixing with
-   white or Black Chocolate. All text pairings meet WCAG 2.1 AA —
-   ratios noted inline.
+   Four brand colours; everything else derived by mixing. All text
+   pairings meet WCAG 2.1 AA — ratios noted inline.
    --------------------------------------------------------------- */
 @theme {
-  /* Brand — exact values, do not substitute */
-  --color-moss:      #8C753B;
-  --color-umber:     #8D3427;
-  --color-pink:      #DAA99A;
-  --color-choc:      #1D190F;
-  --color-mist:      #CCD6D5;
+  /* Brand */
+  --color-chiffon:      #FFF8CA;  /* Lemon Chiffon — page ground */
+  --color-rosewood:     #6B0B0C;  /* Rosewood — primary, links, buttons */
+  --color-coffee:       #2D120D;  /* Coffee Bean — text, inverted bands */
+  --color-sky:          #CDE3E8;  /* Botticelli — cool accent band */
 
-  /* Moss scale */
-  --color-moss-100:  #EAE6DC;
-  --color-moss-300:  #CBC1A7;
-  --color-moss-600:  #766332;  /* text-safe on paper — 5.29:1 */
-  --color-moss-700:  #68582D;  /* 6.31:1 */
-  --color-moss-900:  #473C20;
-
-  /* Umber scale */
-  --color-umber-100: #EADAD8;
-  --color-umber-300: #CCA49E;
-  --color-umber-700: #692B1F;
-  --color-umber-900: #482318;
-
-  /* Pink scale */
-  --color-pink-100:  #F8F0ED;
-  --color-pink-300:  #EED8D2;
-  --color-pink-700:  #9E7B6E;
-  --color-pink-900:  #655044;
-
-  /* Derived paper: white + 8% pink + 4% moss.
-     Black Chocolate on it = 15.91:1 */
-  --color-paper:      #F8F3EF;
-  --color-paper-deep: #F1E9E3;
+  /* Derived */
+  --color-chiffon-deep: #EEE6BB;  /* alternating band  (coffee 13.85:1) */
+  --color-rosewood-deep:#5C0D0C;  /* hover / pressed */
+  --color-sky-deep:     #BACACE;  /* deeper cool tone  (coffee 10.32:1) */
+  --color-sand:         #CABE9B;  /* borders, dividers */
+  --color-muted:        #6C5746;  /* secondary text    (chiffon 6.32:1) */
 
   /* Type */
   --font-display: "Fraunces Variable", "Fraunces", Georgia, serif;
@@ -49,7 +30,7 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    background-color: var(--color-paper);
+    background-color: var(--color-chiffon);
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -58,8 +39,8 @@
 
   body {
     font-family: var(--font-body);
-    color: var(--color-choc);
-    background-color: var(--color-paper);
+    color: var(--color-coffee);
+    background-color: var(--color-chiffon);
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
@@ -68,49 +49,81 @@
     font-family: var(--font-display);
     font-variation-settings: "SOFT" 0, "WONK" 1, "opsz" 40;
     font-weight: 400;
-    line-height: 1.05;
-    letter-spacing: -0.02em;
+    line-height: 1.02;
+    letter-spacing: -0.025em;
   }
 
   section[id] { scroll-margin-top: 5rem; }
 
   :focus-visible {
-    outline: 2px solid var(--color-umber);
+    outline: 2px solid var(--color-rosewood);
     outline-offset: 3px;
   }
 
   ::selection {
-    background-color: var(--color-umber);
-    color: var(--color-paper);
+    background-color: var(--color-rosewood);
+    color: var(--color-chiffon);
   }
 }
 
 @layer components {
   /* -------------------------------------------------------------
-     Bands — the structural default. Sections are separated by
-     background color, not by rules or by type over imagery.
+     Bands — sections separated by background colour
      ------------------------------------------------------------- */
-  .band          { background-color: var(--color-paper); }
-  .band-deep     { background-color: var(--color-paper-deep); }
-  .band-accent   { background-color: var(--color-pink-100); }
-  .band-cool     { background-color: var(--color-mist); }
-  .band-invert   { background-color: var(--color-choc); color: var(--color-paper); }
+  .band        { background-color: var(--color-chiffon); }
+  .band-deep   { background-color: var(--color-chiffon-deep); }
+  .band-cool   { background-color: var(--color-sky); }
+  .band-accent { background-color: var(--color-sky-deep); }
 
+  .band-invert {
+    background-color: var(--color-coffee);
+    color: var(--color-chiffon);
+  }
   .band-invert h1,
   .band-invert h2,
-  .band-invert h3 { color: var(--color-paper); }
+  .band-invert h3 { color: var(--color-chiffon); }
 
-  /* An image that breaks a band edge — what stops stacked bands
-     reading as stacked rectangles. */
-  .band-break {
-    margin-block-end: -4rem;
-    position: relative;
-    z-index: 1;
+  /* -------------------------------------------------------------
+     Marquee — a single tracked line scrolling between sections.
+     Pure CSS, pauses on hover, stops for reduced-motion.
+     ------------------------------------------------------------- */
+  .marquee {
+    overflow: hidden;
+    white-space: nowrap;
+    background-color: var(--color-rosewood);
+    color: var(--color-chiffon);
+    padding-block: 0.85rem;
+    border-block: 1px solid var(--color-coffee);
+  }
+
+  .marquee-track {
+    display: inline-flex;
+    gap: 2.5rem;
+    padding-right: 2.5rem;
+    animation: marquee 34s linear infinite;
+    will-change: transform;
+  }
+
+  .marquee:hover .marquee-track { animation-play-state: paused; }
+
+  .marquee span {
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+  }
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track { animation: none; }
   }
 
   /* -------------------------------------------------------------
-     Hero scrim — the one place type sits over photography.
-     Paper over the 0.88 region computes around 13:1.
+     Hero scrim — the one place type sits over photography
      ------------------------------------------------------------- */
   .scrim::after {
     content: "";
@@ -118,15 +131,14 @@
     inset: 0;
     background: linear-gradient(
       to top,
-      rgba(29, 25, 15, 0.88) 0%,
-      rgba(29, 25, 15, 0.55) 32%,
-      rgba(29, 25, 15, 0.15) 62%,
-      rgba(29, 25, 15, 0) 100%
+      rgba(45, 18, 13, 0.90) 0%,
+      rgba(45, 18, 13, 0.58) 34%,
+      rgba(45, 18, 13, 0.18) 64%,
+      rgba(45, 18, 13, 0) 100%
     );
     pointer-events: none;
   }
 
-  /* Warmth wash so photos from different shoots share a temperature */
   .warm { position: relative; overflow: hidden; }
 
   .warm > img,
@@ -140,32 +152,31 @@
     inset: 0;
     background: linear-gradient(
       to bottom,
-      rgba(140, 117, 59, 0.08),
-      rgba(29, 25, 15, 0.10)
+      rgba(107, 11, 12, 0.06),
+      rgba(45, 18, 13, 0.10)
     );
     pointer-events: none;
   }
 
-  /* One arched crop per page, maximum */
+  /* Softly rounded image corners */
+  .rounded-photo { border-radius: 14px; }
   .arch { border-radius: 50% 50% 0 0 / 22% 22% 0 0; }
 
-  /* Hand accent — one line per page, never body or nav */
   .hand {
     font-family: var(--font-hand);
     font-weight: 500;
     letter-spacing: 0.01em;
   }
 
-  /* Tracked caps — connective tissue */
   .overline {
     font-size: 0.75rem;
     text-transform: uppercase;
-    letter-spacing: 0.18em;
-    color: var(--color-moss-700);
+    letter-spacing: 0.2em;
+    color: var(--color-muted);
   }
 
   /* -------------------------------------------------------------
-     Carousels — CSS scroll-snap, no library
+     Carousels
      ------------------------------------------------------------- */
   .rail {
     display: flex;
@@ -174,7 +185,7 @@
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
     scrollbar-width: thin;
-    scrollbar-color: var(--color-moss-300) transparent;
+    scrollbar-color: var(--color-sand) transparent;
     padding-bottom: 1rem;
     -webkit-overflow-scrolling: touch;
   }
@@ -182,7 +193,7 @@
   .rail > * { scroll-snap-align: start; flex: 0 0 auto; }
   .rail::-webkit-scrollbar { height: 4px; }
   .rail::-webkit-scrollbar-track { background: transparent; }
-  .rail::-webkit-scrollbar-thumb { background: var(--color-moss-300); }
+  .rail::-webkit-scrollbar-thumb { background: var(--color-sand); }
 
   @media (prefers-reduced-motion: reduce) {
     .rail { scroll-behavior: auto; }
@@ -194,43 +205,18 @@
     justify-content: center;
     width: 2.5rem;
     height: 2.5rem;
-    border: 1px solid var(--color-moss-300);
-    color: var(--color-choc);
+    border: 1px solid var(--color-sand);
+    color: var(--color-coffee);
     transition: background-color 0.2s, color 0.2s, border-color 0.2s;
   }
 
   .rail-btn:hover:not(:disabled) {
-    background-color: var(--color-umber);
-    border-color: var(--color-umber);
-    color: var(--color-paper);
+    background-color: var(--color-rosewood);
+    border-color: var(--color-rosewood);
+    color: var(--color-chiffon);
   }
 
   .rail-btn:disabled { opacity: 0.35; cursor: default; }
-
-  /* Buttons. Umber fills (white on it = 7.92:1). Moss outlines only —
-     white on Moss is 4.45:1 and fails body AA. */
-  .btn-primary {
-    background-color: var(--color-umber);
-    color: #fff;
-    padding: 0.75rem 2.25rem;
-    font-size: 0.875rem;
-    text-transform: uppercase;
-    letter-spacing: 0.16em;
-    transition: background-color 0.2s;
-  }
-  .btn-primary:hover { background-color: var(--color-umber-700); }
-
-  .btn-secondary {
-    background-color: transparent;
-    color: var(--color-moss-700);
-    border: 1px solid var(--color-moss);
-    padding: 0.75rem 2.25rem;
-    font-size: 0.875rem;
-    text-transform: uppercase;
-    letter-spacing: 0.16em;
-    transition: background-color 0.2s;
-  }
-  .btn-secondary:hover { background-color: var(--color-moss-100); }
 
   .tabular { font-variant-numeric: tabular-nums; }
 }

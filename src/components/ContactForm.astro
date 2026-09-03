@@ -12,10 +12,10 @@ const { form, business } = content;
 const f = form.fields;
 
 const field =
-  'mt-1.5 w-full border-0 border-b border-moss-300 bg-transparent px-0 py-2 text-base ' +
-  'outline-none transition-colors placeholder:text-choc/35 focus:border-umber ' +
-  'aria-[invalid=true]:border-umber';
-const labelCls = 'block text-xs uppercase tracking-[0.12em] text-choc/60';
+  'mt-1.5 w-full border-0 border-b border-sand bg-transparent px-0 py-2 text-base ' +
+  'outline-none transition-colors placeholder:text-coffee/35 focus:border-rosewood ' +
+  'aria-[invalid=true]:border-rosewood';
+const labelCls = 'block text-xs uppercase tracking-[0.12em] text-coffee/60';
 ---
 <section id="contact" class="band-accent">
   <div class="mx-auto max-w-5xl px-6 py-20 md:py-24">
@@ -23,19 +23,19 @@ const labelCls = 'block text-xs uppercase tracking-[0.12em] text-choc/60';
       <!-- Left: the ask -->
       <div class="reveal md:col-span-4">
         <h2 class="text-3xl leading-tight md:text-4xl">{form.heading}</h2>
-        <p class="mt-4 text-base leading-relaxed text-choc/75">{form.intro}</p>
+        <p class="mt-4 text-base leading-relaxed text-coffee/75">{form.intro}</p>
 
-        <p class="mt-8 text-xs uppercase tracking-[0.12em] text-choc/60">
+        <p class="mt-8 text-xs uppercase tracking-[0.12em] text-coffee/60">
           {form.emailLabel}
         </p>
         <a
           href={`mailto:${business.email}`}
-          class="mt-1 inline-block border-b border-umber pb-0.5 text-base text-umber transition-opacity hover:opacity-70"
+          class="mt-1 inline-block border-b border-rosewood pb-0.5 text-base text-rosewood transition-opacity hover:opacity-70"
         >
           {business.email}
         </a>
 
-        <p class="mt-8 text-sm leading-relaxed text-moss-700">{form.note}</p>
+        <p class="mt-8 text-sm leading-relaxed text-muted">{form.note}</p>
       </div>
 
       <!-- Right: the form -->
@@ -49,21 +49,21 @@ const labelCls = 'block text-xs uppercase tracking-[0.12em] text-choc/60';
         <div class="grid gap-x-8 gap-y-6 sm:grid-cols-2">
           <div>
             <label for="cf-name" class={labelCls}>
-              {f.name} <span aria-hidden="true" class="text-umber">*</span>
+              {f.name} <span aria-hidden="true" class="text-rosewood">*</span>
             </label>
             <input id="cf-name" name="name" type="text" required autocomplete="name" class={field} />
           </div>
 
           <div>
             <label for="cf-email" class={labelCls}>
-              {f.email} <span aria-hidden="true" class="text-umber">*</span>
+              {f.email} <span aria-hidden="true" class="text-rosewood">*</span>
             </label>
             <input id="cf-email" name="email" type="email" required autocomplete="email" class={field} />
           </div>
 
           <div>
             <label for="cf-phone" class={labelCls}>
-              {f.phone} <span aria-hidden="true" class="text-umber">*</span>
+              {f.phone} <span aria-hidden="true" class="text-rosewood">*</span>
             </label>
             <input id="cf-phone" name="phone" type="tel" required autocomplete="tel" class={field} />
           </div>
@@ -99,11 +99,11 @@ const labelCls = 'block text-xs uppercase tracking-[0.12em] text-choc/60';
             id="cf-status"
             role="status"
             aria-live="polite"
-            class="text-sm text-choc/70"
+            class="text-sm text-coffee/70"
           ></p>
           <button
             type="submit"
-            class="bg-umber px-9 py-3 text-sm uppercase tracking-[0.16em] text-paper transition-opacity hover:opacity-85 disabled:opacity-50"
+            class="bg-rosewood px-9 py-3 text-sm uppercase tracking-[0.16em] text-chiffon transition-opacity hover:opacity-85 disabled:opacity-50"
           >
             {form.submit}
           </button>

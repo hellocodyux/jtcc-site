@@ -1,8 +1,14 @@
 ---
-interface Props { heading: string; intro?: string; }
-const { heading, intro } = Astro.props;
+import Ornament from './Ornament.astro';
+interface Props {
+  heading: string;
+  intro?: string;
+  motif?: 'sun' | 'sprig' | 'bloom' | 'wave' | 'sparkle' | 'scallop' | 'vessel';
+}
+const { heading, intro, motif = 'sparkle' } = Astro.props;
 ---
-<div class="reveal mb-16 max-w-2xl">
-  <h2 class="text-4xl md:text-5xl">{heading}</h2>
-  {intro && <p class="mt-5 text-lg leading-relaxed text-choc/75">{intro}</p>}
+<div class="reveal mb-10 max-w-2xl">
+  <Ornament motif={motif} class="mb-4 h-7 w-7 text-rosewood/60" />
+  <h2 class="text-3xl md:text-4xl">{heading}</h2>
+  {intro && <p class="mt-4 text-lg leading-relaxed text-coffee/75">{intro}</p>}
 </div>

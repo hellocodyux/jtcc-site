@@ -1,0 +1,23 @@
+---
+/**
+ * A single tracked line scrolling between sections. Pure CSS —
+ * no JS, no layout shift. The phrase is duplicated so the loop
+ * is seamless; aria-hidden on the copy so screen readers hear it once.
+ */
+import content from '~/content/content.json';
+interface Props { text?: string; }
+const { text = content.marquee?.text ?? 'Come hungry · Stay late' } = Astro.props;
+const items = Array.from({ length: 8 });
+---
+<div class="relative">
+  <div class="marquee" role="presentation">
+  <div class="marquee-track">
+    {items.map((_, i) => (
+      <span aria-hidden={i > 0 ? 'true' : undefined}>{text} <span class="px-1">✳</span></span>
+    ))}
+    {items.map(() => (
+      <span aria-hidden="true">{text} <span class="px-1">✳</span></span>
+    ))}
+    </div>
+  </div>
+</div>

@@ -1,6 +1,6 @@
 ---
 import content from '~/content/content.json';
-const { nav, business } = content;
+const { nav } = content;
 
 interface Props {
   /** Transparent over a hero image, or solid on inner pages. */
@@ -14,31 +14,37 @@ const isCurrent = (href: string) =>
 <header
   class:list={[
     'fixed inset-x-0 top-0 z-40 transition-colors duration-300',
-    !overHero && 'bg-paper/95 text-choc shadow-[0_1px_0_rgba(203,193,167,0.6)] backdrop-blur-sm',
+    !overHero && 'bg-chiffon/95 text-coffee shadow-[0_1px_0_rgba(202,190,155,0.7)] backdrop-blur-sm',
   ]}
   data-nav
   data-over-hero={overHero ? 'true' : 'false'}
 >
   <nav
-    class="mx-auto flex max-w-6xl items-center justify-between gap-6 px-6 py-4"
+    class="mx-auto flex max-w-6xl items-center justify-between gap-6 px-6 py-5"
     aria-label="Primary"
   >
+    <!-- On the home page the hero carries the wordmark, so this stays
+         hidden until you scroll past it. -->
     <a
       href="/"
-      class="font-display text-base tracking-tight transition-opacity hover:opacity-70 md:text-lg"
+      class:list={[
+        'font-display text-lg tracking-tight transition-opacity duration-300 hover:opacity-70',
+        overHero && 'pointer-events-none opacity-0',
+      ]}
+      data-nav-mark
     >
       Joshua Tree Catering Co.
     </a>
 
-    <ul class="hidden items-center gap-7 md:flex">
+    <ul class="hidden items-center gap-9 md:flex">
       {nav.map((item) => (
         <li>
           <a
             href={item.href}
             aria-current={isCurrent(item.href) ? 'page' : undefined}
             class:list={[
-              'text-sm tracking-wide transition-opacity hover:opacity-60',
-              isCurrent(item.href) && 'border-b border-current pb-0.5',
+              'text-base tracking-wide transition-opacity hover:opacity-65',
+              isCurrent(item.href) && 'opacity-70',
             ]}
           >
             {item.label}
@@ -46,32 +52,32 @@ const isCurrent = (href: string) =>
         </li>
       ))}
       <li>
-        <a
-          href="/#contact"
-          class="border-b border-current pb-0.5 text-sm tracking-wide text-umber transition-opacity hover:opacity-60"
-        >
+        <a href="/#contact" class="text-base tracking-wide transition-opacity hover:opacity-65">
           Get in touch
         </a>
       </li>
     </ul>
 
-    <a href="/#contact" class="border-b border-current pb-0.5 text-sm text-umber md:hidden">
+    <a href="/#contact" class="text-base tracking-wide transition-opacity hover:opacity-65 md:hidden">
       Get in touch
     </a>
   </nav>
 </header>
 
 <script>
-  // Only the home page has a hero to sit over.
   const nav = document.querySelector('[data-nav]');
   if (nav instanceof HTMLElement && nav.dataset.overHero === 'true') {
+    const mark = nav.querySelector('[data-nav-mark]');
     const onScroll = () => {
       const past = window.scrollY > window.innerHeight * 0.7;
-      nav.classList.toggle('bg-paper/95', past);
+      nav.classList.toggle('bg-chiffon/95', past);
       nav.classList.toggle('backdrop-blur-sm', past);
-      nav.classList.toggle('text-choc', past);
-      nav.classList.toggle('text-paper', !past);
-      nav.classList.toggle('shadow-[0_1px_0_rgba(203,193,167,0.6)]', past);
+      nav.classList.toggle('text-coffee', past);
+      nav.classList.toggle('text-chiffon', !past);
+      nav.classList.toggle('shadow-[0_1px_0_rgba(202,190,155,0.7)]', past);
+      // Wordmark appears only once the hero logo is out of view.
+      mark?.classList.toggle('opacity-0', !past);
+      mark?.classList.toggle('pointer-events-none', !past);
     };
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });

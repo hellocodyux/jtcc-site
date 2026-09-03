@@ -1,0 +1,49 @@
+---
+/**
+ * A full-width photo between sections, optionally with a line of
+ * poster type over it.
+ *
+ * Any overlay text gets a scrim behind it — the same treatment as the
+ * hero — so it stays legible over a photo we don't control.
+ */
+import Figure from './Figure.astro';
+
+interface Props {
+  image: { key: string; remote?: string; alt: string; width: number; height: number };
+  text?: string;
+  /** 'wide' for a slim band, 'tall' for a fuller-height statement. */
+  size?: 'wide' | 'tall';
+  align?: 'left' | 'center';
+}
+const { image, text, size = 'wide', align = 'left' } = Astro.props;
+const heights = {
+  wide: 'h-[38vh] min-h-[240px] md:h-[46vh]',
+  tall: 'h-[62vh] min-h-[380px] md:h-[72vh]',
+};
+---
+<section
+  class:list={[
+    'warm relative w-full overflow-hidden',
+    heights[size],
+    text && 'scrim',
+  ]}
+>
+  <Figure
+    image={image}
+    class="absolute inset-0 h-full w-full object-cover"
+    sizes="100vw"
+  />
+
+  {text && (
+    <div
+      class:list={[
+        'relative z-10 mx-auto flex h-full max-w-6xl flex-col justify-end px-6 pb-10 md:pb-14',
+        align === 'center' && 'items-center text-center',
+      ]}
+    >
+      <p class="max-w-3xl text-[clamp(1.5rem,4.5vw,3rem)] font-display leading-[1.05] text-chiffon drop-shadow-[0_2px_16px_rgba(45,18,13,0.55)]">
+        {text}
+      </p>
+    </div>
+  )}
+</section>

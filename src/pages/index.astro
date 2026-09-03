@@ -3,21 +3,25 @@ import Base from '~/layouts/Base.astro';
 import Nav from '~/components/Nav.astro';
 import Hero from '~/components/Hero.astro';
 import Intro from '~/components/Intro.astro';
+import Marquee from '~/components/Marquee.astro';
 import WhatWeOffer from '~/components/WhatWeOffer.astro';
 import ContactForm from '~/components/ContactForm.astro';
-import Instagram from '~/components/Instagram.astro';
 import Testimonials from '~/components/Testimonials.astro';
+import Instagram from '~/components/Instagram.astro';
 import Footer from '~/components/Footer.astro';
+import Scallop from '~/components/Scallop.astro';
 ---
 <Base>
   <Nav overHero />
   <main id="main">
     <Hero />
     <Intro />
+    <Marquee />
     <WhatWeOffer />
     <ContactForm />
-    <Instagram />
     <Testimonials />
+    <Instagram />
   </main>
+  <Scallop class="py-6" />
   <Footer />
 </Base>
