@@ -1,4 +1,9 @@
 ---
+/**
+ * Media — one tight block of photos, three across, edge to edge, tall
+ * portrait tiles with the odd double-width scene. The block itself has
+ * soft corners; the tiles inside don't.
+ */
 import content from '~/content/content.json';
 import Base from '~/layouts/Base.astro';
 import Nav from '~/components/Nav.astro';
@@ -12,32 +17,37 @@ const { media, business } = content;
   title={`Media | ${business.name}`}
   description="Event photography from Joshua Tree Catering Co. Weddings, private dinners, and gatherings across the high desert."
 >
-  <Nav />
+  <Nav overHero />
   <main id="main">
-    <PageHeader heading={media.heading} lede={media.intro} />
+    <PageHeader heading={media.heading} />
 
-    <section class="mx-auto max-w-6xl px-6 py-20 md:py-28">
-      <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        {media.gallery.map((img, i) => (
-          <figure class="warm rounded-photo reveal overflow-hidden">
-            <Figure
-              image={img}
-              loading={i < 3 ? 'eager' : 'lazy'}
-              class="aspect-[4/5] w-full object-cover transition-transform duration-700 hover:scale-[1.03]"
-              sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-            />
-            {img.caption && (
-              <figcaption class="relative z-10 mt-3 text-sm text-coffee/65">
-                {img.caption}
-              </figcaption>
-            )}
-          </figure>
-        ))}
+    <section class="band">
+      <div class="mx-auto max-w-5xl px-4 pb-16 pt-4 md:px-6 md:pb-20 md:pt-8">
+        <ul class="mosaic mx-auto grid max-w-[44rem] grid-cols-3 gap-[3px] overflow-hidden rounded-[10px] bg-chiffon-deep">
+          {media.gallery.map((img, i) => (
+            <li class:list={['relative overflow-hidden', img.span === 2 && 'col-span-2']}>
+              <div class="warm h-full w-full">
+                <Figure
+                  image={img}
+                  loading={i < 6 ? 'eager' : 'lazy'}
+                  class="h-full w-full object-cover transition-transform duration-700 hover:scale-[1.03]"
+                  style={`aspect-ratio: ${img.span === 2 ? '4 / 3' : '2 / 3'}`}
+                  sizes={img.span === 2 ? '(min-width: 704px) 29rem, 66vw' : '(min-width: 704px) 15rem, 33vw'}
+                />
+              </div>
+            </li>
+          ))}
+        </ul>
+
+        <div class="mt-12 text-center">
+          <a href={business.instagramUrl} target="_blank" rel="noopener noreferrer" class="btn-outline">
+            {media.instagramCta}
+          </a>
+        </div>
       </div>
     </section>
 
     <ContactForm />
   </main>
   <Footer />
-  </main>
 </Base>

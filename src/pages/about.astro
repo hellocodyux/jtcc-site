@@ -1,36 +1,89 @@
 ---
+/**
+ * About — a big serif "meet, Kristi", then an opening paragraph that
+ * wraps around a round photo of a board, then her portrait beside the rest of the
+ * story and a short list of what we do.
+ */
 import content from '~/content/content.json';
 import Base from '~/layouts/Base.astro';
 import Nav from '~/components/Nav.astro';
 import PageHeader from '~/components/PageHeader.astro';
+import Figure from '~/components/Figure.astro';
 import ContactForm from '~/components/ContactForm.astro';
 import Footer from '~/components/Footer.astro';
 const { about, business } = content;
+const [first, ...rest] = about.body;
 ---
 <Base
   title={`About | ${business.name}`}
   description="A woman-owned catering company in Joshua Tree, California. Hand-crafted food, local ingredients, menus built around your table."
 >
-  <Nav />
+  <Nav overHero />
   <main id="main">
-    <PageHeader heading={about.heading} lede={about.lede} />
+    <PageHeader heading={about.heading} />
 
-    <section class="mx-auto max-w-6xl px-6 py-20 md:py-28">
-      <div class="reveal max-w-2xl space-y-6 text-lg leading-relaxed">
-        {about.body.map((p) => <p>{p}</p>)}
+    <section class="band">
+      <div class="mx-auto max-w-5xl px-6 pb-16 pt-12 md:pb-24 md:pt-16">
+
+        <!-- Opening statement wrapping around the round plate -->
+        <div class="reveal flow-root">
+          {about.round && (
+            <div class="round mx-auto mb-8 h-[13rem] w-[13rem] overflow-hidden rounded-full sm:float-right sm:mx-0 sm:mb-3 sm:ml-3 sm:h-[14rem] sm:w-[14rem] md:ml-4 md:h-[19rem] md:w-[19rem]">
+              <div class="warm h-full w-full">
+                <Figure image={about.round} loading="eager" class="h-full w-full object-cover" sizes="19rem" />
+              </div>
+            </div>
+          )}
+          {about.meet && (
+            <h2 class="font-display font-normal normal-case tracking-[-0.02em] text-[clamp(2.6rem,6.5vw,5rem)] leading-[1] text-rosewood">
+              {about.meet}
+            </h2>
+          )}
+          <p class="wrap-tight mt-7 font-display text-[clamp(1.35rem,2.6vw,2rem)] leading-[1.25] text-coffee/85 md:mt-9">
+            {first}
+          </p>
+        </div>
+
+        <!-- Portrait with the rest of the story hugging it and running underneath -->
+        <div class="reveal mt-6 flow-root md:mt-7">
+          {about.image && (
+            <div class="warm rounded-photo mx-auto mb-8 w-[min(100%,20rem)] overflow-hidden shadow-[0_16px_34px_rgba(44,52,36,0.18)] sm:float-left sm:mx-0 sm:mb-4 sm:mr-8 sm:w-[16rem] md:mr-10 md:w-[22rem]">
+              <Figure
+                image={about.image}
+                class="w-full object-cover"
+                style="aspect-ratio: 4 / 5"
+                sizes="(min-width: 768px) 22rem, 20rem"
+              />
+            </div>
+          )}
+
+          <div class="space-y-5 text-[0.95rem] leading-relaxed text-coffee/85 md:text-base">
+            {rest.map((p) => <p>{p}</p>)}
+          </div>
+
+          {about.list && (
+            <ul class="mt-10 space-y-1 text-[0.95rem] text-rosewood">
+              {about.list.map((item, i) => (
+                <li>{item}{i === about.list.length - 1 ? '.' : ''}</li>
+              ))}
+            </ul>
+          )}
+
+          <a href={about.cta.href} class="btn-outline mt-10">{about.cta.label}</a>
+        </div>
+
       </div>
-
-      <a
-        href={about.cta.href}
-        class="reveal mt-12 inline-flex items-center gap-3 border-b border-rosewood pb-1 text-sm uppercase tracking-[0.16em] text-rosewood transition-opacity hover:opacity-60"
-      >
-        {about.cta.label}
-        <span aria-hidden="true">&rarr;</span>
-      </a>
     </section>
 
     <ContactForm />
   </main>
   <Footer />
-  </main>
 </Base>
+
+<style>
+  /* Let the opening text hug the circle rather than its bounding box */
+  .round { shape-outside: circle(50% at 50% 50%); shape-margin: 0.35rem; }
+  /* Fill each line out to the circle so the text follows its curve */
+  .wrap-tight { text-align: justify; hyphens: auto; text-wrap: pretty; }
+
+</style>

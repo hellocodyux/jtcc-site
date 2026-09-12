@@ -1,39 +1,97 @@
 ---
+/**
+ * Services — a statement row, then the five services tiled in a
+ * hairline grid, each a portrait photo with a short caption under it.
+ * A sixth tile carries the pricing note so the grid stays full.
+ */
 import content from '~/content/content.json';
 import Base from '~/layouts/Base.astro';
 import Nav from '~/components/Nav.astro';
 import PageHeader from '~/components/PageHeader.astro';
+import Figure from '~/components/Figure.astro';
 import ContactForm from '~/components/ContactForm.astro';
 import Footer from '~/components/Footer.astro';
 const { services, business } = content;
+const mat: Record<string, string> = {
+  sky: 'bg-sky',
+  'chiffon-deep': 'bg-chiffon-deep',
+  'sky-deep': 'bg-sky-deep',
+};
 ---
 <Base
   title={`Services | ${business.name}`}
   description="Private chef, event catering, production catering, meal prepping, and retreat meals in Joshua Tree and the high desert."
 >
-  <Nav />
+  <Nav overHero />
   <main id="main">
-    <PageHeader heading={services.heading} lede={services.intro} />
+    <PageHeader heading={services.heading} />
 
-    <section class="mx-auto max-w-6xl px-6 py-20 md:py-28">
-      <dl class="grid gap-x-12 gap-y-14 md:grid-cols-2">
-        {services.items.map((service) => (
-          <div class="reveal border-t border-sand pt-6">
-            <dt class="font-display text-2xl md:text-3xl">{service.name}</dt>
-            <dd class="mt-3 max-w-sm text-base leading-relaxed text-coffee/75">
-              {service.description}
-            </dd>
+    <section class="band">
+      <div class="mx-auto max-w-5xl px-6 pb-16 pt-6 md:pb-24 md:pt-10">
+
+        <!-- Ornament + intro line -->
+        <div class="reveal pb-10 text-center md:pb-14">
+          <div class="mx-auto mb-8 flex items-center justify-center gap-4" aria-hidden="true">
+            <span class="h-px w-14 bg-sand md:w-20"></span>
+            <svg viewBox="0 0 24 24" class="h-4 w-4 text-ember" fill="currentColor">
+              <path d="M12 1.5l1.6 6.2 5.3-3.6-3.6 5.3 6.2 1.6-6.2 1.6 3.6 5.3-5.3-3.6L12 22.5l-1.6-6.2-5.3 3.6 3.6-5.3L2.5 13l6.2-1.6-3.6-5.3 5.3 3.6z" />
+            </svg>
+            <span class="h-px w-14 bg-sand md:w-20"></span>
           </div>
-        ))}
-      </dl>
+          <p class="mx-auto max-w-2xl font-display text-[clamp(1.35rem,2.6vw,2rem)] leading-[1.25] text-rosewood">
+            {services.aside}
+          </p>
+        </div>
 
-      <p class="reveal mt-16 max-w-xl border-l-2 border-rosewood pl-5 text-base leading-relaxed text-coffee/75">
-        {services.pricingNote}
-      </p>
+        <!-- Tiled grid with hairlines -->
+        <ul class="tiles grid grid-cols-1 border-t border-sand sm:grid-cols-2 lg:grid-cols-3">
+          {services.items.map((service) => (
+            <li class="reveal tile flex flex-col items-center px-6 py-10 text-center md:px-8 md:py-12">
+              {service.image && (
+                <div class:list={['w-full max-w-[15rem]', service.mat && `${mat[service.mat]} p-5`]}>
+                  <div class="warm rounded-photo overflow-hidden">
+                    <Figure
+                      image={service.image}
+                      class="w-full object-cover"
+                      style="aspect-ratio: 4 / 5"
+                      sizes="15rem"
+                    />
+                  </div>
+                </div>
+              )}
+              <h2 class="mt-7 text-[0.78rem] text-rosewood">{service.name}</h2>
+              <p class="mt-2 max-w-[17rem] text-[0.82rem] leading-relaxed text-coffee/70">
+                {service.description}
+              </p>
+            </li>
+          ))}
+
+          {services.pricingNote && (
+            <li class="reveal tile flex flex-col items-center justify-center px-6 py-10 text-center md:px-8 md:py-12">
+              <p class="eyebrow">How pricing works</p>
+              <p class="mt-4 max-w-[17rem] font-display text-[1.15rem] leading-snug text-rosewood">
+                {services.pricingNote}
+              </p>
+            </li>
+          )}
+        </ul>
+
+      </div>
     </section>
 
     <ContactForm />
   </main>
   <Footer />
-  </main>
 </Base>
+
+<style>
+  /* Hairlines: every tile gets a bottom rule; side rules between columns */
+  .tile { border-bottom: 1px solid var(--color-sand); }
+  @media (min-width: 640px) {
+    .tile:nth-child(2n) { border-left: 1px solid var(--color-sand); }
+  }
+  @media (min-width: 1024px) {
+    .tile:nth-child(2n) { border-left: 0; }
+    .tile:not(:nth-child(3n + 1)) { border-left: 1px solid var(--color-sand); }
+  }
+</style>

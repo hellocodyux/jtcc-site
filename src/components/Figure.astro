@@ -11,9 +11,10 @@ interface Props {
   class?: string;
   loading?: 'lazy' | 'eager';
   sizes?: string;
+  style?: string;
 }
 
-const { image, class: className = '', loading = 'lazy', sizes } = Astro.props;
+const { image, class: className = '', loading = 'lazy', sizes, style } = Astro.props;
 
 // Local assets, if the download script has been run.
 const local = import.meta.glob<{ default: ImageMetadata }>(
@@ -36,6 +37,7 @@ const localSrc = image ? findLocal(image.key) : undefined;
       src={localSrc}
       alt={image.alt}
       class={className}
+      style={style}
       loading={loading}
       sizes={sizes}
       widths={[480, 800, 1200]}
@@ -47,6 +49,7 @@ const localSrc = image ? findLocal(image.key) : undefined;
       width={image.width}
       height={image.height}
       class={className}
+      style={style}
       loading={loading}
       decoding="async"
     />

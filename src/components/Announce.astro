@@ -1,0 +1,14 @@
+---
+/**
+ * Announce — the slim strip above the nav: one line, centred.
+ * Text comes from content.json → announce.text (falls back to the
+ * booking note). Delete the text to hide the strip.
+ */
+import content from '~/content/content.json';
+const text = content.announce?.text ?? '';
+---
+{text && (
+  <div data-announce class="band-cool relative z-20 px-4 py-2 text-center text-[0.72rem] uppercase tracking-[0.18em] text-coffee">
+    {text}
+  </div>
+)}

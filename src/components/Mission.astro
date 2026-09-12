@@ -1,0 +1,39 @@
+---
+/**
+ * Mission — a cream stamp-edged card sitting on a band of muted
+ * photograph: a round cut-out photo, a small label, two sentences.
+ */
+import content from '~/content/content.json';
+import Figure from './Figure.astro';
+const { mission } = content;
+---
+<section id="mission" class="band-invert relative">
+  <!-- Photo band behind the card -->
+  <div class="mission-band absolute inset-x-0 bottom-0 top-24 overflow-hidden md:top-28" aria-hidden="true">
+    <Figure image={mission.band} class="h-full w-full object-cover object-center" sizes="100vw" />
+  </div>
+
+  <div class="relative mx-auto max-w-6xl px-6 pb-0 pt-0">
+    <div class="stamp mx-auto max-w-3xl px-8 pb-10 pt-12 text-center md:px-14 md:pb-14 md:pt-16" style="--stamp-bg: var(--color-rosewood);">
+      {mission.label && <p class="eyebrow">{mission.label}</p>}
+
+      <!-- The plate, cut out, floating on the card -->
+      <div class:list={['plate mx-auto w-[min(78%,20rem)]', mission.label ? 'mt-8' : 'mt-0']}>
+        <Figure image={mission.image} class="block h-auto w-full" sizes="20rem" />
+      </div>
+
+      <p class="mx-auto mt-9 max-w-md text-[0.95rem] leading-relaxed text-coffee/85 md:text-base">
+        {mission.body}
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .plate :global(img) {
+    filter: drop-shadow(0 26px 34px rgba(44, 52, 36, 0.32)) drop-shadow(0 4px 8px rgba(44, 52, 36, 0.18));
+  }
+  .mission-band :global(img) {
+    filter: saturate(1.08) contrast(1.03) brightness(1.02);
+  }
+</style>

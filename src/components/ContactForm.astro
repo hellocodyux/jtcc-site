@@ -18,24 +18,24 @@ const field =
 const labelCls = 'block text-xs uppercase tracking-[0.12em] text-coffee/60';
 ---
 <section id="contact" class="band-accent">
-  <div class="mx-auto max-w-5xl px-6 py-20 md:py-24">
-    <div class="grid gap-10 md:grid-cols-12 md:gap-14">
+  <div class="mx-auto max-w-5xl px-6 py-14 md:py-16">
+    <div class="grid gap-8 md:grid-cols-12 md:gap-10">
       <!-- Left: the ask -->
       <div class="reveal md:col-span-4">
-        <h2 class="text-3xl leading-tight md:text-4xl">{form.heading}</h2>
-        <p class="mt-4 text-base leading-relaxed text-coffee/75">{form.intro}</p>
+        <h2 class="text-rosewood text-lg md:text-xl">{form.heading}</h2>
+        <p class="mt-3 text-[0.95rem] leading-relaxed text-coffee/75">{form.intro}</p>
 
-        <p class="mt-8 text-xs uppercase tracking-[0.12em] text-coffee/60">
+        <p class="mt-6 text-xs uppercase tracking-[0.12em] text-coffee/60">
           {form.emailLabel}
         </p>
         <a
           href={`mailto:${business.email}`}
-          class="mt-1 inline-block border-b border-rosewood pb-0.5 text-base text-rosewood transition-opacity hover:opacity-70"
+          class="link-warm mt-1 inline-block text-base !text-ember-deep"
         >
           {business.email}
         </a>
 
-        <p class="mt-8 text-sm leading-relaxed text-muted">{form.note}</p>
+        <p class="mt-6 text-sm leading-relaxed text-muted">{form.note}</p>
       </div>
 
       <!-- Right: the form -->
@@ -46,24 +46,24 @@ const labelCls = 'block text-xs uppercase tracking-[0.12em] text-coffee/60';
         data-fallback={formConfig.fallbackEmail}
         novalidate
       >
-        <div class="grid gap-x-8 gap-y-6 sm:grid-cols-2">
+        <div class="grid gap-x-8 gap-y-4 sm:grid-cols-2">
           <div>
             <label for="cf-name" class={labelCls}>
-              {f.name} <span aria-hidden="true" class="text-rosewood">*</span>
+              {f.name} <span aria-hidden="true" class="text-ember-deep">*</span>
             </label>
             <input id="cf-name" name="name" type="text" required autocomplete="name" class={field} />
           </div>
 
           <div>
             <label for="cf-email" class={labelCls}>
-              {f.email} <span aria-hidden="true" class="text-rosewood">*</span>
+              {f.email} <span aria-hidden="true" class="text-ember-deep">*</span>
             </label>
             <input id="cf-email" name="email" type="email" required autocomplete="email" class={field} />
           </div>
 
           <div>
             <label for="cf-phone" class={labelCls}>
-              {f.phone} <span aria-hidden="true" class="text-rosewood">*</span>
+              {f.phone} <span aria-hidden="true" class="text-ember-deep">*</span>
             </label>
             <input id="cf-phone" name="phone" type="tel" required autocomplete="tel" class={field} />
           </div>
@@ -80,7 +80,7 @@ const labelCls = 'block text-xs uppercase tracking-[0.12em] text-coffee/60';
             <label for="cf-date" class={labelCls}>{f.eventDate}</label>
             <input
               id="cf-date" name="eventDate" type="text"
-              placeholder="June 14 — 40th birthday" class={field}
+              placeholder="June 14, 40th birthday" class={field}
             />
           </div>
 
@@ -94,6 +94,15 @@ const labelCls = 'block text-xs uppercase tracking-[0.12em] text-coffee/60';
           </div>
         </div>
 
+        <!--
+          Spam honeypot. Real visitors never see this, so anything that
+          fills it in is a bot — Formspree discards those silently.
+        -->
+        <input
+          type="text" name="_gotcha" tabindex="-1" autocomplete="off"
+          aria-hidden="true" class="hidden"
+        />
+
         <div class="mt-8 flex flex-wrap items-center justify-between gap-4">
           <p
             id="cf-status"
@@ -103,7 +112,7 @@ const labelCls = 'block text-xs uppercase tracking-[0.12em] text-coffee/60';
           ></p>
           <button
             type="submit"
-            class="bg-rosewood px-9 py-3 text-sm uppercase tracking-[0.16em] text-chiffon transition-opacity hover:opacity-85 disabled:opacity-50"
+            class="btn-solid disabled:opacity-50"
           >
             {form.submit}
           </button>
@@ -143,14 +152,22 @@ const labelCls = 'block text-xs uppercase tracking-[0.12em] text-coffee/60';
 
       try {
         if (endpoint) {
+          // Subject line in the inbox, so inquiries are scannable.
+          data._subject = `Event inquiry — ${data.name || 'website'}`;
+
           const res = await fetch(endpoint, {
             method: 'POST',
             headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
             body: JSON.stringify(data),
           });
-          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          if (!res.ok) {
+            // Formspree replies with { errors: [{ message }] } on a bad request.
+            const detail = await res.json().catch(() => null);
+            const first = detail && detail.errors && detail.errors[0];
+            throw new Error(first ? first.message : `HTTP ${res.status}`);
+          }
         } else {
-          const subject = `Event inquiry — ${data.name || ''}`;
+          const subject = `Event inquiry from ${data.name || ''}`;
           const body = [
             `Name: ${data.name || ''}`,
             `Email: ${data.email || ''}`,

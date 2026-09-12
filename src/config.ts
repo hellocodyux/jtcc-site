@@ -33,7 +33,7 @@ export const features = {
  * and it starts posting. Nothing else needs to change.
  */
 export const form = {
-  endpoint: '',
+  endpoint: 'https://formspree.io/f/mvkojpaa',
   fallbackEmail: 'Info@joshuatreecateringco.com',
 } as const;
 

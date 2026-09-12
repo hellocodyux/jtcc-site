@@ -1,12 +1,24 @@
 ---
+/**
+ * PageHeader — the inner-page version of the home hero: a block of
+ * forest green with the page name in script and a line underneath.
+ * A cream scallop edge finishes the bottom, the way the mission card
+ * notches into the green on the home page.
+ */
+import Scallop from './Scallop.astro';
 interface Props { heading: string; lede?: string; }
 const { heading, lede } = Astro.props;
 ---
-<header class="band-deep">
-  <div class="mx-auto max-w-6xl px-6 pb-16 pt-36 md:pb-24 md:pt-44">
-    <h1 class="max-w-3xl text-[clamp(2.5rem,7vw,4.5rem)]">{heading}</h1>
+<header class="band-invert">
+  <div class="mx-auto max-w-3xl px-6 pb-20 pt-32 text-center md:pb-24 md:pt-40">
+    <h1 class="script text-chiffon text-[clamp(2.3rem,6vw,4rem)] leading-[1.15]">
+      {heading}
+    </h1>
     {lede && (
-      <p class="mt-6 max-w-xl text-lg leading-relaxed text-coffee/75">{lede}</p>
+      <p class="mx-auto mt-6 max-w-lg text-[0.98rem] leading-relaxed text-chiffon/85">
+        {lede}
+      </p>
     )}
   </div>
 </header>
+<Scallop color="chiffon" />

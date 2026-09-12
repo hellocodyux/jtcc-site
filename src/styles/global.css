@@ -6,25 +6,45 @@
    pairings meet WCAG 2.1 AA — ratios noted inline.
    --------------------------------------------------------------- */
 @theme {
-  /* Brand */
-  --color-chiffon:      #FFF8CA;  /* Lemon Chiffon — page ground */
-  --color-rosewood:     #6B0B0C;  /* Rosewood — primary, links, buttons */
-  --color-coffee:       #2D120D;  /* Coffee Bean — text, inverted bands */
-  --color-sky:          #CDE3E8;  /* Botticelli — cool accent band */
+  /* Brand — forest green and cream, with clay as the warm accent.
+     Token names are kept from the first palette so every component
+     still works: chiffon = cream, rosewood = forest, coffee = ink,
+     sky = sage. */
+  --color-chiffon:      #EBE2D2;  /* cream — page ground */
+  --color-rosewood:     #4E5C3C;  /* forest — primary, headings, buttons */
+  --color-coffee:       #2C3424;  /* ink — body text, footer */
+  --color-sky:          #DCE2D0;  /* sage — soft band */
+  --color-clay:         #B5391B;  /* ember — the one warm accent: labels, links, buttons */
+  --color-ember:        #B5391B;  /* same as clay, in its own name */
+  --color-ember-deep:   #952E15;  /* ember hover / on darker bands */
+
+  /* Aliases in the new names */
+  --color-forest: #4E5C3C;
+  --color-cream:  #EBE2D2;
+  --color-ink:    #2C3424;
+  --color-sage:   #DCE2D0;
 
   /* Derived */
-  --color-chiffon-deep: #EEE6BB;  /* alternating band  (coffee 13.85:1) */
-  --color-rosewood-deep:#5C0D0C;  /* hover / pressed */
-  --color-sky-deep:     #BACACE;  /* deeper cool tone  (coffee 10.32:1) */
-  --color-sand:         #CABE9B;  /* borders, dividers */
-  --color-muted:        #6C5746;  /* secondary text    (chiffon 6.32:1) */
+  --color-chiffon-deep: #E1D6C1;  /* alternating band */
+  --color-rosewood-deep:#3F4B30;  /* hover / pressed */
+  --color-sky-deep:     #C8D0B9;  /* deeper sage */
+  --color-sand:         #C7BBA3;  /* borders, dividers */
+  --color-muted:        #66705A;  /* secondary text */
 
   /* Type */
   --font-display: "Fraunces Variable", "Fraunces", Georgia, serif;
   --font-body:    "Karla Variable", "Karla", system-ui, sans-serif;
   --font-hand:    "Caveat Variable", "Caveat", cursive;
+  --font-script:  "Pacifico", "Caveat Variable", cursive;
 
   --radius-DEFAULT: 2px;
+}
+
+/* Page frame — the landscape border around the whole site */
+:root {
+  --frame-gutter: clamp(12px, 5vw, 96px);
+  --frame-max: 1320px;
+  --frame-radius: 6px;
 }
 
 @layer base {
@@ -46,17 +66,17 @@
   }
 
   h1, h2, h3 {
-    font-family: var(--font-display);
-    font-variation-settings: "SOFT" 0, "WONK" 1, "opsz" 40;
-    font-weight: 400;
-    line-height: 1.02;
-    letter-spacing: -0.025em;
+    font-family: var(--font-body);
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
   }
 
   section[id] { scroll-margin-top: 5rem; }
 
   :focus-visible {
-    outline: 2px solid var(--color-rosewood);
+    outline: 2px solid var(--color-ember);
     outline-offset: 3px;
   }
 
@@ -68,6 +88,50 @@
 
 @layer components {
   /* -------------------------------------------------------------
+     Page frame
+     ------------------------------------------------------------- */
+  .page-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+  .page-backdrop::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(45, 18, 13, 0.18),
+      rgba(45, 18, 13, 0.30)
+    );
+  }
+
+  .page-frame {
+    position: relative;
+    z-index: 1;
+    width: min(var(--frame-max), 100% - 2 * var(--frame-gutter));
+    margin: var(--frame-gutter) auto;
+    /* transparent so a see-through hero shows the desert; every other
+       section paints its own band colour (chiffon by default) */
+    background-color: transparent;
+    border-radius: var(--frame-radius);
+    overflow: hidden;
+    box-shadow: 0 24px 80px rgba(45, 18, 13, 0.35);
+  }
+
+  :where(.page-frame main > section:not([data-hero])),
+  :where(.page-frame > :not(main):not(header)) {
+    background-color: var(--color-chiffon);
+  }
+
+  /* Fixed nav lines up with the frame's edges */
+  [data-nav] { left: 0; right: 0; top: 0; }
+
+  /* Anchor jumps land inside the frame, under the nav */
+  section[id] { scroll-margin-top: 5rem; }
+
+  /* -------------------------------------------------------------
      Bands — sections separated by background colour
      ------------------------------------------------------------- */
   .band        { background-color: var(--color-chiffon); }
@@ -76,7 +140,7 @@
   .band-accent { background-color: var(--color-sky-deep); }
 
   .band-invert {
-    background-color: var(--color-coffee);
+    background-color: var(--color-rosewood);
     color: var(--color-chiffon);
   }
   .band-invert h1,
@@ -107,7 +171,7 @@
   .marquee:hover .marquee-track { animation-play-state: paused; }
 
   .marquee span {
-    font-family: var(--font-display);
+    font-family: var(--font-body);
     font-size: 0.95rem;
     text-transform: uppercase;
     letter-spacing: 0.22em;
@@ -129,13 +193,26 @@
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(
-      to top,
-      rgba(45, 18, 13, 0.90) 0%,
-      rgba(45, 18, 13, 0.58) 34%,
-      rgba(45, 18, 13, 0.18) 64%,
-      rgba(45, 18, 13, 0) 100%
-    );
+    background:
+      linear-gradient(
+        to bottom,
+        rgba(45, 18, 13, 0.55) 0%,
+        rgba(45, 18, 13, 0.25) 28%,
+        rgba(45, 18, 13, 0) 48%
+      ),
+      linear-gradient(
+        to right,
+        rgba(45, 18, 13, 0.55) 0%,
+        rgba(45, 18, 13, 0.30) 42%,
+        rgba(45, 18, 13, 0) 70%
+      ),
+      linear-gradient(
+        to top,
+        rgba(45, 18, 13, 0.85) 0%,
+        rgba(45, 18, 13, 0.45) 40%,
+        rgba(45, 18, 13, 0.15) 75%,
+        rgba(45, 18, 13, 0) 100%
+      );
     pointer-events: none;
   }
 
@@ -158,9 +235,110 @@
     pointer-events: none;
   }
 
+  /* Outlined button — thin rule, small caps, fills on hover */
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.8rem 1.5rem;
+    border: 1.5px solid var(--color-ember);
+    border-radius: 3px;
+    color: var(--color-ember);
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+  }
+  .btn-outline:hover {
+    background-color: var(--color-ember);
+    border-color: var(--color-ember);
+    color: var(--color-chiffon);
+  }
+  .band-invert .btn-outline { border-color: var(--color-chiffon); color: var(--color-chiffon); }
+  .band-invert .btn-outline:hover { background-color: var(--color-chiffon); color: var(--color-rosewood); }
+
+  /* Solid button — the single warm fill on the page */
+  .btn-solid {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.85rem 2.2rem;
+    background-color: var(--color-ember);
+    color: var(--color-chiffon);
+    border-radius: 3px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    transition: background-color 0.2s;
+  }
+  .btn-solid:hover { background-color: var(--color-ember-deep); }
+
+  /* Warm text link — thin rule underneath */
+  .link-warm {
+    color: var(--color-ember);
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 0.15rem;
+    transition: opacity 0.2s;
+  }
+  .link-warm:hover { opacity: 0.65; }
+
   /* Softly rounded image corners */
   .rounded-photo { border-radius: 14px; }
+
+  /* Dot frame — a thin rule with a ring of small dots inside it,
+     after the beaded borders on old folk textiles. Wrap any photo. */
+  .dot-frame {
+    position: relative;
+    padding: 10px;
+    border-radius: 18px;
+    border: 1.5px solid var(--color-rosewood);
+    background-color: var(--color-chiffon);
+  }
+  .dot-frame::before {
+    content: "";
+    position: absolute;
+    inset: 4px;
+    border-radius: 14px;
+    border: 3px dotted var(--color-rosewood);
+    pointer-events: none;
+  }
+  .dot-frame > * { border-radius: 8px; overflow: hidden; }
   .arch { border-radius: 50% 50% 0 0 / 22% 22% 0 0; }
+
+  .script {
+    font-family: var(--font-script);
+    font-weight: 400;
+    letter-spacing: 0;
+    text-transform: none;
+    line-height: 1.15;
+  }
+
+  .eyebrow {
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--color-ember);
+  }
+
+  /* Stamp card — cream card whose top edge is bitten by round notches */
+  .stamp {
+    position: relative;
+    background-color: var(--color-chiffon);
+  }
+  .stamp::before {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; top: -1px;
+    height: 16px;
+    background-image: radial-gradient(circle at 50% 0, var(--stamp-bg, var(--color-rosewood)) 0 11px, transparent 11.8px);
+    background-size: 30px 16px;
+    background-repeat: repeat-x;
+    background-position: center top;
+    pointer-events: none;
+  }
 
   .hand {
     font-family: var(--font-hand);
@@ -211,8 +389,8 @@
   }
 
   .rail-btn:hover:not(:disabled) {
-    background-color: var(--color-rosewood);
-    border-color: var(--color-rosewood);
+    background-color: var(--color-ember);
+    border-color: var(--color-ember);
     color: var(--color-chiffon);
   }
 

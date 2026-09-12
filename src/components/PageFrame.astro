@@ -1,0 +1,26 @@
+---
+/**
+ * PageFrame — the whole site sits as a centred card over a full-bleed
+ * desert photo, so a strip of landscape shows around every edge like
+ * a mat around a print. The photo is fixed, so the page scrolls past
+ * it. Gutter and max width live in global.css as --frame-gutter and
+ * --frame-max so the fixed nav can line up with the same edges.
+ */
+import { Image } from 'astro:assets';
+import frame from '~/assets/images/frame-joshua-tree.jpg';
+---
+<div class="page-backdrop" aria-hidden="true">
+  <Image
+    src={frame}
+    alt=""
+    widths={[800, 1400, 2200]}
+    sizes="100vw"
+    loading="eager"
+    class="h-full w-full object-cover"
+    style="object-position: 50% 58%;"
+  />
+</div>
+
+<div class="page-frame">
+  <slot />
+</div>

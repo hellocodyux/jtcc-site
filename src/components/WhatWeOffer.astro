@@ -1,22 +1,25 @@
 ---
+/**
+ * What we offer — a heading, one paragraph, one link. The full list
+ * lives on /services. Sits on the deeper cream so it reads as its own
+ * band under the mission card, with a small ember ornament on top.
+ */
 import content from '~/content/content.json';
 const { whatWeOffer } = content;
 ---
 <section id="services" class="band-deep">
-  <div class="mx-auto max-w-6xl px-6 py-24 md:py-32">
-    <a
-      href={whatWeOffer.href}
-      class="reveal group inline-flex items-baseline gap-4 transition-opacity hover:opacity-70"
-    >
-      <h2 class="text-[clamp(2.25rem,6vw,4rem)]">{whatWeOffer.label}</h2>
-      <span
-        class="text-2xl text-rosewood transition-transform group-hover:translate-x-1 md:text-3xl"
-        aria-hidden="true"
-      >&rarr;</span>
-    </a>
-
-    <p class="reveal mt-8 max-w-xl border-l-2 border-rosewood pl-5 text-base leading-relaxed text-coffee/75">
-      {whatWeOffer.note}
-    </p>
+  <div class="mx-auto max-w-2xl px-6 pb-16 pt-12 text-center md:pb-20 md:pt-14">
+    <div class="ornament mx-auto mb-10 flex items-center justify-center gap-4 md:mb-12" aria-hidden="true">
+      <span class="h-px w-14 bg-sand md:w-20"></span>
+      <svg viewBox="0 0 24 24" class="h-4 w-4 text-ember" fill="currentColor">
+        <path d="M12 1.5l1.6 6.2 5.3-3.6-3.6 5.3 6.2 1.6-6.2 1.6 3.6 5.3-5.3-3.6L12 22.5l-1.6-6.2-5.3 3.6 3.6-5.3L2.5 13l6.2-1.6-3.6-5.3 5.3 3.6z" />
+      </svg>
+      <span class="h-px w-14 bg-sand md:w-20"></span>
+    </div>
+    <h2 class="text-rosewood text-lg md:text-xl">
+      <a href={whatWeOffer.href} class="transition-opacity hover:opacity-70">{whatWeOffer.label}</a>
+    </h2>
+    <p class="mt-5 text-[0.95rem] leading-relaxed text-coffee/85 md:text-base">{whatWeOffer.blurb}</p>
+    <a href={whatWeOffer.href} class="btn-outline mt-8">{whatWeOffer.cta}</a>
   </div>
 </section>

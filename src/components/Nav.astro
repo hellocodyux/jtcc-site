@@ -1,85 +1,112 @@
 ---
+/**
+ * Nav — a quiet row of small caps. Transparent over the green hero
+ * (cream type); cream with ink type once you scroll past it. The JTCC
+ * mark on the left is always there and always goes home.
+ */
 import content from '~/content/content.json';
-const { nav } = content;
-
-interface Props {
-  /** Transparent over a hero image, or solid on inner pages. */
-  overHero?: boolean;
-}
+const { nav, business } = content;
+interface Props { overHero?: boolean; }
 const { overHero = false } = Astro.props;
 const path = Astro.url.pathname;
-const isCurrent = (href: string) =>
-  href.startsWith('/') && !href.includes('#') && path === href;
+const isCurrent = (href: string) => href.startsWith('/') && !href.includes('#') && path === href;
+const links = nav.filter((n) => !n.href.includes('#'));
 ---
 <header
   class:list={[
-    'fixed inset-x-0 top-0 z-40 transition-colors duration-300',
-    !overHero && 'bg-chiffon/95 text-coffee shadow-[0_1px_0_rgba(202,190,155,0.7)] backdrop-blur-sm',
+    'fixed z-40 transition-colors duration-300',
+    overHero ? 'text-chiffon' : 'bg-chiffon/95 text-coffee shadow-[0_1px_0_rgba(199,187,163,0.6)] backdrop-blur-sm',
   ]}
   data-nav
   data-over-hero={overHero ? 'true' : 'false'}
 >
-  <nav
-    class="mx-auto flex max-w-6xl items-center justify-between gap-6 px-6 py-5"
-    aria-label="Primary"
-  >
-    <!-- On the home page the hero carries the wordmark, so this stays
-         hidden until you scroll past it. -->
+  <nav class="mx-auto flex max-w-6xl items-center justify-between gap-6 px-6 py-4" aria-label="Primary">
     <a
       href="/"
-      class:list={[
-        'font-display text-lg tracking-tight transition-opacity duration-300 hover:opacity-70',
-        overHero && 'pointer-events-none opacity-0',
-      ]}
+      class="script text-xl transition-opacity duration-300 hover:opacity-70"
+      aria-label={`${business.name} home`}
       data-nav-mark
     >
-      Joshua Tree Catering Co.
+      {business.shortName}
     </a>
-
-    <ul class="hidden items-center gap-9 md:flex">
-      {nav.map((item) => (
+    <ul class="flex items-center gap-5 md:gap-8">
+      {links.map((item) => (
         <li>
           <a
             href={item.href}
             aria-current={isCurrent(item.href) ? 'page' : undefined}
-            class:list={[
-              'text-base tracking-wide transition-opacity hover:opacity-65',
-              isCurrent(item.href) && 'opacity-70',
-            ]}
+            class:list={['text-[0.72rem] uppercase tracking-[0.18em] transition-opacity hover:opacity-65', isCurrent(item.href) && 'opacity-70']}
           >
             {item.label}
           </a>
         </li>
       ))}
-      <li>
-        <a href="/#contact" class="text-base tracking-wide transition-opacity hover:opacity-65">
-          Get in touch
+      <li class="hidden sm:block">
+        <a href="/#contact" class="nav-pill">Get in touch</a>
+      </li>
+      <li class="flex items-center">
+        <a
+          href={business.instagramUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`Joshua Tree Catering Co. on Instagram, @${business.instagram}`}
+          class="block transition-opacity hover:opacity-65"
+        >
+          <svg viewBox="0 0 24 24" fill="none" class="h-[1.1rem] w-[1.1rem]" aria-hidden="true">
+            <rect x="3" y="3" width="18" height="18" rx="5.2" stroke="currentColor" stroke-width="1.8" />
+            <circle cx="12" cy="12" r="4.1" stroke="currentColor" stroke-width="1.8" />
+            <circle cx="17.3" cy="6.7" r="1.2" fill="currentColor" />
+          </svg>
         </a>
       </li>
     </ul>
-
-    <a href="/#contact" class="text-base tracking-wide transition-opacity hover:opacity-65 md:hidden">
-      Get in touch
-    </a>
   </nav>
 </header>
 
 <script>
   const nav = document.querySelector('[data-nav]');
   if (nav instanceof HTMLElement && nav.dataset.overHero === 'true') {
-    const mark = nav.querySelector('[data-nav-mark]');
+    const hero = document.querySelector('[data-hero]');
     const onScroll = () => {
-      const past = window.scrollY > window.innerHeight * 0.7;
+      const limit = hero ? hero.getBoundingClientRect().height - 70 : 300;
+      const past = window.scrollY > limit;
       nav.classList.toggle('bg-chiffon/95', past);
       nav.classList.toggle('backdrop-blur-sm', past);
       nav.classList.toggle('text-coffee', past);
       nav.classList.toggle('text-chiffon', !past);
-      nav.classList.toggle('shadow-[0_1px_0_rgba(202,190,155,0.7)]', past);
-      // Wordmark appears only once the hero logo is out of view.
-      mark?.classList.toggle('opacity-0', !past);
-      mark?.classList.toggle('pointer-events-none', !past);
+      nav.classList.toggle('shadow-[0_1px_0_rgba(199,187,163,0.6)]', past);
     };
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
   }
 </script>
+
+<style>
+  /* Get in touch sits in a rounded outline, so it reads as the one
+     thing to click. Inherits the nav's colour in both states. */
+  .nav-pill {
+    display: inline-block;
+    padding: 0.42rem 0.95rem;
+    border: 1px solid currentColor;
+    border-radius: 999px;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    line-height: 1;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+  }
+  /* Over the green header: fills cream */
+  [data-nav].text-chiffon .nav-pill:hover {
+    background-color: var(--color-chiffon);
+    color: var(--color-forest);
+  }
+  /* Once scrolled onto cream: fills green */
+  [data-nav].text-coffee .nav-pill {
+    border-color: var(--color-ember);
+    color: var(--color-ember);
+  }
+  [data-nav].text-coffee .nav-pill:hover {
+    background-color: var(--color-ember);
+    color: var(--color-chiffon);
+  }
+</style>

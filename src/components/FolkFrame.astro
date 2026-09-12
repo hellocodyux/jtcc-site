@@ -1,0 +1,202 @@
+---
+/**
+ * FolkFrame — an arched photo window inside a hand-cut folk border.
+ *
+ * Flat, paper-cut shapes in the four brand colours: a sun medallion,
+ * ocotillo stems climbing both sides, desert-star blooms in the corners,
+ * a scalloped hem under the window. Everything is original geometry,
+ * drawn with slight irregularities so it reads as cut by hand.
+ *
+ * Usage: wrap a <Figure /> (or any <img>) — it gets clipped to the arch.
+ *
+ *   <FolkFrame>
+ *     <Figure image={...} class="h-full w-full object-cover" />
+ *   </FolkFrame>
+ */
+interface Props { class?: string; }
+const { class: className = '' } = Astro.props;
+
+// Panel is 400 × 560. Photo window: x 92–308, y 118–478, semicircular top.
+const W = 400, H = 560;
+const win = { x: 92, y: 118, w: 216, h: 360 };
+const r = win.w / 2;
+
+// Arch outline path (also used for the ring stroke).
+const arch = `M${win.x} ${win.y + win.h} V${win.y + r} A${r} ${r} 0 0 1 ${win.x + win.w} ${win.y + r} V${win.y + win.h} Z`;
+
+// Sun rays — deliberately uneven so it doesn't look machine-made.
+const rays = [9, 7, 8.5, 6.5, 9.5, 7.5, 8, 6.5, 9, 7, 8.5, 7.5, 9, 7, 8, 7.5];
+
+// Ocotillo stem: leaves alternate sides; a flame of blossoms at the top.
+const leafYs = [440, 412, 384, 356, 328, 300, 272, 244, 216, 190];
+const budYs = [426, 370, 314, 258, 203];
+const flame = [-38, -19, 0, 19, 38]; // blossom angles at the stem tip
+
+// Five-petal bloom, built once and reused at several scales.
+const petals = [0, 72, 144, 216, 288];
+const blooms = [
+  { x: 46, y: 58, s: 1 },
+  { x: 354, y: 58, s: 1 },
+  { x: 200, y: 522, s: 1.05 },
+  { x: 118, y: 530, s: 0.66 },
+  { x: 282, y: 530, s: 0.66 },
+];
+
+// Margin dots — rosewood and chiffon alternate down each side.
+const dots = [128, 176, 224, 272, 320, 368, 416];
+
+// Scalloped hem hanging under the window.
+const scallops = Array.from({ length: 6 }, (_, i) => win.x + 18 + i * 36);
+---
+<div class={`folk-frame relative aspect-[5/7] w-full overflow-hidden rounded-[10px] bg-coffee ${className}`}>
+
+  <!-- Photo, clipped to the arch. Percentages mirror the SVG window. -->
+  <div
+    class="absolute overflow-hidden"
+    style={`
+      left: ${(win.x / W) * 100}%;
+      top: ${(win.y / H) * 100}%;
+      width: ${(win.w / W) * 100}%;
+      height: ${(win.h / H) * 100}%;
+      border-radius: 50% 50% 0 0 / ${(r / win.h) * 100}% ${(r / win.h) * 100}% 0 0;
+    `}
+  >
+    <slot />
+  </div>
+
+  <!-- Ornament layer sits above the photo so the ring edge is crisp. -->
+  <svg
+    viewBox={`0 0 ${W} ${H}`}
+    class="pointer-events-none absolute inset-0 h-full w-full"
+    aria-hidden="true"
+  >
+    <defs>
+      <!-- Ocotillo leaf: a slim, slightly asymmetric teardrop -->
+      <path id="ff-leaf" d="M0 0 C 7 -6, 19 -6.5, 27 -0.5 C 19 5.5, 7 5.5, 0 0 Z" />
+      <!-- Bud: a closed tulip shape -->
+      <path id="ff-bud" d="M0 0 C -5.5 -8, -6 -18, 0 -26 C 6 -18, 5.5 -8, 0 0 Z" />
+      <!-- Blossom: a tapered flame -->
+      <path id="ff-flame" d="M0 0 C -4.5 -9, -4 -20, 0 -30 C 4 -20, 4.5 -9, 0 0 Z" />
+      <!-- Petal -->
+      <ellipse id="ff-petal" cx="0" cy="-13" rx="6.5" ry="13" />
+
+      <g id="ff-bloom">
+        {petals.map((deg) => (
+          <use href="#ff-petal" fill="var(--color-chiffon)" transform={`rotate(${deg})`} />
+        ))}
+        <circle r="6" fill="var(--color-sky)" />
+        <circle r="2.6" fill="var(--color-rosewood)" />
+      </g>
+
+      <g id="ff-stem">
+        {/* Main stem, swaying slightly */}
+        <path
+          d="M46 472 C 39 400, 50 330, 43 262 C 40 232, 45 205, 44 176"
+          fill="none"
+          stroke="var(--color-sky)"
+          stroke-width="5"
+          stroke-linecap="round"
+        />
+        {/* Alternating leaves */}
+        {leafYs.map((y, i) => {
+          const x = 44 + (i % 3) - 1;
+          const flip = i % 2 === 0;
+          return (
+            <use
+              href="#ff-leaf"
+              fill="var(--color-sky)"
+              transform={`translate(${x} ${y}) rotate(${flip ? -32 : 212}) ${flip ? '' : 'scale(1 -1)'}`}
+            />
+          );
+        })}
+        {/* Buds nestled between leaves */}
+        {budYs.map((y, i) => (
+          <use
+            href="#ff-bud"
+            fill="var(--color-chiffon)"
+            transform={`translate(${44 + (i % 2 ? 9 : -9)} ${y}) rotate(${i % 2 ? 28 : -28})`}
+          />
+        ))}
+        {/* Flame of blossoms at the tip */}
+        {flame.map((deg, i) => (
+          <use
+            href="#ff-flame"
+            fill="var(--color-rosewood)"
+            transform={`translate(44 176) rotate(${deg}) scale(${i === 2 ? 1.05 : 0.9})`}
+          />
+        ))}
+        <circle cx="44" cy="176" r="3.2" fill="var(--color-chiffon)" />
+      </g>
+    </defs>
+
+    <!-- Fine inner rule -->
+    <rect x="10" y="10" width={W - 20} height={H - 20} rx="6" fill="none" stroke="var(--color-chiffon)" stroke-opacity="0.28" stroke-width="1" />
+
+    <!-- Arch ring -->
+    <path d={arch} fill="none" stroke="var(--color-chiffon)" stroke-width="7" stroke-linejoin="round" />
+
+    <!-- Sun medallion -->
+    <g transform="translate(200 62)">
+      <circle r="35" fill="var(--color-coffee)" stroke="var(--color-chiffon)" stroke-width="5.5" />
+      {rays.map((len, i) => {
+        const a = (i * (360 / rays.length) * Math.PI) / 180;
+        const r0 = 14.5;
+        return (
+          <line
+            x1={Math.cos(a) * r0} y1={Math.sin(a) * r0}
+            x2={Math.cos(a) * (r0 + len)} y2={Math.sin(a) * (r0 + len)}
+            stroke="var(--color-chiffon)" stroke-width="3" stroke-linecap="round"
+          />
+        );
+      })}
+      <circle r="11" fill="var(--color-chiffon)" />
+      <circle r="4" fill="var(--color-rosewood)" />
+    </g>
+
+    <!-- Leaves sweeping from the crown of the arch to the corners -->
+    <g fill="none" stroke="var(--color-sky)" stroke-width="5" stroke-linecap="round">
+      <path d="M186 116 C 150 104, 112 120, 78 160" />
+      <path d="M214 116 C 250 104, 288 120, 322 160" />
+    </g>
+    <g fill="var(--color-sky)">
+      <use href="#ff-leaf" transform="translate(160 108) rotate(-150)" />
+      <use href="#ff-leaf" transform="translate(126 114) rotate(-160)" />
+      <use href="#ff-leaf" transform="translate(240 108) rotate(-30) scale(1 -1)" />
+      <use href="#ff-leaf" transform="translate(274 114) rotate(-20) scale(1 -1)" />
+    </g>
+
+    <!-- Ocotillo stems, left and mirrored right -->
+    <use href="#ff-stem" />
+    <use href="#ff-stem" transform={`translate(${W} 0) scale(-1 1)`} />
+
+    <!-- Margin dots -->
+    {dots.map((y, i) => (
+      <>
+        <circle cx="20" cy={y} r={i % 2 ? 3 : 4.5} fill={i % 2 ? 'var(--color-chiffon)' : 'var(--color-rosewood)'} />
+        <circle cx={W - 20} cy={y} r={i % 2 ? 3 : 4.5} fill={i % 2 ? 'var(--color-chiffon)' : 'var(--color-rosewood)'} />
+      </>
+    ))}
+
+    <!-- Scalloped hem under the window -->
+    <g fill="var(--color-chiffon)">
+      {scallops.map((x) => (
+        <path d={`M${x - 18} ${win.y + win.h} A18 18 0 0 0 ${x + 18} ${win.y + win.h} Z`} />
+      ))}
+    </g>
+
+    <!-- Blooms -->
+    {blooms.map((b) => (
+      <use href="#ff-bloom" transform={`translate(${b.x} ${b.y}) scale(${b.s})`} />
+    ))}
+  </svg>
+</div>
+
+<style>
+  .folk-frame :global(img),
+  .folk-frame :global(picture) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+</style>

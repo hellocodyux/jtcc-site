@@ -1,5 +1,5 @@
 {
-  "_README": "SINGLE SOURCE OF TRUTH. All site copy and content lives here. Components read from this file — you should never need to edit a component to change words. Anything marked PLACEHOLDER is awaiting real content.",
+  "_README": "SINGLE SOURCE OF TRUTH. All site copy and content lives here. Components read from this file, you should never need to edit a component to change words. Anything marked PLACEHOLDER is awaiting real content.",
   "business": {
     "name": "Joshua Tree Catering Co.",
     "shortName": "JTCC",
@@ -38,7 +38,7 @@
   "hero": {
     "overline": "Joshua Tree, California",
     "headline": "Good food. Better company.",
-    "subhead": "We cook so you can be with your people. Woman-owned catering in the high desert — weddings, birthdays, and dinners that run long.",
+    "subhead": "We cook so you can be with your people. Woman-owned catering in the high desert for weddings, birthdays, and dinners that run long.",
     "cta": {
       "label": "Tell us about your event",
       "href": "#contact"
@@ -50,94 +50,466 @@
       "width": 2000,
       "height": 1125
     },
-    "logo": {
-      "_README": "The script wordmark over the hero photo. Put a transparent PNG at src/assets/images/logo-wordmark.png. Its shape is used as a mask and filled with `color` below, so the PNG's own colour doesn't matter. Use any palette token: chiffon, rosewood, coffee, sky.",
-      "key": "logo-wordmark",
-      "alt": "Joshua Tree Catering Co.",
-      "maxWidth": "min(78vw, 720px)",
+    "showLogo": true,
+    "wordmark": {
+      "_README": "The typeset wordmark over the hero photo. style: \"display\" (Fraunces, same as the section headings, one line at the top), \"serif\" (Fraunces editorial, two lines), \"block\" (Fraunces black, chunky 70s caps, arched) or \"hand\" (Caveat, handwritten). color: any palette token, chiffon, rosewood, coffee, sky.",
+      "line1": "Joshua Tree",
+      "line2": "Catering Co.",
+      "style": "display",
       "color": "chiffon"
     },
-    "showLogo": true
+    "tagline": [
+      "Hand crafted.",
+      "Women owned.",
+      "Rooted in community."
+    ]
   },
   "intro": {
     "heading": "Rooted in community.",
     "body": [
-      "Heartfelt gatherings in the desert. That's the work — somebody cooks, everybody sits down, and a few hours later nobody wants to leave.",
+      "Heartfelt gatherings in the desert. That's the work. Somebody cooks, everybody sits down, and a few hours later nobody wants to leave.",
       "We're a woman-owned catering company in Joshua Tree. Local ingredients, cooked by hand, never locked into a single cuisine.",
       "Connection through food is the whole point. The menu is just how we get there."
     ],
     "image": {
-      "key": "cluster-tables-dusk",
+      "key": "intro-pizza",
       "remote": "",
-      "alt": "Two long tables set with candles among the boulders at dusk",
-      "width": 828,
-      "height": 1035
+      "alt": "Squash blossom pizza with pesto and parmesan on a wooden peel over patterned tile",
+      "width": 590,
+      "height": 788
+    },
+    "cta": {
+      "label": "Tell us about your event",
+      "href": "#contact"
     }
   },
   "services": {
     "heading": "What we offer",
-    "intro": "Dinner for eight in your rental, or a hundred people in a backyard. Same kitchen, same hands, same care either way.",
-    "_PLACEHOLDER": "Descriptions are drafts — confirm each service is accurate before launch.",
+    "intro": "Every one of these starts the same way: somebody's table, the people around it, and food we cook by hand for them. Dinner for eight or a hundred in a backyard, the care is the same. Real ingredients, a menu written for your people, and a kitchen that loves doing this.",
     "items": [
       {
-        "name": "Private Chef",
-        "description": "We cook in your kitchen — your house, your rental, wherever you're staying. Courses come out when they're ready, and you get to sit down for all of them. Usually eight to twenty people around one table."
-      },
-      {
         "name": "Event Catering",
-        "description": "Weddings, birthdays, anniversaries, the big backyard nights. We cook on site, serve, and clean up after, so you can be a guest at your own party. Menus are built around your guest list, not pulled off a shelf."
-      },
-      {
-        "name": "Production Catering",
-        "description": "Cast and crew meals for shoots working out here. We'll work to your budget and your call sheet, feed everyone properly, and keep it moving. Dietary needs handled without a fuss."
-      },
-      {
-        "name": "Meal Prepping",
-        "description": "Cooked, portioned, and delivered with reheating instructions. Right for a house full of people over a long weekend, or a week you'd rather not spend cooking."
+        "description": "Weddings, birthdays, anniversaries, the big backyard nights. We serve and clean up after, so you can be a guest at your own party. Menus are built around your guest list, not pulled off a shelf.",
+        "image": {
+          "key": "film-service-retreat-meals",
+          "remote": "",
+          "alt": "Two candlelit tables set for dinner among the boulders at dusk, a Joshua tree beside them",
+          "width": 1000,
+          "height": 1250,
+          "style": "framed"
+        },
+        "mat": null
       },
       {
         "name": "Retreat Meals",
-        "description": "Multi-day cooking for groups staying out in the desert. Breakfast before everyone scatters, packed lunches for the day, dinner when they come back hungry. We plan the whole arc so nobody's thinking about food."
+        "description": "Multi-day cooking for groups staying out in the desert. Breakfast before everyone scatters, packed lunches for the day, dinner when they come back hungry. We plan the whole arc so nobody's thinking about food.",
+        "image": {
+          "key": "service-event-long-table",
+          "remote": "",
+          "alt": "Friends reaching across a long table for a fennel and apple salad, roasted chicken and potatoes",
+          "width": 1000,
+          "height": 1250,
+          "style": "framed"
+        },
+        "mat": null
+      },
+      {
+        "name": "Private Chef",
+        "description": "We cook in your kitchen, your house, your rental, wherever you're staying. Courses come out when they're ready, and you get to sit down for all of them.",
+        "image": {
+          "key": "film-service-private-chef",
+          "remote": "",
+          "alt": "Sliced steak with roasted fennel and a chopped pepper salsa on a white plate",
+          "width": 1000,
+          "height": 1250,
+          "style": "framed"
+        },
+        "mat": null
+      },
+      {
+        "name": "Production Catering",
+        "description": "Cast and crew meals for shoots working out here. We'll feed everyone properly and keep it moving. Dietary needs handled without a fuss.",
+        "image": {
+          "key": "film-service-production-platters",
+          "remote": "",
+          "alt": "Crew breakfast platters: fruit, smoked salmon with cucumber, red onion, tomato and dill, and a tub of dill cream cheese with the JTCC sticker",
+          "width": 1000,
+          "height": 1250,
+          "style": "framed"
+        },
+        "mat": null
+      },
+      {
+        "name": "Meal Prepping",
+        "description": "Cooked, portioned, and delivered with reheating instructions. Right for a house full of people over a long weekend, or a week you'd rather not spend cooking.",
+        "image": {
+          "key": "film-service-meal-prep-carnitas",
+          "remote": "",
+          "alt": "A tray of slow-roasted pulled pork with orange slices and chopped herbs",
+          "width": 1000,
+          "height": 1250,
+          "style": "framed"
+        },
+        "mat": null
       }
     ],
-    "pricingNote": "Every menu is written for the event, so every quote is too. Tell us the date, the headcount, and what you're picturing — we'll send a menu and a price built around it. No fixed packages, no per-plate list."
+    "pricingNote": "Every menu is written for the event, so every quote is too. Tell us the date, the headcount, and what you're picturing.",
+    "aside": "Same kitchen, same hands, same care either way. Every menu is written for the table it's headed to."
   },
   "media": {
     "heading": "Media",
     "intro": "Real food from real events. Everything here came off our own tables.",
-    "_PLACEHOLDER": "Trimmed to four images on purpose — quality over quantity. Swap for the best NOMAD shoot photos once you pick favorites.",
     "gallery": [
       {
-        "key": "table-setting",
-        "remote": "https://static.wixstatic.com/media/990705_9dba52811d244c7fbeb5eac442d5e34b~mv2.jpeg",
-        "alt": "Table set for a dinner party",
-        "width": 1170,
-        "height": 1714,
-        "caption": "The long table, before anyone sits"
+        "key": "orig-kristi-cat-bowl",
+        "remote": "",
+        "alt": "Kristi and Cat holding a giant bowl of pasta",
+        "width": 689,
+        "height": 1139
       },
       {
-        "key": "spanish-supper",
-        "remote": "https://static.wixstatic.com/media/990705_dc15ee197b2547389eeb1455a2cdfed4~mv2.png",
-        "alt": "Spanish supper laid out for a group",
-        "width": 1080,
-        "height": 1080,
-        "caption": "Spanish supper for twelve"
+        "key": "grain-melon-blackberries",
+        "remote": "",
+        "alt": "Cantaloupe spears with blackberries and lemon zest",
+        "width": 1281,
+        "height": 1600
       },
       {
-        "key": "taco-bar",
-        "remote": "https://static.wixstatic.com/media/990705_e5a3690d8b7b4604a7e8a4290bac4f46~mv2.jpg",
-        "alt": "Taco bar setup",
-        "width": 2000,
-        "height": 1176,
-        "caption": "Build your own"
+        "key": "grain-oysters",
+        "remote": "",
+        "alt": "Four oysters on the half shell with lemon",
+        "width": 665,
+        "height": 1182
       },
       {
-        "key": "chicken-verde",
-        "remote": "https://static.wixstatic.com/media/990705_cdbdb0ee404d42e6a607bb6cd68ed312~mv2.jpg",
-        "alt": "Chicken verde",
-        "width": 585,
-        "height": 1022,
-        "caption": "Chicken verde, three hours in"
+        "key": "grain-desert-table-wide",
+        "remote": "",
+        "alt": "A long table set among the boulders and Joshua trees at golden hour",
+        "width": 1600,
+        "height": 1200,
+        "span": 2
+      },
+      {
+        "key": "grain-hummus-carrots",
+        "remote": "",
+        "alt": "Turmeric hummus with carrot ribbons, olives, tomatoes and radish in a speckled bowl",
+        "width": 828,
+        "height": 983
+      },
+      {
+        "key": "grain-cauliflower-tomatoes",
+        "remote": "",
+        "alt": "Purple and green cauliflower with dark heirloom tomatoes on a cutting board",
+        "width": 1228,
+        "height": 1500
+      },
+      {
+        "key": "grain-crab-cakes",
+        "remote": "",
+        "alt": "Crab cakes with herbed cream and crispy potato gratin",
+        "width": 1200,
+        "height": 1600
+      },
+      {
+        "key": "grain-campfire",
+        "remote": "",
+        "alt": "A fire crackling in a camp fire box under the trees",
+        "width": 1200,
+        "height": 1600
+      },
+      {
+        "key": "grain-deviled-eggs",
+        "remote": "",
+        "alt": "Deviled eggs three ways: smoked salmon and capers, crispy prosciutto, shaved parmesan",
+        "width": 1600,
+        "height": 900,
+        "span": 2
+      },
+      {
+        "key": "grain-long-table-dinner",
+        "remote": "",
+        "alt": "A long dinner table with orange gerberas and a platter of heirloom tomatoes and burrata",
+        "width": 1200,
+        "height": 1600
+      },
+      {
+        "key": "grain-prawns",
+        "remote": "",
+        "alt": "Grilled head-on prawns on a black plate",
+        "width": 665,
+        "height": 1182
+      },
+      {
+        "key": "grain-salads",
+        "remote": "",
+        "alt": "Plated salads with cucumber, radish and carrot",
+        "width": 891,
+        "height": 872
+      },
+      {
+        "key": "grain-jars",
+        "remote": "",
+        "alt": "Jars of paprika honey vinaigrette, green goddess, honey and jam with kraft tags",
+        "width": 828,
+        "height": 1472
+      },
+      {
+        "key": "grain-crostini-hands",
+        "remote": "",
+        "alt": "Hands finishing ricotta, date and pistachio crostini with marigold petals",
+        "width": 1600,
+        "height": 900,
+        "span": 2
+      },
+      {
+        "key": "grain-fruit-brie",
+        "remote": "",
+        "alt": "Brie with blueberry jam, blood orange, kiwi, strawberries and dried apricots",
+        "width": 965,
+        "height": 1600
+      },
+      {
+        "key": "grain-tinned-fish",
+        "remote": "",
+        "alt": "A tinned fish spread with cucumbers, radishes, chips and rosé",
+        "width": 937,
+        "height": 839
+      },
+      {
+        "key": "grain-carnitas",
+        "remote": "",
+        "alt": "A tray of slow-roasted pulled pork with orange slices",
+        "width": 665,
+        "height": 1182
+      },
+      {
+        "key": "grain-pasta-serving",
+        "remote": "",
+        "alt": "Kristi serving fresh pasta to a delighted guest at a dinner party",
+        "width": 1200,
+        "height": 1600
+      },
+      {
+        "key": "grain-cheese-board",
+        "remote": "",
+        "alt": "A cheese board with grapes, berries, dried apricots, pecans and brie",
+        "width": 1163,
+        "height": 676,
+        "span": 2
+      },
+      {
+        "key": "grain-tomatoes-sunset",
+        "remote": "",
+        "alt": "Blistered tomatoes over ricotta with the desert sunset behind",
+        "width": 769,
+        "height": 1024
+      },
+      {
+        "key": "grain-seafood-platter",
+        "remote": "",
+        "alt": "A platter of mussels, clams, langoustines, whole fish and zucchini",
+        "width": 699,
+        "height": 1124
+      },
+      {
+        "key": "grain-sweet-potatoes",
+        "remote": "",
+        "alt": "Roasted sweet potatoes with tahini, chili crisp and cilantro",
+        "width": 716,
+        "height": 1096
+      },
+      {
+        "key": "grain-wraps-crudite",
+        "remote": "",
+        "alt": "Wrapped sandwiches with JTCC stickers beside a crudité tray with hummus and dip",
+        "width": 665,
+        "height": 1182
+      },
+      {
+        "key": "grain-campfire-boulders",
+        "remote": "",
+        "alt": "Campfire flames with boulders and Joshua trees behind",
+        "width": 1600,
+        "height": 1200,
+        "span": 2
+      },
+      {
+        "key": "grain-baba-ghanoush",
+        "remote": "",
+        "alt": "Garlic baba ghanoush with pomegranate and parsley in a speckled bowl",
+        "width": 806,
+        "height": 974
+      },
+      {
+        "key": "grain-fig-board",
+        "remote": "",
+        "alt": "A board of whipped ricotta with blackberries, cheeses, salami roses and dried oranges",
+        "width": 1600,
+        "height": 1087
+      },
+      {
+        "key": "grain-fish-plates",
+        "remote": "",
+        "alt": "Plated white fish with fennel and roasted peppers",
+        "width": 1086,
+        "height": 724
+      },
+      {
+        "key": "grain-tomato-bowl",
+        "remote": "",
+        "alt": "A silver bowl of heirloom cherry tomatoes",
+        "width": 1600,
+        "height": 1590
+      },
+      {
+        "key": "grain-steak-table",
+        "remote": "",
+        "alt": "Hands reaching for sliced steak and street corn at a sunlit table",
+        "width": 1182,
+        "height": 665,
+        "span": 2
+      },
+      {
+        "key": "grain-plantains",
+        "remote": "",
+        "alt": "Fried plantains over crema with cilantro in a stoneware bowl",
+        "width": 944,
+        "height": 832
+      },
+      {
+        "key": "grain-grazing-closeup",
+        "remote": "",
+        "alt": "A grazing board close up: blue cheese, salami, crackers, dips and pickled cauliflower",
+        "width": 793,
+        "height": 991
+      },
+      {
+        "key": "grain-salmon-carrots",
+        "remote": "",
+        "alt": "Seared salmon with grilled lemon, roasted carrots and salsa verde",
+        "width": 1200,
+        "height": 1600
+      },
+      {
+        "key": "grain-anchovies-table",
+        "remote": "",
+        "alt": "Anchovies, bread and butter on a yellow table with white wine",
+        "width": 889,
+        "height": 884
+      },
+      {
+        "key": "grain-spread-overhead",
+        "remote": "",
+        "alt": "A full spread from above: bread, crudité, curried hummus, cheeses and pickles",
+        "width": 1182,
+        "height": 665,
+        "span": 2
+      },
+      {
+        "key": "grain-pink-mushrooms",
+        "remote": "",
+        "alt": "Pink oyster mushrooms against a blue sky",
+        "width": 602,
+        "height": 1304
+      },
+      {
+        "key": "grain-tostada",
+        "remote": "",
+        "alt": "A tostada and enchilada with crema on a vintage plate",
+        "width": 1086,
+        "height": 724
+      },
+      {
+        "key": "grain-desert-table-setting",
+        "remote": "",
+        "alt": "Table setting in the desert: stacked plates, wine, lanterns and a rust runner",
+        "width": 1200,
+        "height": 1600
+      },
+      {
+        "key": "grain-trays",
+        "remote": "",
+        "alt": "Four trays of braised meats and roasted vegetables ready for delivery",
+        "width": 1500,
+        "height": 1500
+      },
+      {
+        "key": "grain-tomato-platters",
+        "remote": "",
+        "alt": "Platters of heirloom tomatoes with burrata and basil on a marble counter",
+        "width": 786,
+        "height": 775
+      },
+      {
+        "key": "grain-menu-lunch",
+        "remote": "",
+        "alt": "A printed menu at a production lunch: wraps, curried hummus, mixed salad",
+        "width": 934,
+        "height": 842
+      },
+      {
+        "key": "grain-charcuterie-tiers",
+        "remote": "",
+        "alt": "Tiered boards of cured meats, cheese and berries with eucalyptus",
+        "width": 724,
+        "height": 1084
+      },
+      {
+        "key": "grain-grazing-table",
+        "remote": "",
+        "alt": "A grazing table: roasted tomatoes over burrata, cured meats, cheeses, dips and olives",
+        "width": 1067,
+        "height": 1600,
+        "span": 2
+      },
+      {
+        "key": "grain-curried-hummus",
+        "remote": "",
+        "alt": "Curried hummus with cucumber and pomegranate, crudité alongside",
+        "width": 768,
+        "height": 1024
+      },
+      {
+        "key": "grain-deviled-eggs-closeup",
+        "remote": "",
+        "alt": "Deviled eggs with smoked salmon and dill beside blistered tomatoes",
+        "width": 1200,
+        "height": 1600
+      },
+      {
+        "key": "grain-tomato-toast",
+        "remote": "",
+        "alt": "Tomato and ricotta toast with a glass of white wine",
+        "width": 1390,
+        "height": 1506
+      },
+      {
+        "key": "grain-outdoor-buffet",
+        "remote": "",
+        "alt": "An outdoor buffet with a printed menu, grazing board and finger sandwiches",
+        "width": 1024,
+        "height": 769
+      },
+      {
+        "key": "grain-steak-fennel",
+        "remote": "",
+        "alt": "Sliced steak over roasted fennel with a chopped pepper salsa",
+        "width": 1600,
+        "height": 1393
+      },
+      {
+        "key": "grain-bread-crostini",
+        "remote": "",
+        "alt": "Torn bread in a gingham-lined basket beside a platter of ricotta crostini",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "key": "grain-potatoes-romesco",
+        "remote": "",
+        "alt": "Roasted baby potatoes being plated over romesco",
+        "width": 962,
+        "height": 1600
       }
     ],
     "instagramCta": "See more on Instagram"
@@ -186,62 +558,94 @@
       }
     ],
     "cta": "Read more on Google",
-    "ctaUrl": "https://www.google.com/search?q=Joshua+Tree+Catering+Co.+Reviews"
+    "ctaUrl": "https://www.google.com/search?q=Joshua+Tree+Catering+Co.+Reviews",
+    "image": {
+      "key": "offer-disco-dinner",
+      "remote": "",
+      "alt": "Guests at a long candlelit table under a cluster of disco balls",
+      "width": 400,
+      "height": 500
+    }
   },
   "footer": {
     "tagline": "Come hungry. Stay late.",
     "location": "Joshua Tree, CA · Serving the high desert and Southern California"
   },
   "sampleMenus": {
-    "_README": "Price-free by design — these show range, not cost. Add real past-event menus here as `courses` arrays. Displayed only when features.sampleMenus is true in src/config.ts.",
+    "_README": "Price-free by design, these show range, not cost. Add real past-event menus here as `courses` arrays. Displayed only when features.sampleMenus is true in src/config.ts.",
     "heading": "A few menus we've cooked",
-    "intro": "Every menu is written for the event. These are past nights, shared to show the range — not a list to order from.",
+    "intro": "Every menu is written for the event. These are past nights, shared to show the range, not a list to order from.",
     "menus": [
       {
         "name": "Spanish supper",
         "context": "Twelve people, one long table, out past the driveway",
         "courses": [
-          "PLACEHOLDER — add the real courses from this event"
+          "PLACEHOLDER, add the real courses from this event"
         ]
       },
       {
         "name": "Taco bar",
         "context": "Backyard party, build your own",
         "courses": [
-          "PLACEHOLDER — add the real courses from this event"
+          "PLACEHOLDER, add the real courses from this event"
         ]
       },
       {
         "name": "Thanksgiving dinner",
         "context": "Delivered with reheating instructions, minimum four guests",
         "courses": [
-          "PLACEHOLDER — add the real courses from this event"
+          "PLACEHOLDER, add the real courses from this event"
         ]
       }
     ]
   },
   "whatWeOffer": {
     "label": "What we offer",
+    "blurb": "We offer an array of services: event catering, private chef dinners, production catering, meal prep, and multi-day retreat meals. Every menu is written for the table it's headed to.",
     "href": "/services",
-    "note": "Every menu is written for the event, so every quote is too. Tell us the date, the headcount, and what you're picturing — we'll send a menu and a price built around it. No fixed packages, no per-plate list."
+    "cta": "See our services"
   },
   "about": {
     "heading": "About",
-    "lede": "Joshua Tree Catering Co. is a woman-owned company in Joshua Tree, California. Local ingredients, cooked by hand, never locked into a single cuisine.",
+    "lede": "Joshua Tree Catering Co. is a woman-owned catering company in the high desert, founded and run by Chef Kristi.",
     "body": [
-      "Connection through food is the whole point. The menu is just how we get there.",
-      "A focus on community means fresh, local ingredients and working with local growers and makers wherever we can. We keep waste down and choose sustainable practices across the business.",
-      "Chef Kristi was born and raised in Southern California and comes from a line of cooks. Her love of food and community started in her grandmother's bakery, where she learned technique alongside her grandma and saw first-hand how a small food business holds a neighborhood together. At home it was the same. Every gathering was built around the kitchen, and that's still how she cooks — for the room, not the plate.",
-      "We believe food is a universal language, and being part of this community's table is an honor. Somebody cooks, everybody sits down, and a few hours later nobody wants to leave."
+      "Kristi has spent more than 20 years working in restaurants, in just about every position you can imagine. She knows what it takes to make an event feel effortless, and how much work goes on behind the scenes to make sure the people at the party never have to think about any of it.",
+      "But it really started in her grandmother’s bakery. Kristi grew up in Southern California in a family of cooks and bakers, and the bakery was where she first learned her way around a kitchen and watched a small food business become part of the fabric of a neighborhood.",
+      "Her dad taught her the rest. Growing up in a Romanian family, the year had a rhythm to it: sarmale at the holidays, mămăligă on the stove, cozonac coming out of the oven in December. Every gathering somehow ended up in the kitchen, and that’s really where her love of feeding people comes from.",
+      "She started cooking in Joshua Tree much the same way, with dinner parties, friends’ birthdays, whatever someone happened to be celebrating. Word travels quickly in a small town, and somewhere along the way, those dinners turned into Joshua Tree Catering Co.",
+      "We cook everything by hand, sourcing locally whenever we can and working with local growers and makers whenever it makes sense. We’ve also never been interested in being tied to one kind of food. It might be tacos one weekend and a Spanish dinner the next. Every event is different, and that’s part of what we love about it.",
+      "At the end of the day, food is a universal language. Someone cooks, everyone sits down, and a few hours later nobody wants to leave. Getting to be a small part of those moments, and of this community’s table, is something we don’t take for granted."
     ],
     "cta": {
       "label": "Tell us about your event",
       "href": "/#contact"
-    }
+    },
+    "image": {
+      "key": "film-about-kristi-3",
+      "remote": "",
+      "alt": "Chef Kristi in a white chef's coat and black apron, standing in the kitchen",
+      "width": 1000,
+      "height": 1250
+    },
+    "round": {
+      "key": "film-about-sweet-potatoes",
+      "remote": "",
+      "alt": "Roasted sweet potato halves with tahini, chili crisp and cilantro, limes alongside",
+      "width": 1000,
+      "height": 1000
+    },
+    "list": [
+      "Event catering",
+      "Private chef",
+      "Production catering",
+      "Meal prep",
+      "Retreat meals"
+    ],
+    "meet": "meet, Kristi"
   },
   "form": {
     "heading": "Let's talk about your table.",
-    "intro": "Send the date, a rough headcount, and what you're picturing. We'll come back with a menu draft.",
+    "intro": "Send the date, a rough headcount, and what you're picturing.",
     "fields": {
       "name": "Name",
       "email": "Email",
@@ -327,5 +731,23 @@
         ]
       }
     ]
+  },
+  "mission": {
+    "label": "",
+    "body": "Connection through food is the whole point. Somebody cooks, everybody sits down, and a few hours later nobody wants to leave. Local ingredients, cooked by hand, never locked into a single cuisine.",
+    "image": {
+      "key": "mission-plate",
+      "remote": "",
+      "alt": "Turmeric hummus with shaved carrot, olives and tomato in a speckled bowl",
+      "width": 792,
+      "height": 792
+    },
+    "band": {
+      "key": "mission-band-tomatoes",
+      "remote": "",
+      "alt": "Blistered tomatoes with basil and balsamic over whipped ricotta",
+      "width": 1530,
+      "height": 357
+    }
   }
 }
